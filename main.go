@@ -4,5 +4,5 @@ import "projet/src"
 
 func main() {
 	var p projet.Character
-	p.AfficheMap()
+	p.Marchand()
 }
