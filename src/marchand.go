@@ -19,10 +19,10 @@ func (p *Character) Marchand() {
 	fmt.Println("2. Vendre")
 	fmt.Println("3. Quitter le menu")
 
-	var choice int
-	fmt.Scanln(&choice)
+	var choiceM int
+	fmt.Scanln(&choiceM)
 
-	switch choice {
+	switch choiceM {
 	case 1:
 		p.Acheter()
 	case 2:
