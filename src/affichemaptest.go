@@ -6,7 +6,7 @@ import (
 	"os/exec"
 )
 
-func main() {
+func AfficheMap() {
 	dossier, _ := os.Getwd()
 	fmt.Println("Je suis dans :", dossier)
 
