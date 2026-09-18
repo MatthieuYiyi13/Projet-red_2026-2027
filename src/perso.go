@@ -9,6 +9,7 @@ type Character struct {
 	pvmax int
 	pv int
 	inventaire map[string]int
+	Resurrection bool
 }
 func (c *Character) initcharacter(name string, classe string) {
 	c.name = name
