@@ -16,7 +16,7 @@ func (c*character) initcharacter(name string, classe string) {
 	switch classe {
 	case "guerrier":
 		c.pvmax = 200
-		c.pv = c:pvmax / 2
+		c.pv = c.pvmax / 2
 	case "sorcier":	
 	    c.pvmax = 100
 		c.pv = c.pvmax / 2

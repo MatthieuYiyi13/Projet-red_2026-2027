@@ -1,3 +1,3 @@
-module github.com/MatthieuYiyi13/Projet-red_2026-2027
+module projet
 
-go 1.25.0
+go 1.27.1
