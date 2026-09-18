@@ -1,5 +1,8 @@
 package main 
 
+import "projet/src"
+
 func main() {
-	AfficheMap()
+	var p projet.Character
+	p.AfficheMap()
 }

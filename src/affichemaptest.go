@@ -1,4 +1,4 @@
-package main
+package projet
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"os/exec"
 )
 
-func AfficheMap() {
+func (p *Character)AfficheMap() {
 	dossier, _ := os.Getwd()
 	fmt.Println("Je suis dans :", dossier)
 
