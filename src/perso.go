@@ -3,7 +3,9 @@ package projet
 import (
 	"fmt"
 )
+
 type Character struct {
+<<<<<<< HEAD
 	name         string
 	money 		 int
 	classe       string
@@ -14,10 +16,22 @@ type Character struct {
 	Resurrection bool
 	Skill 		 []Skill
 	AttaqueName string
+=======
+	name          string
+	money         int
+	classe        string
+	pvmax         int
+	pv            int
+	inventaire    map[string]int
+	Resurrection  bool
+	Skill         []Skill
+	AttaqueName   string
+>>>>>>> 767f6d588bf3ef158f84b09d08b3ec83b314f4b7
 	AttaqueDegats int
-	SkillName string
-	SkillDegats int
+	SkillName     string
+	SkillDegats   int
 }
+
 func (p *Character) initcharacter(name string, classe string) {
 	p.name = name
 	p.money = 1000
@@ -25,24 +39,31 @@ func (p *Character) initcharacter(name string, classe string) {
 	p.classe = classe
 	p.experience = 0
 	switch classe {
-	case "guerrier":
+	case "Guerrier":
 		p.pvmax = 200
 		p.pv = p.pvmax / 2
 		p.AttaqueName = "Coup d'épée"
-		p.AttaqueDegats = 15
+		p.AttaqueDegats = 20
 		p.SkillName = "Coup critique"
 		p.SkillDegats = 35
-	case "sorcier":	
-	    p.pvmax = 100
+	case "Sorcier":
+		p.pvmax = 100
 		p.pv = p.pvmax / 2
 		p.AttaqueName = "Coup de baton"
 		p.AttaqueDegats = 10
 		p.SkillName = "Boule de feu"
-		p.SkillDegats = 50
+		p.SkillDegats = 70
+	case "Assassin":
+		p.pvmax = 100
+		p.pv = p.pvmax / 2
+		p.AttaqueName = "Coup de dague"
+		p.AttaqueDegats = 15
+		p.SkillName = "Coups vicieux"
+		p.SkillDegats = 45
 	}
 }
 
-func (p *Character) displayinfo () {
+func (p *Character) displayinfo() {
 }
 
 func (p *Character) AccessInventory() {
@@ -65,7 +86,7 @@ func (p *Character) takepot() {
 		fmt.Println("Vous n'avez plus de potion dans votre inventaire.")
 		return
 	}
-    p.pv += 50
+	p.pv += 50
 	if p.pv > p.pvmax {
 		p.pv = p.pvmax
 	}
