@@ -5,7 +5,7 @@ import "fmt"
 var potion_gratuite bool = true
  
 func (p *Character) Acheter_Materiaux() {
-	fmt.Println("Que voulez vous acheter ? ")
+	fmt.Println("Que voulez vous acheter ?")
 	fmt.Println("1 :  Tissu de spectre: 100 écus")
 	fmt.Println("2 :  Peau de géant: 150 écus")
 	fmt.Println("3 :  Fil d'araignée: 150 écus")
