@@ -11,31 +11,32 @@ type Character struct {
 	inventaire map[string]int
 	Resurrection bool
 }
-func (c *Character) initcharacter(name string, classe string) {
-	c.name = name
-	c.classe = classe
+func (p *Character) initcharacter(name string, classe string) {
+	p.name = name
+	p.inventaire = make(map[string]int)
+	p.classe = classe
 	switch classe {
 	case "guerrier":
-		c.pvmax = 200
-		c.pv = c.pvmax / 2
+		p.pvmax = 200
+		p.pv = p.pvmax / 2
 	case "sorcier":	
-	    c.pvmax = 100
-		c.pv = c.pvmax / 2
+	    p.pvmax = 100
+		p.pv = p.pvmax / 2
 	}
 }
 
-func (c Character) displayinfo () {
+func (p *Character) displayinfo () {
 }
 
-func (c Character) accessIventory() {
+func (p *Character) AccessInventory() {
 	fmt.Println("=== Informations du personnage ===")
-	for itemname, itemquantity := range c.inventaire {
+	for itemname, itemquantity := range p.inventaire {
 		fmt.Printf("\t %s : %d\n", itemname, itemquantity)
 	}
 }
 
-func (c *Character) takepot() {
-	potquantity, potcheck := c.inventaire["potion"]
+func (p *Character) takepot() {
+	potquantity, potcheck := p.inventaire["potion"]
 	if !potcheck {
 		fmt.Println("Vous n'avez pas de potion dans votre inventaire.")
 		return
@@ -44,12 +45,11 @@ func (c *Character) takepot() {
 		fmt.Println("Vous n'avez plus de potion dans votre inventaire.")
 		return
 	}
-    c.pv += 50
-	if c.pv > c.pvmax {
-		c.pv = c.pvmax
+    p.pv += 50
+	if p.pv > p.pvmax {
+		p.pv = p.pvmax
 	}
-	c.inventaire["potion"]--
-	// quoi faire quand quentite = 0 
+	p.inventaire["potion"]--
 
-	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", c.pv, c.pvmax)
+	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", p.pv, p.pvmax)
 }

@@ -4,5 +4,6 @@ import "projet/src"
 
 func main() {
 	var p projet.Character
-	p.Marchand()
+	p.StartMenu()
+	p.AccessInventory()
 }
