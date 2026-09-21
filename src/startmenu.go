@@ -11,25 +11,24 @@ func (p *Character) StartMenu() {
 		fmt.Println("3. Forgeron")
 		fmt.Println("4. Marchand")
 		fmt.Println("10. Quitter le jeu")
-		var choice int
+		var choice string
 		fmt.Scanln(&choice)
-		if choice == 1 {
+		if choice == "1" {
 			fmt.Println("=== stats du personnage ===")
 		}
-		if choice == 2 {
+		if choice == "2" {
 			fmt.Println("=== inventaire ===")
 			p.AccessInventory()
 		}
-		if choice == 10 {
+		if choice == "10" {
 			fmt.Println("Au revoir !")
 			break
 		}
-		if choice == 4 {
+		if choice == "4" {
 			p.Marchand()
+		}
+		if choice == "map" {
+			p.AfficheMap()
 		}
 	}
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> d7f52010d1b14e12e28bc17d07661dc03124af59
