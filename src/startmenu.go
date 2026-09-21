@@ -20,6 +20,10 @@ func (p *Character) StartMenu() {
 			fmt.Println("=== inventaire ===")
 			p.AccessInventory()
 		}
+		if choice == "3" {
+			fmt.Println("Bienvenue dans ma forge angeline")
+			p.forgeronMenu()
+		}
 		if choice == "10" {
 			fmt.Println("Au revoir !")
 			break
