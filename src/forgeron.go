@@ -38,8 +38,8 @@ func parcour_inventaire(p.inventaire []string, wanted string) bool {
 case 1:
     fmt.Println("Pour fabriquer ce chapeau, il te faut 1 plume de corbeau et 1 cuir de sanglier.")
 
-    plume := parcour_inventaire(p, "plume de corbeau")
-    cuir := parcour_inventaire(p, "cuir de sanglier")
+    plume := parcour_inventaire(p.inventaire, "plume de corbeau")
+    cuir := parcour_inventaire(p.inventaire, "cuir de sanglier")
 
     switch {
     case plume && cuir:
@@ -88,7 +88,7 @@ case 3:
 func removeItem(p.inventaire, wanted string) []string {
     for i, item := range p.inventaire {
         if item == wanted {
-            return append(inventory[:i], inventory[i+1:]...)
+            return append(p.inventaire[:i], p.inventaire[i+1:]...)
         }
     }
     return 
@@ -110,3 +110,5 @@ case cuir && fourrure:
 	p.inventaire = removeItem(p.inventaire, "cuir de sanglier")
 	p.inventaire = removeItem(p.inventaire, "fourrure de loup")
 	p.inventaire = append(p.inventaire, "bottes de l'aventurier")	
+
+	
