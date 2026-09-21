@@ -17,7 +17,7 @@ type Character struct {
 	Resurrection bool
 	Skill 		 []Skill
 }
-func (c *Character) initcharacter(name string, classe string) {
+func (p *Character) initcharacter(name string, classe string) {
 	p.name = name
 	p.classe = classe
 	switch classe {
@@ -30,7 +30,7 @@ func (c *Character) initcharacter(name string, classe string) {
 	}
 }
 
-func (c Character) displayinfo () {
+func (p *Character) displayinfo () {
 }
 
 func (p *Character) AccessInventory() {
@@ -40,7 +40,7 @@ func (p *Character) AccessInventory() {
 	}
 }
 
-func (c *Character) takepot() {
+func (p *Character) takepot() {
 	potquantity, potcheck := p.inventaire["potion"]
 	if !potcheck {
 		fmt.Println("Vous n'avez pas de potion dans votre inventaire.")
