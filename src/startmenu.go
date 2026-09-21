@@ -29,7 +29,4 @@ func (p *Character) StartMenu() {
 		}
 	}
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> d7f52010d1b14e12e28bc17d07661dc03124af59
