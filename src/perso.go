@@ -26,7 +26,11 @@ func (p *Character) initcharacter(name string, classe string) {
 	case "guerrier":
 		p.pvmax = 200
 		p.pv = p.pvmax / 2
+<<<<<<< HEAD
 		p.AttaqueName = "Coup d'épée"
+=======
+	p.AttaqueName = "Coup d'épée"
+>>>>>>> 1acfcbe2fb22bc7f2634669df12ef9b983f59905
 		p.AttaqueDegats = 15
 		p.SkillName = "Coup critique"
 		p.SkillDegats = 35
