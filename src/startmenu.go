@@ -2,9 +2,8 @@
 
 	import "fmt"
 
-	func (p *Character) startMenu() { 
-		var player Character
-		player.initcharacter("davy", "guerrier")
+	func (p *Character)StartMenu() { 
+		p.initcharacter("davy", "guerrier")
 		for true {
 			fmt.Println("=== Menu principal ===")
 			fmt.Println("1. Afficher les informations du personnage")
@@ -16,13 +15,16 @@
 			if choice == 1 {
 				fmt.Println("=== stats du personnage ===")}
 			if choice == 2 {
-				fmt.Println("=== inventaire ===")}	
+				fmt.Println("=== inventaire ===")
+				p.AccessInventory() }	
 			if choice == 3 {
 				fmt.Println("Au revoir !")
-				break
-			}	
-
+				break}
+			if choice == 4 {
+				p.Marchand()
+		}
 	}
+<<<<<<< HEAD
 	}
 func (p *Character) forgeronMenu() {
     for {
@@ -49,3 +51,6 @@ func (p *Character) forgeronMenu() {
         }
     }
 }	
+=======
+}
+>>>>>>> de21e9e189f6dc42ed50b90f031e1048c07832be

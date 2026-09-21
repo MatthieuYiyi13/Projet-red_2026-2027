@@ -3,7 +3,11 @@ package projet
 import (
 	"fmt"
 )
-
+type Skill struct {
+	name string
+	damage int
+	ultime bool
+}
 type Character struct {
 	name         string
 	classe       string
@@ -11,27 +15,46 @@ type Character struct {
 	pv           int
 	inventaire   map[string]int
 	Resurrection bool
+	Skill 		 []Skill
 }
-
-func (c *Character) initcharacter(name string, classe string) {
-	c.name = name
-	c.classe = classe
+func (p *Character) initcharacter(name string, classe string) {
+	p.name = name
+	p.classe = classe
 	switch classe {
 	case "guerrier":
-		c.pvmax = 200
-		c.pv = c.pvmax / 2
-	case "sorcier":
-		c.pvmax = 100
-		c.pv = c.pvmax / 2
+		p.pvmax = 200
+		p.pv = p.pvmax / 2
+	case "sorcier":	
+	    p.pvmax = 100
+		p.pv = p.pvmax / 2
 	}
 }
 
-func (c Character) displayinfo() {
+func (p *Character) displayinfo () {
 }
 
-func (c Character) accessIventory() {
+func (p *Character) AccessInventory() {
 	fmt.Println("=== Informations du personnage ===")
-	for itemname, itemquantity := range c.inventaire {
+	for itemname, itemquantity := range p.inventaire {
 		fmt.Printf("\t %s : %d\n", itemname, itemquantity)
 	}
+}
+
+func (p *Character) takepot() {
+	potquantity, potcheck := p.inventaire["potion"]
+	if !potcheck {
+		fmt.Println("Vous n'avez pas de potion dans votre inventaire.")
+		return
+	}
+	if potquantity <= 0 {
+		fmt.Println("Vous n'avez plus de potion dans votre inventaire.")
+		return
+	}
+    p.pv += 50
+	if p.pv > p.pvmax {
+		p.pv = p.pvmax
+	}
+	p.inventaire["potion"]--
+
+	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", p.pv, p.pvmax)
 }
