@@ -5,15 +5,17 @@ import (
 )
 
 type Character struct {
-	name          string
-	money         int
-	classe        string
-	pvmax         int
-	pv            int
-	inventaire    map[string]int
-	Resurrection  bool
-	Skill         []Skill
-	AttaqueName   string
+
+	name         string
+	money 		 int
+	classe       string
+	pvmax        int
+	pv           int
+	experience   int
+	inventaire   map[string]int
+	Resurrection bool
+	Skill 		 []Skill
+	AttaqueName string
 	AttaqueDegats int
 	SkillName     string
 	SkillDegats   int
@@ -21,9 +23,10 @@ type Character struct {
 
 func (p *Character) initcharacter(name string, classe string) {
 	p.name = name
-	p.money = 100
+	p.money = 1000
 	p.inventaire = make(map[string]int)
 	p.classe = classe
+	p.experience = 0
 	switch classe {
 	case "Guerrier":
 		p.pvmax = 200
