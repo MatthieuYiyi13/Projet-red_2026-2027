@@ -2,8 +2,8 @@ package projet
 
 import "fmt"
 
-func (c *Character) takepotS() {
-	potquantity, potcheck := c.inventaire["potion de vie"]
+func (p *Character) takepotS() {
+	potquantity, potcheck := p.inventaire["potion de vie"]
 	if !potcheck {
 		fmt.Println("Vous n'avez pas de potion de vie dans votre inventaire.")
 		return
@@ -12,17 +12,17 @@ func (c *Character) takepotS() {
 		fmt.Println("Vous n'avez plus de potion de vie dans votre inventaire.")
 		return
 	}
-    c.pv += 50
-	if c.pv > c.pvmax {
-		c.pv = c.pvmax
+    p.pv += 50
+	if p.pv > p.pvmax {
+		p.pv = p.pvmax
 	}
-	c.inventaire["potion de vie"]--
+	p.inventaire["potion de vie"]--
 	// quoi faire quand quantite = 0 
 
-	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", c.pv, c.pvmax)
+	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", p.pv, p.pvmax)
 }
-func (c *Character) takepotP(enemyPv *int) {
-	 potquantity, potcheck := c.inventaire["potion de poison"]
+func (p *Character) takepotP(enemyPv *int) {
+	 potquantity, potcheck := p.inventaire["potion de poison"]
 	 if !potcheck {
 		fmt.Println("Vous n'avez pas de potion de poison dans votre inventaire")
 		return
