@@ -16,17 +16,6 @@ type Character struct {
 	Resurrection bool
 	Skill 		 []Skill
 	AttaqueName string
-=======
-	name          string
-	money         int
-	classe        string
-	pvmax         int
-	pv            int
-	inventaire    map[string]int
-	Resurrection  bool
-	Skill         []Skill
-	AttaqueName   string
->>>>>>> 767f6d588bf3ef158f84b09d08b3ec83b314f4b7
 	AttaqueDegats int
 	SkillName     string
 	SkillDegats   int
