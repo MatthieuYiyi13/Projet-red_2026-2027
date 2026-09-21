@@ -4,16 +4,16 @@ import "fmt"
 
 var inventaire_taillemax int = 10
 var objet_marchand = map[string]int{
-   "Tissu de spectre":            10,
-	"Peau de géant":              10,
-	"Fil d'araignée":             10, 
-	"Dent de loup":               10,
-	"Poil de mammouth":           10,
-	"Griffe de lynx de fumée":    10,
-	"Cendre de lynx de fumée":    10,
-	"Fragment de glace":          10,
-	"Fragment du Roi de la Nuit": 10,
-	"Sabot de licorne":           10,
+   "Tissu de spectre":            100,
+	"Peau de géant":              150,
+	"Fil d'araignée":             150, 
+	"Dent de loup":               200,
+	"Poil de mammouth":           250,
+	"Griffe de lynx de fumée":    250,
+	"Cendre de lynx de fumée":    400,
+	"Fragment de glace":          500,
+	"Fragment du Roi de la Nuit": 750,
+	"Sabot de licorne":           999,
 }
 
 func (p *Character) takepotS() {
