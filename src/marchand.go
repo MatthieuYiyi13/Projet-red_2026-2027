@@ -3,20 +3,6 @@ package projet
 import "fmt"
 
 var potion_gratuite bool = true
-var inventaire_taillemax int = 10
-
-var objet_marchand = map[string]int{
-   "Tissu de spectre":            10,
-	"Peau de géant":              10,
-	"Fil d'araignée":             10, 
-	"Dent de loup":               10,
-	"Poil de mammouth":           10,
-	"Griffe de lynx de fumée":    10,
-	"Cendre de lynx de fumée":    10,
-	"Fragment de glace":          10,
-	"Fragment du Roi de la Nuit": 10,
-	"Sabot de licorne":           10,
-}
  
 func (p *Character) Acheter_Materiaux() {
 	fmt.Println("Que voulez vous acheter ? ")

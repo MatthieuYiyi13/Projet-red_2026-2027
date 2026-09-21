@@ -8,7 +8,7 @@ func (p *Character) StartMenu() {
 		fmt.Println("=== Menu principal ===")
 		fmt.Println("1. Afficher les informations du personnage")
 		fmt.Println("2. Accéder à l'inventaire")
-		fmt.Println("3. forgeron")
+		fmt.Println("3. Forgeron")
 		fmt.Println("4. Marchand")
 		fmt.Println("10. Quitter le jeu")
 		var choice int
@@ -29,3 +29,4 @@ func (p *Character) StartMenu() {
 		}
 	}
 }
+
