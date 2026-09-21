@@ -5,7 +5,7 @@ import (
 )
 
 type Character struct {
-<<<<<<< HEAD
+
 	name         string
 	money 		 int
 	classe       string
