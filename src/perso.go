@@ -5,7 +5,7 @@ import (
 )
 type Skill struct {
 	name string
-	damage int
+	Degats int
 	ultime bool
 }
 type Character struct {
@@ -17,6 +17,10 @@ type Character struct {
 	inventaire   map[string]int
 	Resurrection bool
 	Skill 		 []Skill
+	AttaqueName string
+	AttaqueDegats int
+	SkillName string
+	SkillDegats int
 }
 func (p *Character) initcharacter(name string, classe string) {
 	p.name = name
@@ -31,6 +35,10 @@ func (p *Character) initcharacter(name string, classe string) {
 	    p.pvmax = 100
 		p.pv = p.pvmax / 2
 	}
+	p.AttaqueName: "Coup de poing"
+	p.AttaqueDegats: 10
+	p.SkillName: "Boule de feu"
+	p.SkillDegats: 50
 }
 
 func (p *Character) displayinfo () {
