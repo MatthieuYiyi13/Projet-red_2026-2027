@@ -37,13 +37,13 @@ func (p *Character) displayinfo () {
 }
 
 func (p *Character) AccessInventory() {
-	fmt.Println("\t Informations du personnage ")
 	for itemname, itemquantity := range p.inventaire {
 		fmt.Println()
 		fmt.Printf("\t %s : %d\n", itemname, itemquantity)
 		fmt.Println()
 	}
 	fmt.Printf("\t Argent : %d\n", p.money)
+	fmt.Println()
 }
 
 func (p *Character) takepot() {

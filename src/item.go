@@ -13,13 +13,12 @@ func (p *Character) takepotS() {
 		return
 	}
     p.pv += 50
-	if p.pv > c.pvmax {
-		p.pv = c.pvmax
+	if p.pv > p.pvmax {
+		p.pv = p.pvmax
 	}
 	p.inventaire["potion de vie"]--
-	// quoi faire quand quantite = 0 
 
-	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", c.pv, c.pvmax)
+	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", p.pv, p.pvmax)
 }
 func (p *Character) takepotP(enemyPv *int) {
 	 potquantity, potcheck := p.inventaire["potion de poison"]
