@@ -161,7 +161,23 @@ func (p *Character) Acheter_Utilitaire(){
 }
 
 func (p *Character) Acheter_Sorts(){
+	fmt.Println("1 : Coup critique : 20")
+	fmt.Println("2 : Boule de feu : 20")
 
+	var choix_sort int 
+	fmt.Scanln(&choix_sort)
+	switch choix_sort {
+	case 1 : 
+		fmt.Println("Vous avez acheté le sort Coup critique !")
+		fmt.Println()
+		p.inventaire["Coup critique"] += 1
+		p.Acheter_Sorts()
+	case 2 : 
+		fmt.Println("Vous avez acheté le sort Boule de feu !")
+		fmt.Println()
+		p.inventaire ["Boule de feu"] += 1
+		p.Acheter_Sorts()
+	}
 }
 
 func (p *Character) Vendre() {
