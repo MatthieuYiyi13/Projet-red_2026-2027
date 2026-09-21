@@ -6,7 +6,7 @@ func (p *Character) ForgeronMenu() {
 	for {
 		fmt.Println("=== Forgeron ===")
 		fmt.Println("1. Chapeau de Géant")
-		fmt.Println("2. Armure en cuir de mammouth !")
+		fmt.Println("2. Armure en cuir de mammouth")
 		fmt.Println("3. Armure en ivoire")
         fmt.Println("4. Bottes Arc-En-Ciel")
 		fmt.Println("5. Retour au menu principal")
