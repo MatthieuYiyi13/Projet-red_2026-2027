@@ -6,10 +6,10 @@ func (p *Character) StartMenu() {
 	p.initcharacter("davy", "guerrier")
 	for true {
 		fmt.Println("=== Menu principal ===")
-		fmt.Println("1. Afficher les informations du personnage")
-		fmt.Println("2. Accéder à l'inventaire")
-		fmt.Println("3. Forgeron")
-		fmt.Println("4. Marchand")
+		fmt.Println("1.  Afficher les informations du personnage")
+		fmt.Println("2.  Accéder à l'inventaire")
+		fmt.Println("3.  Forgeron")
+		fmt.Println("4.  Marchand")
 		fmt.Println("10. Quitter le jeu")
 		var choice string
 		fmt.Scanln(&choice)
@@ -22,7 +22,7 @@ func (p *Character) StartMenu() {
 		}
 		if choice == "3" {
 			fmt.Println("Bienvenue dans ma forge angeline")
-			p.forgeronMenu()
+			p.ForgeronMenu()
 		}
 		if choice == "10" {
 			fmt.Println("Au revoir !")
@@ -33,6 +33,9 @@ func (p *Character) StartMenu() {
 		}
 		if choice == "map" {
 			p.AfficheMap()
+		}
+		if choice == "pos" {
+			fmt.Printf("Vous êtes actuellement en %d, %d\n", x_position, y_position)
 		}
 	}
 }
