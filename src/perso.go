@@ -3,11 +3,6 @@ package projet
 import (
 	"fmt"
 )
-type Skill struct {
-	name string
-	Degats int
-	ultime bool
-}
 type Character struct {
 	name         string
 	money 		 int
@@ -45,13 +40,13 @@ func (p *Character) displayinfo () {
 }
 
 func (p *Character) AccessInventory() {
-	fmt.Println("\t Informations du personnage ")
 	for itemname, itemquantity := range p.inventaire {
 		fmt.Println()
 		fmt.Printf("\t %s : %d\n", itemname, itemquantity)
 		fmt.Println()
 	}
 	fmt.Printf("\t Argent : %d\n", p.money)
+	fmt.Println()
 }
 
 func (p *Character) takepot() {
