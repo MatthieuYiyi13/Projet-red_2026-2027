@@ -3,7 +3,11 @@ package projet
 import (
 	"fmt"
 )
-
+type Skill struct {
+	name string
+	damage int
+	ultime bool
+}
 type Character struct {
 	name         string
 	classe       string
@@ -11,6 +15,7 @@ type Character struct {
 	pv           int
 	inventaire   map[string]int
 	Resurrection bool
+	Skill 		 []Skill
 }
 
 func (c *Character) initcharacter(name string, classe string) {
