@@ -10,6 +10,7 @@ type Skill struct {
 }
 type Character struct {
 	name         string
+	money 		 int
 	classe       string
 	pvmax        int
 	pv           int
@@ -19,6 +20,8 @@ type Character struct {
 }
 func (p *Character) initcharacter(name string, classe string) {
 	p.name = name
+	p.money = 100
+	p.inventaire = make(map[string]int)
 	p.classe = classe
 	switch classe {
 	case "guerrier":
@@ -34,10 +37,13 @@ func (p *Character) displayinfo () {
 }
 
 func (p *Character) AccessInventory() {
-	fmt.Println("=== Informations du personnage ===")
+	fmt.Println("\t Informations du personnage ")
 	for itemname, itemquantity := range p.inventaire {
+		fmt.Println()
 		fmt.Printf("\t %s : %d\n", itemname, itemquantity)
+		fmt.Println()
 	}
+	fmt.Printf("\t Argent : %d\n", p.money)
 }
 
 func (p *Character) takepot() {

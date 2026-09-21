@@ -2,31 +2,32 @@ package projet
 
 import "fmt"
 
-var prix_objet = map[string]int{
-    "objet_1": 10 ,
-    "objet_2": 10 ,
-    "objet_3": 10 , 
-	"objet_4": 10 ,
-	"objet_5": 10 ,
-	"objet_6": 10 ,
-	"objet_7": 10 ,
-	"objet_8": 10 ,
-	"objet_9": 10 ,
-	"objet_10": 10 ,
+var objet_marchand = map[string]int{
+   "Tissu de spectre":            10,
+	"Peau de géant":              10,
+	"Fil d'araignée":             10, 
+	"Dent de loup":               10,
+	"Poil de mammouth":           10,
+	"Griffe de lynx de fumée":    10,
+	"Cendre de lynx de fumée":    10,
+	"Fragment de glace":          10,
+	"Fragment du Roi de la Nuit": 10,
+	"Sabot de licorne":           10,
 }
  
 func (p *Character) Acheter() {
 	fmt.Println("Que voulez vous acheter ? ")
-	fmt.Println("1 : objet_1: 10")
-	fmt.Println("2 : objet_2: 10")
-	fmt.Println("3 : objet_3: 10")
-	fmt.Println("4 : objet_4: 10")
-	fmt.Println("5 : objet_5: 10")
-	fmt.Println("6 : objet_6: 10")
-	fmt.Println("7 : objet_7: 10")
-	fmt.Println("8 : objet_8: 8")
-	fmt.Println("9 : objet_9: 9")
-	fmt.Println("10 : objet_10: 10")
+	fmt.Println("1 : Tissu de spectre: 10")
+	fmt.Println("2 : Peau de géant: 10")
+	fmt.Println("3 : Fil d'araignée: 10")
+	fmt.Println("4 : Dent de loup: 10")
+	fmt.Println("5 : Poil de mammouth: 10")
+	fmt.Println("6 : Griffe de lynx de fumée: 10")
+	fmt.Println("7 : Cendre de lynx de fumée: 10")
+	fmt.Println("8 : Fragment de glace: 8")
+	fmt.Println("9 : Fragment du Roi de la Nuit: 9")
+	fmt.Println("10 : Sabot de licorne: 10")
+	fmt.Println("11 : Retour au menu ")
 
 var choix_objet int
 	fmt.Scanln(&choix_objet)
@@ -34,25 +35,64 @@ var choix_objet int
 	switch choix_objet {
 	case 1:
 		p.inventaire["tissu de spectre"] += 1 
+		p.money -= 10
 		fmt.Println("Vous avez acheté un tissu de spectre")
+		fmt.Println()
+		p.Acheter()
 	case 2:
-		p.Vendre()
+		p.inventaire["Peau de géant"] += 1 
+		p.money -= 10
+		fmt.Println("Vous avez acheté une peau de géant")
+		fmt.Println()
+		p.Acheter()
 	case 3:
-		fmt.Println("Au revoir !")
+		p.inventaire["Fil d'araignéet"] += 1 
+		p.money -= 10
+		fmt.Println("Vous avez acheté un fil d'araignée")
+		fmt.Println()
+		p.Acheter()
 	case 4:
-		fmt.Println("Au revoir !")		
+		p.inventaire["Dent de loup"] += 1 
+		p.money -= 10
+		fmt.Println("Vous avez acheté une dent de loup")
+		fmt.Println()
+		p.Acheter()
 	case 5:
-		fmt.Println("Au revoir !")
+		p.inventaire["Poil de mammouth"] += 1 
+		p.money -= 10
+		fmt.Println("Vous avez acheté du poil de mammouth")
+		fmt.Println()
+		p.Acheter()
 	case 6:
-		fmt.Println("Au revoir !")
+		p.inventaire["Griffe de lynx de fumée"] += 1 
+		p.money -= 10
+		fmt.Println("Vous avez acheté une griffe de lynx de fumée")
+		fmt.Println()
+		p.Acheter()
 	case 7:
-		fmt.Println("Au revoir !")
+		p.inventaire["Cendre de lynx de fumée"] += 1 
+		p.money -= 10
+		fmt.Println("Vous avez acheté de la cendre de lynx de fumée")
+		fmt.Println()
+		p.Acheter()
 	case 8:
-		fmt.Println("Au revoir !")
+		p.inventaire["Fragment de glace"] += 1 
+		p.money -= 10
+		fmt.Println("Vous avez acheté un fragment de glace")
+		fmt.Println()
+		p.Acheter()
 	case 9:
-		fmt.Println("Au revoir !")
+		p.inventaire["Fragment du Roi de la Nuit"] += 1 
+		p.money -= 10
+		fmt.Println("Vous avez acheté un fragment du Roi de la Nuit")
+		fmt.Println()
+		p.Acheter()
 	case 10:
-		fmt.Println("Au revoir !")
+		p.inventaire["Sabot de licorne"] += 1 
+		p.money -= 10
+		fmt.Println("Vous avez acheté un sabot de licorne")
+		fmt.Println()
+		p.Acheter()
 }
 }
 
