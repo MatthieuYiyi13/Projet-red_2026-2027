@@ -8,7 +8,7 @@ func (p *Character) ForgeronMenu() {
 		fmt.Println("1. Chapeau de Géant")
 		fmt.Println("2. Armure en cuir de mammouth !")
 		fmt.Println("3. Armure en ivoire")
-        fmt.Println("4. Bottes Arc-En-Ciel")
+		fmt.Println("4. Bottes Arc-En-Ciel")
 		fmt.Println("5. Retour au menu principal")
 
 		var choice int
@@ -36,17 +36,17 @@ func (p *Character) ForgeronMenu() {
 		case 3:
 			if p.inventaire["Dent de loup"] >= 3 && p.inventaire["Griffe de lynx fumée"] >= 3 && p.inventaire["Fil d'araignée"] >= 2 {
 				p.inventaire["Dent de loup"] -= 3
-				p.inventaire["riffe de lynx fumée"] -= 3
-            	p.inventaire["Fil d'araignée"] -= 2
+				p.inventaire["Griffe de lynx fumée"] -= 3
+				p.inventaire["Fil d'araignée"] -= 2
 				p.inventaire["Armure en ivoire"]++
 				fmt.Println("Tu as fabriqué l'Armure en ivoire !")
 			} else {
 				fmt.Println("Il te faut 3 Dents de loup, 3 Griffes de lynx fumée et 2 fils d'araignée pour fabriquer cela !")
 			}
-            case 4:
+		case 4:
 			if p.inventaire["Sabot de licorne"] >= 2 && p.inventaire["Cendre de lynx fumée"] >= 2 {
 				p.inventaire["Sabot de licorne"] -= 2
-	 			p.inventaire["Cendre de lynx fumée"] -= 2
+				p.inventaire["Cendre de lynx fumée"] -= 2
 				p.inventaire["Bottes Arc-En-Ciel"]++
 				fmt.Println("Tu as fabriqué les bottes Arc-En-Ciel !")
 			} else {
