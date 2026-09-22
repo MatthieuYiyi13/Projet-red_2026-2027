@@ -19,6 +19,7 @@ type Character struct {
 	AttaqueDegats int
 	SkillName     string
 	SkillDegats   int
+	Equipements map[string]string
 }
 
 func (p *Character) InventairePlein() bool {
@@ -37,6 +38,7 @@ func (p *Character) initcharacter(name string, classe string) {
 	p.inventaire = make(map[string]int)
 	p.classe = classe
 	p.experience = 0
+	p.Equipements = make(map[string]string)
 	switch classe {
 	case "Guerrier":
 		p.pvmax = 200
