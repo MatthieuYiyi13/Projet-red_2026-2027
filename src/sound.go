@@ -3,6 +3,7 @@ package projet
 import (
 	"fmt"
 	"os"
+	"sync"
 	"time"
 
 	"github.com/faiface/beep"
@@ -10,18 +11,38 @@ import (
 	"github.com/faiface/beep/speaker"
 )
 
-var ctrl *beep.Ctrl // contrôle global de la musique en cours
+var (
+	ctrl        *beep.Ctrl
+	speakerOnce sync.Once
+	speakerErr  error
+)
 
-// Initialise le speaker UNE SEULE FOIS
-func initSpeaker() {
-	// on initialise avec une valeur par défaut
-	sr := beep.SampleRate(44100)
-	speaker.Init(sr, sr.N(time.Millisecond*50))
+func initSpeaker(sampleRate beep.SampleRate) error {
+	speakerOnce.Do(func() {
+		speakerErr = speaker.Init(
+			sampleRate,
+			sampleRate.N(50*time.Millisecond),
+		)
+	})
+
+	return speakerErr
 }
 
-// Lance une musique en boucle
-func playMusic(path string) {
-	stopSound() // coupe la musique précédente
+func stopSound() {
+	if ctrl == nil {
+		return
+	}
+
+	speaker.Lock()
+	ctrl.Streamer = nil
+	ctrl.Paused = true
+	speaker.Unlock()
+
+	ctrl = nil
+}
+
+func playMusic(path string, loop bool) {
+	stopSound()
 
 	f, err := os.Open(path)
 	if err != nil {
@@ -29,32 +50,42 @@ func playMusic(path string) {
 		return
 	}
 
-	streamer, _, err := mp3.Decode(f)
+	streamer, format, err := mp3.Decode(f)
 	if err != nil {
-		fmt.Println("Erreur décodage mp3 :", err)
+		f.Close()
+		fmt.Println("Erreur décodage MP3 :", err)
 		return
 	}
 
-	// Crée un contrôleur pour pouvoir stopper la musique plus tard
-	ctrl = &beep.Ctrl{Streamer: beep.Loop(-1, streamer), Paused: false}
-
-	// Joue la musique
-	speaker.Play(ctrl)
-}
-
-// Stoppe la musique en cours
-func stopSound() {
-	if ctrl != nil {
-		speaker.Lock()
-		ctrl.Streamer = nil
-		ctrl.Paused = true
-		speaker.Unlock()
+	if err := initSpeaker(format.SampleRate); err != nil {
+		streamer.Close()
+		f.Close()
+		fmt.Println("Erreur initialisation speaker :", err)
+		return
 	}
+
+	var music beep.Streamer
+
+	if loop {
+		music = beep.Loop(-1, streamer)
+	} else {
+		music = streamer
+	}
+
+	ctrl = &beep.Ctrl{
+		Streamer: music,
+		Paused:   false,
+	}
+
+	speaker.Play(ctrl)
+
+	fmt.Println("Musique lancée :", path)
 }
 
 func PlaySoundAsyncDebut() {
-	playMusic("./docs/game_of_thrones.mp3")
+	playMusic("./docs/game_of_thrones.mp3", true)
 }
+
 func PlaySoundAsyncCombat1() {
-	playMusic("./docs/Pkmmusique1.mp3")
+	playMusic("./docs/Pkmmusique1.mp3", false)
 }
