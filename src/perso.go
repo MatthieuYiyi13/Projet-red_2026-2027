@@ -5,7 +5,6 @@ import (
 )
 
 type Character struct {
-
 	name         string
 	money 		 int
 	classe       string
@@ -83,7 +82,7 @@ func (p *Character) AccessInventory() {
 	var inv string
 		fmt.Scanln(&inv)
 		if inv == "P" {
-			p.takepot()
+			p.Takepot()
 			fmt.Println()
 		}
 		if inv == "E" {
@@ -128,8 +127,8 @@ func (p *Character) AccessInventory() {
 		}
 }
 
-func (p *Character) takepot() {
-	potquantity, potcheck := p.inventaire["potion"]
+func (p *Character) Takepot() {
+	potquantity, potcheck := p.inventaire[RessourcePotSoin]
 	if !potcheck {
 		fmt.Println("Vous n'avez pas de potion dans votre inventaire.")
 		return
@@ -142,7 +141,7 @@ func (p *Character) takepot() {
 	if p.pv > p.pvmax {
 		p.pv = p.pvmax
 	}
-	p.inventaire["potion"]--
+	p.inventaire[RessourcePotSoin]--
 
 	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", p.pv, p.pvmax)
 }

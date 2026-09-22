@@ -3,7 +3,7 @@ package projet
 import "fmt"
 
 func (p *Character) StartMenu() {
-	p.initcharacter("davy", "guerrier")
+	p.initcharacter("davy", "Sorcier")
 	for true {
 		fmt.Println("=== Menu principal ===")
 		fmt.Println("1.  Afficher les informations du personnage")
@@ -36,6 +36,9 @@ func (p *Character) StartMenu() {
 		}
 		if choice == "pos" {
 			fmt.Printf("Vous êtes actuellement en %d, %d\n", x_position, y_position)
+		}
+		if choice == "combat" {
+			p.Combat_start_premier()
 		}
 	}
 }

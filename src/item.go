@@ -29,6 +29,8 @@ const (
 	RessourceArmurecuir          = "Armure en cuir"
 	RessourceArmureIvoire        = "Armure en ivoire"
 	RessourceBotteArcenciel      = "Bottes Arc-En-Ciel"
+	RessourcePotSoin 			 = "Potion de soin"
+	RessourcePotPoison			 = "Potion de poison"
 )
 
 var objet_marchand = map[string]int{
