@@ -10,7 +10,7 @@ func (p *Character) IsDead() {
 			p.Resurrection = true
 			fmt.Println("Angéline vous a ressucitée.")
 		} else {
-			fmt.Println("Vous êtes encore mort... Cette fois personne ne peut vous sauvé....")
+			gameOver()
 		}
 	}
 }
