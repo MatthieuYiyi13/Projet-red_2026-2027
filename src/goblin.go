@@ -7,7 +7,7 @@ type Gobelin struct {
 	PV_actuelle int
 }
 
-func (p*Character) Initgoblin() Monstre {
+func (p*Character) InitGobelin() Monstre {
 	return Monstre{
 			name:        "Gobelin",
 			attack:      5,

@@ -14,28 +14,30 @@ func (p *Character) StartGame() {
 ██ ███ ██ ██      ██     ██      ██    ██ ██  ██  ██ ██
  ███ ███  ███████ ███████ ██████  ██████  ██      ██ ███████
 ` + reset)
-fmt.Println()
-		fmt.Printf("\t+------------------------------------------------+\n")
-		fmt.Printf("\t|               Menu Principal                   |\n")
-		fmt.Printf("\t|                                                |\n")
-		fmt.Printf("\t|  [N] Nouvelle partie                           |\n")
-		fmt.Printf("\t|                                                |\n")
-		fmt.Printf("\t|  [Q] Quitter le jeu                            |\n")
-		fmt.Printf("\t|                                                |\n")
-		fmt.Printf("\t+------------------------------------------------+\n")
-		var choice_jeu string
-		fmt.Scanln(&choice_jeu)
-		switch choice_jeu {
-		case "N","n" :
-			p.StartMenu()
-		case "Q" , "q" : 
-			break 
-		default : fmt.Println()
-				fmt.Println("Saisie invalide , veuillez recommencer.")
-		}
+	fmt.Println()
+	fmt.Printf("\t+------------------------------------------------+\n")
+	fmt.Printf("\t|               Menu Principal                   |\n")
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t|  [N] Nouvelle partie                           |\n")
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t|  [Q] Quitter le jeu                            |\n")
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t+------------------------------------------------+\n")
+	var choice_jeu string
+	fmt.Scanln(&choice_jeu)
+	switch choice_jeu {
+	case "N", "n":
+		p.StartMenu()
+	case "Q", "q":
+		break
+	default:
+		fmt.Println()
+		fmt.Println("Saisie invalide , veuillez recommencer.")
+	}
 
 }
 func (p *Character) StartMenu() {
+
 fmt.Println()
 fmt.Println("Depuis des siècles, le royaume d'Eldoria vivait en paix.")
 fmt.Println("Ses terres étaient divisées en plusieurs biomes, chacun abritant ses propres créatures, ses secrets et ses dangers.")
@@ -65,6 +67,8 @@ fmt.Println()
 fmt.Println("Rapide et discret, le Voleur préfère la ruse, les attaques rapides et les coups dans l'ombre.")
 
 p.initcharacter("davy", "Guerrier")
+	p.initcharacter("davy", "Guerrier")
+	PlaySoundAsyncDebut()
 	for true {
 		stopSound()
 		PlaySoundAsyncDebut()
@@ -102,6 +106,9 @@ p.initcharacter("davy", "Guerrier")
 		}
 		if choice == "combat" {
 			p.Combat_start_premier()
+		}
+		if choice == "train" {
+			p.TrainingFight()
 		}
 	}
 }

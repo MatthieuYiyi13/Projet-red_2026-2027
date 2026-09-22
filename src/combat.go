@@ -232,6 +232,7 @@ func (p *Character) Fuir() {
 	k := rand.IntN(2)
 	if k == 0 {
 		combat_pas_finis = false
+		victoire = true 
 		fmt.Println()
 		fmt.Printf("Vous avez réussi à fuire le combat !")
 		fmt.Println()
