@@ -3,6 +3,7 @@ package projet
 import "fmt"
 
 var potion_gratuite bool = true
+var Sort bool = false
 
 func (p *Character) Acheter_Materiaux() {
 	fmt.Println("Que voulez vous acheter ?")
@@ -184,7 +185,7 @@ func (p *Character) Acheter_Utilitaire() {
 				potion_gratuite = false
 				fmt.Println("Vous avez obtenue la potion de soin gratuite")
 				fmt.Println()
-				p.inventaire["potion de soin"] += 1
+				p.inventaire[RessourcePotSoin] += 1
 				p.Acheter_Utilitaire()
 			}
 		case 2:
@@ -194,7 +195,7 @@ func (p *Character) Acheter_Utilitaire() {
 				fmt.Println("Vous avez acheté une potion de poison pour 150 écus")
 				fmt.Println()
 				p.money -= 150
-				p.inventaire["potion de poison"] += 1
+				p.inventaire[RessourcePotPoison] += 1
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
@@ -234,7 +235,7 @@ func (p *Character) Acheter_Utilitaire() {
 			} else if p.money >= 50 {
 				fmt.Println("Vous avez acheté une potion de soin pour 50 écus")
 				fmt.Println()
-				p.inventaire["potion de soin"] += 1
+				p.inventaire[RessourcePotSoin] += 1
 				p.money -= 50
 				p.Acheter_Utilitaire()
 			} else {
@@ -250,7 +251,7 @@ func (p *Character) Acheter_Utilitaire() {
 				fmt.Println("Vous avez acheté une potion de poison pour 150 écus")
 				fmt.Println()
 				p.money -= 150
-				p.inventaire["potion de poison"] += 1
+				p.inventaire[RessourcePotPoison] += 1
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
