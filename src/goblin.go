@@ -1,19 +1,17 @@
 package projet
 
 type Gobelin struct {
-name        string
-attack      int
-PV_max      int
-PV_actuelle int
+	name        string
+	attack      int
+	PV_max      int
+	PV_actuelle int
 }
 
-func(p *Character) InitGobelin() Monstre{
-
+func (p*Character) Initgoblin() Monstre {
 	return Monstre{
 			name:        "Gobelin",
 			attack:      5,
-			PV_max:      30,
-			PV_actuelle: 30,
-			
-	}
+			PV_max:      40,
+			PV_actuelle: 40,
+		}
 }

@@ -3,6 +3,7 @@ package projet
 import "fmt"
 
 var inventaire_taillemax int = 10
+var sort_coupv bool = true
 var sort_bdf bool = true
 var sort_cc bool = true
 var casque_equipe bool = true

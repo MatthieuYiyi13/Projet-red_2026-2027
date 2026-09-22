@@ -279,41 +279,68 @@ func (p *Character) Acheter_Utilitaire() {
 
 func (p *Character) Acheter_Sorts() {
 
-	if sort_bdf == false && sort_cc == false {
+	if sort_bdf == false {
+		fmt.Println()
+		fmt.Println("Désolé je n'ai plus rien à vous proposer !")
+		fmt.Println()
+		p.Marchand()
+	}
+	if sort_coupv == false  {
+		fmt.Println()
+		fmt.Println("Désolé je n'ai plus rien à vous proposer !")
+		fmt.Println()
+		p.Marchand()
+	}
+	if sort_cc == false {
 		fmt.Println()
 		fmt.Println("Désolé je n'ai plus rien à vous proposer !")
 		fmt.Println()
 		p.Marchand()
 	}
 
-	if sort_cc {
-		fmt.Println("1 : Coup critique : 150 écus")
+	if sort_cc && (p.SkillName == "Coup critique") {
+		fmt.Println("C : Coup critique : 300 écus")
 	}
-	if sort_bdf {
-		fmt.Println("2 : Boule de feu : 300 écus")
+	if sort_bdf && (p.SkillName == "Boule de feu") {
+		fmt.Println("B : Boule de feu : 300 écus")
 	}
-
-	var choix_sort int
+	if sort_coupv && (p.SkillName == "Coups vicieux"){
+		fmt.Println("V : Coup vicieux : 300 écus")
+	}
+	var choix_sort string
 	fmt.Scanln(&choix_sort)
 	switch choix_sort {
-	case 1:
+	case "C" , "c" :
 		if sort_cc == false {
 			p.Marchand()
 		} else {
-		fmt.Println("Vous avez acheté le sort Coup critique pour 150 écus!")
+		fmt.Println("Vous avez acheté le sort Coup critique pour 300 écus!")
+		Sort = true
 		fmt.Println()
 		sort_cc = false
 		p.inventaire["Coup critique"] += 1
-		p.money -= 150
+		p.money -= 300
 		p.Acheter_Sorts() }
-	case 2:
+	case "B" , "b":
 		if sort_bdf == false {
 			p.Marchand()
 		} else {
 		fmt.Println("Vous avez acheté le sort Boule de feu pour 300 écus !")
 		sort_bdf = false
 		fmt.Println()
+		Sort = true
 		p.inventaire["Boule de feu"] += 1
+		p.money -= 300
+		p.Acheter_Sorts() }
+		case "V","v" : 
+			if sort_coupv == false {
+			p.Marchand()
+		} else {
+		fmt.Println("Vous avez acheté le sort Coups vicieux pour 300 écus !")
+		sort_coupv = false
+		fmt.Println()
+		Sort = true
+		p.inventaire["Coups vicieux"] += 1
 		p.money -= 300
 		p.Acheter_Sorts() }
 	}
