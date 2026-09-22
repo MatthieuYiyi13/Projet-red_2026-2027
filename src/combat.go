@@ -9,6 +9,7 @@ var zone_unlock int = 1
 var count_super_monstre int = 1
 var victoire bool = false
 var combat_pas_finis bool = true
+var fuite bool = false
 
 type Spectre struct {
 	name        string
@@ -233,6 +234,7 @@ func (p *Character) Fuir() {
 	if k == 0 {
 		combat_pas_finis = false
 		victoire = true 
+		fuite = true
 		fmt.Println()
 		fmt.Printf("Vous avez réussi à fuire le combat !")
 		fmt.Println()
@@ -283,6 +285,7 @@ func (p *Character) Attaque(monstre *Monstre) {
 func (p *Character) Combat_start_premier() {
 	stopSound()
 	PlaySoundAsyncCombat1()
+	fuite = false
 	victoire = false
 	combat_pas_finis = true
 	monstre := p.choix_monstre()
@@ -361,12 +364,16 @@ func (p *Character) Combat_start_premier() {
 			continue 
 		}
 	}
-	if victoire {
+	if victoire && fuite == false {
 	fmt.Println()
 	fmt.Println("Vous avez gagné le combat")
 	fmt.Println()
 	victoire = false
 	combat_pas_finis = true
+	} else if victoire && fuite{
+		fmt.Println()
+	fmt.Println("Vous avez fuis le combat")
+	fmt.Println()
 	} else {
 	fmt.Println()
 	fmt.Println("Vous avez perdu tout vos pvs , vous êtes mort !")
