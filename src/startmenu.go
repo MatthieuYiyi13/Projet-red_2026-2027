@@ -37,8 +37,8 @@ fmt.Println()
 }
 func (p *Character) StartMenu() {
 
-	
-	PlaySoundAsyncDebut()
+
+PlaySoundAsyncDebut()
 p.initcharacter("davy", "Guerrier")
 	for true {
 		fmt.Println("=== Menu principal ===")
