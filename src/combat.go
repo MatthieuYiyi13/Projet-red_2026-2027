@@ -5,6 +5,8 @@ import (
 	"math/rand/v2"
 )
 
+var zone_unlock int = 1
+var count_super_monstre int = 1
 var victoire bool = false
 var combat_pas_finis bool = true
 
@@ -80,7 +82,17 @@ type Monstre struct {
 }
 
 func (p *Character) choix_monstre() Monstre {
-	n := rand.IntN(9)
+
+	n:= 0
+
+	if zone_unlock == 1 {
+	n = rand.IntN(3)}
+	if zone_unlock == 2{
+	n = rand.IntN(5)}
+	if zone_unlock == 3{
+	n = rand.IntN(7)}
+	if zone_unlock == 4{
+	n = rand.IntN(9)}
 
 	if n == 0 {
 		return Monstre{
@@ -114,10 +126,10 @@ func (p *Character) choix_monstre() Monstre {
 
 	if n == 3 {
 		return Monstre{
-			name:        "Mammouth",
-			attack:      12,
-			PV_max:      350,
-			PV_actuelle: 350,
+			name:        "Lynx fumée",
+			attack:      25,
+			PV_max:      200,
+			PV_actuelle: 200,
 			Poison:      false,
 		}
 	}
@@ -134,10 +146,10 @@ func (p *Character) choix_monstre() Monstre {
 
 	if n == 5 {
 		return Monstre{
-			name:        "Lynx fumée",
-			attack:      25,
-			PV_max:      200,
-			PV_actuelle: 200,
+			name:        "Mammouth",
+			attack:      12,
+			PV_max:      350,
+			PV_actuelle: 350,
 			Poison:      false,
 		}
 	}
@@ -195,13 +207,27 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 	fmt.Printf("\t+------------------------------------------------+\n")
 	var moove_objet string
 	fmt.Scanln(&moove_objet)
-	if (moove_objet == "S" || moove_objet == "s") && (p.inventaire[RessourcePotSoin] >= 1) {
+	switch moove_objet {
+	case "S" , "s"  :
+		if (p.inventaire[RessourcePotSoin] >= 1) {
 		p.Takepot()
+	} else {
+		fmt.Println()
+		fmt.Println("Vous n'avez de potion de soin à utiliser")
+		fmt.Println()
 	}
-	if (moove_objet == "P" || moove_objet == "p") && (p.inventaire[RessourcePotPoison] >= 1) {
+case "P" , "p" : 
+	if (p.inventaire[RessourcePotPoison] >= 1) {
 		p.Usepot_poison(monstre)
+	} else {
+		fmt.Println()
+		fmt.Println("Vous n'avez de potion de poison à utiliser")
+		fmt.Println()
 	}
+	default: fmt.Println("Commande invalide.")
 }
+}
+
 func (p *Character) Fuir() {
 	k := rand.IntN(2)
 	if k == 0 {
@@ -242,17 +268,20 @@ func (p *Character) Attaque(monstre *Monstre) {
 	fmt.Println()
 	var moove_attack string
 	fmt.Scanln(&moove_attack)
-	if moove_attack == "C" || moove_attack == "c" {
+	switch moove_attack{
+	case "C" , "c" : {
 		monstre.PV_actuelle -= p.AttaqueDegats
 	}
-	if moove_attack == "S" || moove_attack == "s" {
+	case "S" , "s" : {
 		monstre.PV_actuelle -= p.SkillDegats
 	}
-
+	default: fmt.Println("Commande invalide.") 
+	}
 }
 
 func (p *Character) Combat_start_premier() {
 	victoire = false
+	combat_pas_finis = true
 	monstre := p.choix_monstre()
 	fmt.Println()
 	fmt.Printf("Vous rencontrez un %s sauvage !", monstre.name)
@@ -264,14 +293,15 @@ func (p *Character) Combat_start_premier() {
 			fmt.Println()
 			monstre.PV_actuelle -= 10
 			fmt.Println()
-			fmt.Printf("Les pv du monstre sont de %d/%d ", monstre.PV_actuelle, monstre.PV_max)
-			fmt.Println()
 			if monstre.PV_actuelle <= 0 {
 				combat_pas_finis = false
 				victoire = true
 				continue
 			}
 		}
+		fmt.Println()
+		fmt.Printf("Les pv du monstre %s sont de %d/%d ", monstre.name , monstre.PV_actuelle, monstre.PV_max)
+		fmt.Println()
 		fmt.Println("Que voulez vous faire ?")
 		fmt.Printf("\n")
 		fmt.Printf("\t+------------------------------------------------+\n")
@@ -284,24 +314,64 @@ func (p *Character) Combat_start_premier() {
 		fmt.Println()
 		var moove string
 		fmt.Scanln(&moove)
-		if moove == "O" || moove == "o" {
+		switch moove { 
+		case  "O" , "o"  :{
 			p.Objet_utilitaire(&monstre)
 		}
-		if moove == "F" || moove == "f" {
+		case  "F" ,"f" : {
 			p.Fuir()
 			if combat_pas_finis == false {
 				continue
 			}
 		}
-		if moove == "A" || moove == "a" {
+		case "A" , "a" : {
 			p.Attaque(&monstre)
 		}
+		default: fmt.Println("Commande invalide.") 
+	}
 		if monstre.PV_actuelle <= 0 {
 			combat_pas_finis = false
+			victoire = true
 			continue
 		}
+		fmt.Println()
+		l := rand.IntN(4) 
+		if l == 0 {
+			fmt.Println()
+			fmt.Println("Le monstre vous attaque mais vous réussissez à l'esquiver !")
+			fmt.Println()
+		} else {
+		fmt.Println("Le monstre ennemi est enervé , il vous charge")
+		pv_perdu := monstre.attack
+		if count_super_monstre%4 == 0 {
+			pv_perdu = pv_perdu*2
+		}
+		fmt.Printf("Vous perdez %d Pvs\n",pv_perdu)
+		p.pv -= monstre.attack
+		fmt.Printf("Pvs actuelle : %d/%d",p.pv,p.pvmax)
+		fmt.Println()
+		count_super_monstre ++
 	}
+		if p.pv <= 0 {
+			victoire = false 
+			combat_pas_finis = false 
+			continue 
+		}
+	}
+	if victoire {
+	fmt.Println()
 	fmt.Println("Vous avez gagné le combat")
+	fmt.Println()
+	victoire = false
+	combat_pas_finis = true
+	} else {
+	fmt.Println()
+	fmt.Println("Vous avez perdu tout vos pvs , vous êtes mort !")
+	fmt.Println()
+	victoire = false 
+	combat_pas_finis = true
+	p.IsDead()
+	}
 }
 
 func (p *Character) Combat_start_second() {}
