@@ -372,7 +372,6 @@ func (p *Character) Combat_start_premier() {
 	combat_pas_finis = true
 	} else if victoire && fuite{
 		fmt.Println()
-	fmt.Println("Vous avez fuis le combat")
 	fmt.Println()
 	} else {
 	fmt.Println()
