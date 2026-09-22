@@ -10,10 +10,18 @@ import (
 	"github.com/faiface/beep/speaker"
 )
 
-var ctrl *beep.Ctrl
+var ctrl *beep.Ctrl // contrôle global de la musique en cours
 
+// Initialise le speaker UNE SEULE FOIS
+func initSpeaker() {
+	// on initialise avec une valeur par défaut
+	sr := beep.SampleRate(44100)
+	speaker.Init(sr, sr.N(time.Millisecond*50))
+}
+
+// Lance une musique en boucle
 func playMusic(path string) {
-	fmt.Println("Ouverture de :", path)
+	stopSound() // coupe la musique précédente
 
 	f, err := os.Open(path)
 	if err != nil {
@@ -21,39 +29,32 @@ func playMusic(path string) {
 		return
 	}
 
-	streamer, format, err := mp3.Decode(f)
+	streamer, _, err := mp3.Decode(f)
 	if err != nil {
-		fmt.Println("Erreur décodage MP3 :", err)
-		f.Close()
+		fmt.Println("Erreur décodage mp3 :", err)
 		return
 	}
 
-	fmt.Println("MP3 décodé")
+	// Crée un contrôleur pour pouvoir stopper la musique plus tard
+	ctrl = &beep.Ctrl{Streamer: beep.Loop(-1, streamer), Paused: false}
 
-	err = speaker.Init(
-		format.SampleRate,
-		format.SampleRate.N(100*time.Millisecond),
-	)
-	if err != nil {
-		fmt.Println("Erreur initialisation speaker :", err)
-		streamer.Close()
-		f.Close()
-		return
-	}
-
-	ctrl = &beep.Ctrl{
-		Streamer: beep.Loop(-1, streamer),
-		Paused:   false,
-	}
-
+	// Joue la musique
 	speaker.Play(ctrl)
+}
 
-	fmt.Println("Lecture lancée")
-
-	// Laisse le moteur audio démarrer avant le lancement du menu.
-	time.Sleep(500 * time.Millisecond)
+// Stoppe la musique en cours
+func stopSound() {
+	if ctrl != nil {
+		speaker.Lock()
+		ctrl.Streamer = nil
+		ctrl.Paused = true
+		speaker.Unlock()
+	}
 }
 
 func PlaySoundAsyncDebut() {
 	playMusic("./docs/game_of_thrones.mp3")
+}
+func PlaySoundAsyncCombat1() {
+	playMusic("./docs/Pkmmusique1.mp3")
 }

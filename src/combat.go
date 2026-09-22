@@ -280,6 +280,8 @@ func (p *Character) Attaque(monstre *Monstre) {
 }
 
 func (p *Character) Combat_start_premier() {
+	stopSound()
+	PlaySoundAsyncCombat1()
 	victoire = false
 	combat_pas_finis = true
 	monstre := p.choix_monstre()
