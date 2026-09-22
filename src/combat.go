@@ -301,7 +301,6 @@ func (p *Character) Combat_start_premier() {
 			continue
 		}
 	}
-	fmt.Println("Vous avez gagné le combat")
 }
 
 func (p *Character) Combat_start_second() {}
