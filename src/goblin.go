@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-package projet
-=======
 package projet
 
 func Initgoblin() p*Character {
@@ -13,4 +10,3 @@ func Initgoblin() p*Character {
 	}
 	return goblin
 }
->>>>>>> aaf0930ad3de3d7be089c98f4293c4ce9625026b
