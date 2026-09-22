@@ -80,7 +80,7 @@ func (p *Character) ForgeronMenu() {
 		case 5:
 			return
 		default:
-			fmt.Println("Choix invalide, choisis 1, 2, 3 ou 4.")
+			fmt.Println("Commande invalide.")
 		}
 	}
 }

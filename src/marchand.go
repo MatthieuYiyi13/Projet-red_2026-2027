@@ -17,7 +17,7 @@ func (p *Character) Acheter_Materiaux() {
 	fmt.Println("8 :  Fragment de glace: 500 écus")
 	fmt.Println("9 :  Fragment du Roi de la Nuit: 750 écus")
 	fmt.Println("10 : Sabot de licorne: 999 écus")
-	fmt.Println("11 : Retour au menu ")
+	fmt.Println("R : Retour au menu ")
 
 	var choix_objet int
 	fmt.Scanln(&choix_objet)
@@ -167,6 +167,7 @@ func (p *Character) Acheter_Materiaux() {
 
 func (p *Character) Acheter_Utilitaire() {
 	if potion_gratuite {
+		fmt.Println()
 		fmt.Println("Que voulez vous acheter ? ")
 		fmt.Println("1 : Potion de soin (la première gratuite): 0 écus")
 		fmt.Println("2 : Potion de poison: 150 écus")
@@ -222,7 +223,7 @@ func (p *Character) Acheter_Utilitaire() {
 		fmt.Println("1 : Potion de soin  :  50 écus")
 		fmt.Println("2 : Potion de poison: 150 écus")
 		fmt.Println("3 : Poche supplémentaire (+10 de stockage dans l'inventaire) : 100 écus")
-		fmt.Println("4 : Retour")
+		fmt.Println("R : Retour")
 		fmt.Println()
 
 		var choix_utile int
@@ -330,7 +331,7 @@ func (p *Character) Vendre() {
 	fmt.Println("8 :  Fragment de glace: 50 écus")
 	fmt.Println("9 :  Fragment du Roi de la Nuit: 75 écus")
 	fmt.Println("10 : Sabot de licorne: 0 écus")
-	fmt.Println("11 : Retour au menu ")
+	fmt.Println("R : Retour au menu ")
 
 	var choix_vente int
 	fmt.Scanln(&choix_vente)
@@ -473,7 +474,9 @@ func (p *Character) Marchand() {
 
 	switch choiceM {
 	case 1:
+		fmt.Println()
 		fmt.Println("Que souhaites-tu acheter ?")
+		fmt.Println()
 		fmt.Println("1. Matériaux")
 		fmt.Println("2. Utilitaires")
 		fmt.Println("3. Sorts")

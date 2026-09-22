@@ -1,16 +1,19 @@
 package projet
 
-import (
-	"fmt"
-)
+type Gobelin struct {
+name        string
+attack      int
+PV_max      int
+PV_actuelle int
+}
 
+func(p *Character) InitGobelin() Monstre{
 
-func Initgoblin()  {
-	monster := &monster{
-		name: "Gobelin",
-		pv:   50,
-		pvmax: 50,
-		experience: 10,
+	return Monstre{
+			name:        "Gobelin",
+			attack:      5,
+			PV_max:      30,
+			PV_actuelle: 30,
+			
 	}
-	return monster
 }
