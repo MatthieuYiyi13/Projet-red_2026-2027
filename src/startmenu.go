@@ -2,8 +2,8 @@ package projet
 
 import "fmt"
 
-func (p *Character) StartMenu() {
-	p.initcharacter("davy", "Guerrier")
+func (p *Character) StartGame() {
+
 	vert := "\033[32m"
 	reset := "\033[0m"
 
@@ -14,7 +14,29 @@ func (p *Character) StartMenu() {
 ██ ███ ██ ██      ██     ██      ██    ██ ██  ██  ██ ██
  ███ ███  ███████ ███████ ██████  ██████  ██      ██ ███████
 ` + reset)
-	p.initcharacter("davy", "guerrier")
+fmt.Println()
+		fmt.Printf("\t+------------------------------------------------+\n")
+		fmt.Printf("\t|              Menu Principal                    |\n")
+		fmt.Printf("\t|                                                |\n")
+		fmt.Printf("\t|    [N] Nouvelle partie                         |\n")
+		fmt.Printf("\t|                                                |\n")
+		fmt.Printf("\t|    [Q] Quitter le jeu                          |\n")
+		fmt.Printf("\t|                                                |\n")
+		fmt.Printf("\t+------------------------------------------------+\n")
+		var choice_jeu string
+		fmt.Scanln(&choice_jeu)
+		switch choice_jeu {
+		case "N","n" :
+
+		case "Q" , "q" : 
+			break 
+		default : fmt.Println()
+				fmt.Println("Saisie invalide , veuillez recommencer.")
+		}
+
+}
+func (p *Character) StartMenu() {
+p.initcharacter("davy", "Guerrier")
 	for true {
 		fmt.Println("=== Menu principal ===")
 		fmt.Println("1.  Afficher les informations du personnage")
