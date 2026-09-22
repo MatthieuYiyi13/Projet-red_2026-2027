@@ -21,7 +21,7 @@ func (p *Character) StartMenu() {
 			p.AccessInventory()
 		}
 		if choice == "3" {
-			fmt.Println("Bienvenue dans ma forge angeline")
+			fmt.Println("Bienvenue dans ma forge")
 			p.Marchand()
 		}
 		if choice == "10" {
