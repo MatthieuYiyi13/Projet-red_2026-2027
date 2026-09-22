@@ -3,7 +3,21 @@ package projet
 import "fmt"
 
 func (p *Character) StartMenu() {
+<<<<<<< HEAD
 	p.initcharacter("davy", "Sorcier")
+=======
+	vert := "\033[32m"
+	reset := "\033[0m"
+
+	fmt.Println(vert + `
+██     ██ ███████ ██      ██████  ██████  ███    ███ ███████
+██     ██ ██      ██     ██      ██    ██ ████  ████ ██
+██  █  ██ █████   ██     ██      ██    ██ ██ ████ ██ █████
+██ ███ ██ ██      ██     ██      ██    ██ ██  ██  ██ ██
+ ███ ███  ███████ ███████ ██████  ██████  ██      ██ ███████
+` + reset)
+	p.initcharacter("davy", "guerrier")
+>>>>>>> 0e06a701e638dc452e6c53b5d29d6f740e00d8df
 	for true {
 		fmt.Println("=== Menu principal ===")
 		fmt.Println("1.  Afficher les informations du personnage")

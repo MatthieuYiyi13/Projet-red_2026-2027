@@ -81,33 +81,3 @@ func (p *Character) takepotP(enemyPv *int) {
 	fmt.Println("Potion de poison utilisée (-1)")
 	fmt.Printf("PV de l'ennemie après poison = %d\n", *enemyPv)
 }
-func (p *Character) Equiper(objet string) {
-	if p.inventaire[objet] < 1 {
-		fmt.Println("Equipement non possedé.")
-		return
-	}
-	switch objet {
-	case "Bottes arc en ciel":
-		p.Equipements["bottes"] = objet
-		p.pvmax += 5
-		fmt.Println(objet, "Vous avez equipé les bottes en arc en ciel !")
-
-	case "Armure en ivoire":
-		p.Equipements["armure"] = objet
-		p.pvmax += 30
-		fmt.Println(objet, "Vous avez equipé l'armuyre en ivoire !")
-
-	case "Armure en cuir":
-		p.Equipements["armure"] = objet
-		p.pvmax += 15
-		fmt.Println(objet, "Vous avez equipé l'armure en cuir !")
-
-	case "Chapeau de géant":
-		p.Equipements["chapeau"] = objet
-		p.pvmax += 8
-		fmt.Println(objet, "Vous avez equipé le chapeau de géant !")
-	default:
-		fmt.Println("Cet objet ne peut pas être équipé.")
-		return
-	}
-}

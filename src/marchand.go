@@ -493,3 +493,4 @@ func (p *Character) Marchand() {
 		fmt.Println("Au revoir !")
 	}
 }
+
