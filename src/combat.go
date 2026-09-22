@@ -373,5 +373,4 @@ func (p *Character) Combat_start_premier() {
 	p.IsDead()
 	}
 }
-
 func (p *Character) Combat_start_second() {}

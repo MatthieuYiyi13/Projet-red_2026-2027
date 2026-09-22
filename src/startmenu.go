@@ -3,7 +3,7 @@ package projet
 import "fmt"
 
 func (p *Character) StartMenu() {
-	p.initcharacter("davy", "Sorcier")
+	p.initcharacter("davy", "Guerrier")
 	vert := "\033[32m"
 	reset := "\033[0m"
 
