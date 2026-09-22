@@ -11,15 +11,6 @@ import (
 	"github.com/faiface/beep/speaker"
 )
 
-var ctrl *beep.Ctrl
-
-func InitSpeaker() {
-	sr := beep.SampleRate(44100)
-	speaker.Init(sr, sr.N(time.Millisecond*50))
-}
-
-func playMusic(path string) {
-	stopSound() 
 var (
 	ctrl        *beep.Ctrl
 	speakerOnce sync.Once
@@ -65,17 +56,6 @@ func playMusic(path string, loop bool) {
 		fmt.Println("Erreur décodage MP3 :", err)
 		return
 	}
-	ctrl = &beep.Ctrl{Streamer: beep.Loop(-1, streamer), Paused: false}
-
-	speaker.Play(ctrl)
-}
-
-func stopSound() {
-	if ctrl != nil {
-		speaker.Lock()
-		ctrl.Streamer = nil
-		ctrl.Paused = true
-		speaker.Unlock()
 
 	if err := initSpeaker(format.SampleRate); err != nil {
 		streamer.Close()
