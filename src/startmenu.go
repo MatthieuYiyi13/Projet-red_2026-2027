@@ -36,8 +36,10 @@ fmt.Println()
 
 }
 func (p *Character) StartMenu() {
+
+	
+	PlaySoundAsyncDebut()
 p.initcharacter("davy", "Guerrier")
-PlaySoundAsyncDebut()
 	for true {
 		fmt.Println("=== Menu principal ===")
 		fmt.Println("1.  Afficher les informations du personnage")

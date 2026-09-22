@@ -10,18 +10,15 @@ import (
 	"github.com/faiface/beep/speaker"
 )
 
-var ctrl *beep.Ctrl // contrôle global de la musique en cours
+var ctrl *beep.Ctrl
 
-// Initialise le speaker UNE SEULE FOIS
-func initSpeaker() {
-	// on initialise avec une valeur par défaut
+func InitSpeaker() {
 	sr := beep.SampleRate(44100)
 	speaker.Init(sr, sr.N(time.Millisecond*50))
 }
 
-// Lance une musique en boucle
 func playMusic(path string) {
-	stopSound() // coupe la musique précédente
+	stopSound() 
 
 	f, err := os.Open(path)
 	if err != nil {
@@ -34,15 +31,11 @@ func playMusic(path string) {
 		fmt.Println("Erreur décodage mp3 :", err)
 		return
 	}
-
-	// Crée un contrôleur pour pouvoir stopper la musique plus tard
 	ctrl = &beep.Ctrl{Streamer: beep.Loop(-1, streamer), Paused: false}
 
-	// Joue la musique
 	speaker.Play(ctrl)
 }
 
-// Stoppe la musique en cours
 func stopSound() {
 	if ctrl != nil {
 		speaker.Lock()
