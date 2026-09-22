@@ -16,18 +16,18 @@ func (p *Character) StartGame() {
 ` + reset)
 fmt.Println()
 		fmt.Printf("\t+------------------------------------------------+\n")
-		fmt.Printf("\t|              Menu Principal                    |\n")
+		fmt.Printf("\t|               Menu Principal                   |\n")
 		fmt.Printf("\t|                                                |\n")
-		fmt.Printf("\t|    [N] Nouvelle partie                         |\n")
+		fmt.Printf("\t|  [N] Nouvelle partie                           |\n")
 		fmt.Printf("\t|                                                |\n")
-		fmt.Printf("\t|    [Q] Quitter le jeu                          |\n")
+		fmt.Printf("\t|  [Q] Quitter le jeu                            |\n")
 		fmt.Printf("\t|                                                |\n")
 		fmt.Printf("\t+------------------------------------------------+\n")
 		var choice_jeu string
 		fmt.Scanln(&choice_jeu)
 		switch choice_jeu {
 		case "N","n" :
-
+			p.StartMenu()
 		case "Q" , "q" : 
 			break 
 		default : fmt.Println()
@@ -37,6 +37,7 @@ fmt.Println()
 }
 func (p *Character) StartMenu() {
 p.initcharacter("davy", "Guerrier")
+PlaySoundAsyncDebut()
 	for true {
 		fmt.Println("=== Menu principal ===")
 		fmt.Println("1.  Afficher les informations du personnage")
