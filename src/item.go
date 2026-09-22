@@ -1,19 +1,47 @@
-package projet
+package projet 
 
 import "fmt"
 
 var inventaire_taillemax int = 10
+var sort_bdf bool = true
+var sort_cc bool = true
+var casque_equipe bool = true
+var botte_equipe bool = true 
+var armureivoire_equipe bool = true
+var armurecuir_equipe bool = true
+var affiche_casque bool = false
+var affiche_armurecuir bool = false 
+var affiche_armureivoire bool = false 
+var affiche_botte bool = false 
+
+const (
+	RessourceTissuDeSpectre = "Tissu de spectre"
+    RessourcePeauDeGeant =  "Peau de Géant"
+	RessourceFilDaraignee = "Fil d'araignée"
+	RessourceDentdeloup = "Dent de loup"
+	RessourcePoildemammouth = "Poil de mammouth"
+	RessourceGriffeDelynxfumee = "Griffe de lynx fumée"
+	RessourceCendreDelynxfumee = "Cendre de lynx fumée"
+	RessourceFragmentdeglace = "Fragment de glace"
+	RessourceFragmentRoiDeLaNuit = "Fragment du Roi de la nuit"
+	RessourceSabotDeLicorne = "Sabot de licorne"
+	RessourceChapeaudegeant = "Chapeau de Géant"
+    RessourceArmurecuir = "Armure en cuir"	
+ 	RessourceArmureIvoire = "Armure en ivoire"
+	RessourceBotteArcenciel = "Bottes Arc-En-Ciel"
+)
+
 var objet_marchand = map[string]int{
-    "Tissu de spectre":            100,
-	"Peau de géant":              150,
-	"Fil d'araignée":             150, 
-	"Dent de loup":               200,
-	"Poil de mammouth":           250,
-	"Griffe de lynx fumée":       250,
-	"Cendre de lynx fumée":       400,
-	"Fragment de glace":          500,
-	"Fragment du Roi de la Nuit": 750,
-	"Sabot de licorne":           999,
+    RessourceTissuDeSpectre :     	 100,
+	RessourcePeauDeGeant :           150,
+	RessourceFilDaraignee :          150, 
+	RessourceDentdeloup:             200,
+	RessourcePoildemammouth :        250,
+	RessourceGriffeDelynxfumee:      250,
+	RessourceCendreDelynxfumee :     400,
+	RessourceFragmentdeglace :       500,
+	RessourceFragmentRoiDeLaNuit :   750,
+	RessourceSabotDeLicorne :        999,
 }
 
 func (p *Character) takepotS() {

@@ -8,8 +8,8 @@ func (p *Character) StartMenu() {
 		fmt.Println("=== Menu principal ===")
 		fmt.Println("1.  Afficher les informations du personnage")
 		fmt.Println("2.  Accéder à l'inventaire")
-		fmt.Println("3.  Forgeron")
-		fmt.Println("4.  Marchand")
+		fmt.Println("3.  Marchand")
+		fmt.Println("4.  Forgeron")
 		fmt.Println("10. Quitter le jeu")
 		var choice string
 		fmt.Scanln(&choice)
@@ -22,14 +22,14 @@ func (p *Character) StartMenu() {
 		}
 		if choice == "3" {
 			fmt.Println("Bienvenue dans ma forge angeline")
-			p.ForgeronMenu()
+			p.Marchand()
 		}
 		if choice == "10" {
 			fmt.Println("Au revoir !")
 			break
 		}
 		if choice == "4" {
-			p.Marchand()
+			p.ForgeronMenu()
 		}
 		if choice == "map" {
 			p.AfficheMap()

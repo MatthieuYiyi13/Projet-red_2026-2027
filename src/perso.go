@@ -21,9 +21,19 @@ type Character struct {
 	SkillDegats   int
 }
 
+func (p *Character) InventairePlein() bool {
+    total := 0
+
+    for _, quantite := range p.inventaire {
+        total += quantite
+    }
+
+    return total >= inventaire_taillemax
+}
+
 func (p *Character) initcharacter(name string, classe string) {
 	p.name = name
-	p.money = 1000
+	p.money = 10000
 	p.inventaire = make(map[string]int)
 	p.classe = classe
 	p.experience = 0
@@ -56,13 +66,60 @@ func (p *Character) displayinfo() {
 }
 
 func (p *Character) AccessInventory() {
+	fmt.Println()
 	for itemname, itemquantity := range p.inventaire {
-		fmt.Println()
-		fmt.Printf("\t %s : %d\n", itemname, itemquantity)
+		fmt.Printf("%s : %d\n", itemname, itemquantity)
 		fmt.Println()
 	}
-	fmt.Printf("\t Argent : %d\n", p.money)
+	fmt.Printf("écus : %d\n", p.money)
 	fmt.Println()
+	fmt.Println()
+	fmt.Println("Que voulez vous faire ?")
+	fmt.Println("P : Utiliser une potion de soin ")
+	fmt.Println("E : Mettre mon équipement ")
+	fmt.Println("R : Retour")
+	var inv string
+		fmt.Scanln(&inv)
+		if inv == "P" {
+			p.takepot()
+			fmt.Println()
+		}
+		if inv == "E" {
+			if casque_equipe && p.inventaire[RessourceChapeaudegeant] == 1{
+				casque_equipe = false
+				p.inventaire[RessourceChapeaudegeant] -=1
+			fmt.Println()
+			fmt.Println("Vous équipez votre chapeau du géant !")
+			affiche_casque = true 
+			fmt.Println()
+			}
+			if botte_equipe && p.inventaire[RessourceBotteArcenciel] == 1 {
+				p.inventaire[RessourceBotteArcenciel] -= 1
+				botte_equipe = false 
+				fmt.Println("Vous équipez vos bottes Arc-En-Ciel !")
+			affiche_botte = true 
+			fmt.Println()
+			}
+			if armurecuir_equipe && p.inventaire[RessourceArmurecuir] == 1 {
+				p.inventaire[RessourceArmurecuir] -= 1
+				armurecuir_equipe = false
+				fmt.Println("Vous équipez votre Armure en cuir !")
+			affiche_armurecuir = true 
+			fmt.Println()
+			}
+			if armureivoire_equipe && p.inventaire[RessourceArmureIvoire] == 1 {
+				p.inventaire[RessourceArmureIvoire] -= 1
+				armureivoire_equipe = false
+				fmt.Println("Vous équipez votre Armure en  ivoire !")
+			affiche_armureivoire = true 
+			fmt.Println()
+			}  
+			if p.inventaire[RessourceArmureIvoire] == 0 && p.inventaire[RessourceArmurecuir] == 0 && p.inventaire[RessourceChapeaudegeant]==0 && p.inventaire[RessourceBotteArcenciel] == 0 {
+				fmt.Println()
+				fmt.Println("Vous n'avez rien d'autres à équiper !")
+			fmt.Println()
+			}
+		}
 }
 
 func (p *Character) takepot() {
