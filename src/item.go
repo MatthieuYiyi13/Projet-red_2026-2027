@@ -104,7 +104,6 @@ func (p *Character) Equiper(objet string) {
 		p.Equipements["chapeau"] = objet
 		p.pvmax += 8
 		fmt.Println(objet, "Vous avez equipé le chapeau de géant !")
-
 	default:
 		fmt.Println("Cet objet ne peut pas être équipé.")
 		return
