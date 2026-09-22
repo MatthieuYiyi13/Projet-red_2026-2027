@@ -89,3 +89,6 @@ func PlaySoundAsyncDebut() {
 func PlaySoundAsyncCombat1() {
 	playMusic("./docs/Pkmmusique1.mp3", false)
 }
+func PlaySoundAsyncCombatE() {
+	playMusic("./docs/Pkmmusique2.mp3", false)
+}

@@ -10,6 +10,8 @@ func (p *Character) TrainingFight() {
 
 	gobelin := p.InitGobelin()
 	tour := 1
+	stopSound()
+	PlaySoundAsyncCombatE()
 
 	fmt.Printf("Un %s apparait pour le combat d'entrainement !\n", gobelin.name)
 
@@ -33,6 +35,8 @@ func (p *Character) TrainingFight() {
 			fmt.Printf("Vous infligez %d degats au %s.\n", p.AttaqueDegats, gobelin.name)
 		case "Q", "q":
 			fmt.Println("Vous quittez l'entrainement.")
+			stopSound()
+			PlaySoundAsyncDebut()
 			return
 		default:
 			fmt.Println("Choix invalide. Le tour ne change pas.")
@@ -42,6 +46,8 @@ func (p *Character) TrainingFight() {
 		if gobelin.PV_actuelle == 0 {
 			fmt.Printf("Vous avez vaincu le %s en %d tour(s) !\n", gobelin.name, tour)
 			p.GagnerCombat()
+			stopSound()
+			PlaySoundAsyncDebut()
 			return
 		}
 
@@ -52,7 +58,6 @@ func (p *Character) TrainingFight() {
 			fmt.Println("Vous perdez l'entrainement. Il vous reste 1 PV.")
 			return
 		}
-
 		tour++
 	}
 }
