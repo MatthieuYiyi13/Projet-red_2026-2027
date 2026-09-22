@@ -3,6 +3,16 @@ package projet
 import "fmt"
 
 func (p *Character) StartMenu() {
+	vert := "\033[32m"
+	reset := "\033[0m"
+
+	fmt.Println(vert + `
+██     ██ ███████ ██      ██████  ██████  ███    ███ ███████
+██     ██ ██      ██     ██      ██    ██ ████  ████ ██
+██  █  ██ █████   ██     ██      ██    ██ ██ ████ ██ █████
+██ ███ ██ ██      ██     ██      ██    ██ ██  ██  ██ ██
+ ███ ███  ███████ ███████ ██████  ██████  ██      ██ ███████
+` + reset)
 	p.initcharacter("davy", "guerrier")
 	for true {
 		fmt.Println("=== Menu principal ===")
