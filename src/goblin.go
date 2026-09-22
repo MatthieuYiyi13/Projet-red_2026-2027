@@ -1,16 +1,12 @@
 package projet
 
-import (
-	"fmt"
-)
-
-
-func Initgoblin()  {
-	monster := &monster{
-		name: "Gobelin",
-		pv:   50,
-		pvmax: 50,
-		experience: 10,
+func Initgoblin() p*Character {
+	goblin := &p*Character{
+		name:          "Gobelin",
+		pv:            30,
+		pvmax:         30,
+		experience:    10,
+		AttaqueDegats: 5,
 	}
-	return monster
+	return goblin
 }
