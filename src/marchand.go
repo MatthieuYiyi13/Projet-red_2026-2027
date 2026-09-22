@@ -320,7 +320,7 @@ func (p *Character) Acheter_Sorts() {
 		sort_cc = false
 		p.inventaire["Coup critique"] += 1
 		p.money -= 300
-		p.Acheter_Sorts() }
+		p.Marchand() }
 	case "B" , "b":
 		if sort_bdf == false {
 			p.Marchand()
@@ -331,7 +331,7 @@ func (p *Character) Acheter_Sorts() {
 		Sort = true
 		p.inventaire["Boule de feu"] += 1
 		p.money -= 300
-		p.Acheter_Sorts() }
+		p.Marchand() }
 		case "V","v" : 
 			if sort_coupv == false {
 			p.Marchand()
@@ -342,7 +342,7 @@ func (p *Character) Acheter_Sorts() {
 		Sort = true
 		p.inventaire["Coups vicieux"] += 1
 		p.money -= 300
-		p.Acheter_Sorts() }
+		p.Marchand() }
 	}
 }
 
@@ -488,7 +488,6 @@ func (p *Character) Vendre() {
 }
 
 func (p *Character) Marchand() {
-	fmt.Println("Bonjour jeune aventurier, je vois que tu as réussi à me trouver dans cette magnifique ville de Qarth !")
 	fmt.Println()
 	fmt.Println("Que souhaites-tu faire maintenant ?")
 	fmt.Println()

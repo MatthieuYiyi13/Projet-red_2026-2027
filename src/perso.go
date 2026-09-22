@@ -39,21 +39,21 @@ func (p *Character) initcharacter(name string, classe string) {
 	p.experience = 0
 	p.Equipements = make(map[string]string)
 	switch classe {
-	case "Guerrier":
+	case "Guerrier" :
 		p.pvmax = 200
 		p.pv = p.pvmax / 2
 		p.AttaqueName = "Coup d'épée"
 		p.AttaqueDegats = 20
 		p.SkillName = "Coup critique"
 		p.SkillDegats = 35
-	case "Sorcier":
+	case "Sorcier" :
 		p.pvmax = 100
 		p.pv = p.pvmax / 2
 		p.AttaqueName = "Coup de baton"
 		p.AttaqueDegats = 10
 		p.SkillName = "Boule de feu"
 		p.SkillDegats = 70
-	case "Assassin":
+	case "Assassin" :
 		p.pvmax = 100
 		p.pv = p.pvmax / 2
 		p.AttaqueName = "Coup de dague"
@@ -84,6 +84,8 @@ func (p *Character) AccessInventory() {
 		if inv == "P" {
 			p.Takepot()
 			fmt.Println()
+			fmt.Println()
+			p.AccessInventory()
 		}
 		if inv == "E" {
 			if casque_equipe && p.inventaire[RessourceChapeaudegeant] == 1{
@@ -94,6 +96,8 @@ func (p *Character) AccessInventory() {
 			p.pvmax += 30
 			affiche_casque = true 
 			fmt.Println()
+			fmt.Println()
+			p.AccessInventory()
 			}
 			if botte_equipe && p.inventaire[RessourceBotteArcenciel] == 1 {
 				p.inventaire[RessourceBotteArcenciel] -= 1
@@ -102,6 +106,8 @@ func (p *Character) AccessInventory() {
 				p.pvmax += 5
 				affiche_botte = true 
 				fmt.Println()
+				fmt.Println()
+				p.AccessInventory()
 			}
 			if armurecuir_equipe && p.inventaire[RessourceArmurecuir] == 1 {
 				p.inventaire[RessourceArmurecuir] -= 1
@@ -110,6 +116,8 @@ func (p *Character) AccessInventory() {
 				p.pvmax += 15
 			affiche_armurecuir = true 
 			fmt.Println()
+			fmt.Println()
+			p.AccessInventory()
 			}
 			if armureivoire_equipe && p.inventaire[RessourceArmureIvoire] == 1 {
 				p.inventaire[RessourceArmureIvoire] -= 1
@@ -118,11 +126,15 @@ func (p *Character) AccessInventory() {
 				p.pvmax += 30
 			affiche_armureivoire = true 
 			fmt.Println()
+			fmt.Println()
+			p.AccessInventory()
 			}  
 			if p.inventaire[RessourceArmureIvoire] == 0 && p.inventaire[RessourceArmurecuir] == 0 && p.inventaire[RessourceChapeaudegeant]==0 && p.inventaire[RessourceBotteArcenciel] == 0 {
 				fmt.Println()
 				fmt.Println("Vous n'avez rien d'autres à équiper !")
 			fmt.Println()
+			fmt.Println()
+			p.AccessInventory()
 			}
 		}
 }

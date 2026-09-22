@@ -255,12 +255,12 @@ func (p *Character) Attaque(monstre *Monstre) {
 	fmt.Printf("\t|     [C] Coup d'épée          [R] Retour        |\n")}
 	if p.AttaqueName ==  "Coup de baton" {
 	fmt.Printf("\t|     [C] Coup de baton        [R] Retour        |\n")}
-	if p.AttaqueName ==  "Coups vicieux" {
-	fmt.Printf("\t|     [C] Coups vicieux        [R] Retour        |\n")}
+	if p.AttaqueName ==  "Coup de dague" {
+	fmt.Printf("\t|     [C] Coup de dague       [R] Retour        |\n")}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
-	if (p.SkillName == "Coup de dague") && (Sort) {
-	fmt.Printf("\t|               [S] Coup de dague                |\n")}
+	if (p.SkillName == "Coups vicieux" ) && (Sort) {
+	fmt.Printf("\t|               [S] Coups vicieux                |\n")}
 	if (p.SkillName == "Boule de feu") && (Sort) {
 	fmt.Printf("\t|               [S] Boule de feu                 |\n")}
 	if (p.SkillName == "Coup critique") && (Sort) {
@@ -276,7 +276,11 @@ func (p *Character) Attaque(monstre *Monstre) {
 		monstre.PV_actuelle -= p.AttaqueDegats
 	}
 	case "S" , "s" : {
+		if Sort {
 		monstre.PV_actuelle -= p.SkillDegats
+		} else {
+			fmt.Println("Commande invalide.")
+		}
 	}
 	default: fmt.Println("Commande invalide.") 
 	}
