@@ -260,7 +260,7 @@ func (p *Character) Acheter_Utilitaire() {
 		afficherTexte50("2 : Potion de mana : 50 écus")
 		afficherTexte50("3 : Potion de poison: 150 écus")
 		afficherTexte50("4 : Poche supplémentaire (+10 de stockage dans l'inventaire) : 100 écus")
-		afficherTexte50("R : Retour")
+		afficherTexte50("5 : Retour")
 		fmt.Println()
 
 		var choix_utile int
@@ -328,6 +328,10 @@ func (p *Character) Acheter_Utilitaire() {
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
+		case 5 :
+			p.Marchand()
+		default : 
+		afficherTexte50("Veuillez saisir une touche valide")
 		}
 	}
 }
