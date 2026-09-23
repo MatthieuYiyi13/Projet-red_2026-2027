@@ -12,6 +12,7 @@ const (
 	experienceParNiveau   = 6
 	pvParNiveau           = 10
 	degatsParNiveau       = 2
+	manaParNiveau 		  = 5
 )
 
 func (p *Character) Niveau() int {
@@ -42,10 +43,13 @@ func (p *Character) GagnerCombat() {
 
 		bonusPV := pvParNiveau * niveauxGagnes
 		bonusDegats := degatsParNiveau * niveauxGagnes
+		bonusMana := manaParNiveau * niveauxGagnes
 
 		p.pvmax += bonusPV
 		p.pv += bonusPV
 		p.AttaqueDegats += bonusDegats
+		p.Manamax += bonusMana
+		p.Mana += bonusMana
 	}
 	fmt.Printf("Vous êtes niveau : %d.\n",p.Niveau())
 }

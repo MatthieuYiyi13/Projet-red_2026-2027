@@ -10,6 +10,8 @@ type Character struct {
 	classe       string
 	pvmax        int
 	pv           int
+	Mana 		 int
+	Manamax		 int
 	experience   int
 	inventaire   map[string]int
 	Resurrection bool
@@ -18,6 +20,7 @@ type Character struct {
 	AttaqueDegats int
 	SkillName     string
 	SkillDegats   int
+	Skillmana	  int
 	Equipements map[string]string
 }
 
@@ -38,6 +41,8 @@ func (p *Character) initcharacter(name string, classe string) {
 	p.classe = classe
 	p.experience = 0
 	p.Equipements = make(map[string]string)
+	p.Manamax = 100
+	p.Mana = 50
 	switch classe {
 	case "Guerrier" :
 		p.pvmax = 200
@@ -46,6 +51,7 @@ func (p *Character) initcharacter(name string, classe string) {
 		p.AttaqueDegats = 20
 		p.SkillName = "Coup critique"
 		p.SkillDegats = 35
+		p.Skillmana = 25
 	case "Sorcier" :
 		p.pvmax = 100
 		p.pv = p.pvmax / 2
@@ -53,6 +59,7 @@ func (p *Character) initcharacter(name string, classe string) {
 		p.AttaqueDegats = 10
 		p.SkillName = "Boule de feu"
 		p.SkillDegats = 70
+		p.Skillmana = 50
 	case "Assassin" :
 		p.pvmax = 100
 		p.pv = p.pvmax / 2
@@ -60,6 +67,7 @@ func (p *Character) initcharacter(name string, classe string) {
 		p.AttaqueDegats = 15
 		p.SkillName = "Coups vicieux"
 		p.SkillDegats = 45
+		p.Skillmana = 35
 	}
 }
 
@@ -102,8 +110,9 @@ func (p *Character) AccessInventory() {
 			if botte_equipe && p.inventaire[RessourceBotteArcenciel] == 1 {
 				p.inventaire[RessourceBotteArcenciel] -= 1
 				botte_equipe = false 
-				fmt.Println("Vous équipez vos bottes Arc-En-Ciel ! (+5PV)")
+				fmt.Println("Vous équipez vos bottes Arc-En-Ciel ! (+5PV / +20Mana)")
 				p.pvmax += 5
+				p.Manamax += 20
 				affiche_botte = true 
 				fmt.Println()
 				fmt.Println()
@@ -122,8 +131,9 @@ func (p *Character) AccessInventory() {
 			if armureivoire_equipe && p.inventaire[RessourceArmureIvoire] == 1 {
 				p.inventaire[RessourceArmureIvoire] -= 1
 				armureivoire_equipe = false
-				fmt.Println("Vous équipez votre Armure en  ivoire ! (+30PV)")
+				fmt.Println("Vous équipez votre Armure en  ivoire ! (+30PV / + 30Mana)")
 				p.pvmax += 30
+				p.Manamax += 30
 			affiche_armureivoire = true 
 			fmt.Println()
 			fmt.Println()
