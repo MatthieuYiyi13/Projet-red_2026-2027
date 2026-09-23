@@ -31,6 +31,7 @@ const (
 	RessourceArmureIvoire        = "Armure en ivoire"
 	RessourceBotteArcenciel      = "Bottes Arc-En-Ciel"
 	RessourcePotSoin 			 = "Potion de soin"
+	RessourcePotMana			 = "Potion de mana"
 	RessourcePotPoison			 = "Potion de poison"
 )
 
@@ -81,4 +82,22 @@ func (p *Character) takepotP(enemyPv *int) {
 	}
 	fmt.Println("Potion de poison utilisée (-1)")
 	fmt.Printf("PV de l'ennemie après poison = %d\n", *enemyPv)
+}
+func (p *Character) takepotM() {
+	potquantity, potcheck := p.inventaire["potion de Mana"]
+	if !potcheck {
+		fmt.Println("Vous n'avez pas de potion de mana dans votre inventaire.")
+		return
+	}
+	if potquantity <= 0 {
+		fmt.Println("Vous n'avez plus de potion de mana dans votre inventaire.")
+		return
+	}
+	p.Mana += 50
+	if p.Mana > p.Manamax {
+		p.Mana = p.Manamax
+	}
+	p.inventaire["potion de mana"]--
+
+	fmt.Printf("Vous avez utilisé une potion. Votre mana est maintenant de %d/%d.\n", p.Mana, p.Manamax)
 }

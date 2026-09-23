@@ -84,13 +84,20 @@ func (p *Character) AccessInventory() {
 	fmt.Println()
 	fmt.Println()
 	fmt.Println("Que voulez vous faire ?")
-	fmt.Println("P : Utiliser une potion de soin ")
+	fmt.Println("P : Utiliser une potion de soin")
+	fmt.Println("M : Utiliser une potion de mana")
 	fmt.Println("E : Mettre mon équipement ")
 	fmt.Println("R : Retour")
 	var inv string
 		fmt.Scanln(&inv)
 		if inv == "P" {
-			p.Takepot()
+			p.takepotS()
+			fmt.Println()
+			fmt.Println()
+			p.AccessInventory()
+		}
+		if inv == "M" {
+			p.takepotM()
 			fmt.Println()
 			fmt.Println()
 			p.AccessInventory()
@@ -149,7 +156,7 @@ func (p *Character) AccessInventory() {
 		}
 }
 
-func (p *Character) Takepot() {
+func (p *Character) TakepotS() {
 	potquantity, potcheck := p.inventaire[RessourcePotSoin]
 	if !potcheck {
 		fmt.Println("Vous n'avez pas de potion dans votre inventaire.")
@@ -166,4 +173,22 @@ func (p *Character) Takepot() {
 	p.inventaire[RessourcePotSoin]--
 
 	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", p.pv, p.pvmax)
+}
+func (p *Character) TakepotM() {
+	potquantity, potcheck := p.inventaire[RessourcePotSoin]
+	if !potcheck {
+		fmt.Println("Vous n'avez pas de potion dans votre inventaire.")
+		return
+	}
+	if potquantity <= 0 {
+		fmt.Println("Vous n'avez plus de potion dans votre inventaire.")
+		return
+	}
+	p.Mana += 50
+	if p.Mana > p.Manamax {
+		p.Mana = p.Manamax
+	}
+	p.inventaire[RessourcePotMana]--
+
+	fmt.Printf("Vous avez utilisé une potion. Votre mana est maintenant de %d/%d.\n", p.Mana, p.Manamax)
 }
