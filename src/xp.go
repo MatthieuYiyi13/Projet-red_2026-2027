@@ -1,7 +1,6 @@
 package projet
 
 import (
-	"fmt"
 	"math/rand"
 )
 
@@ -33,13 +32,13 @@ func (p *Character) GagnerCombat() {
 	experienceGagnee := experienceMinVictoire + experienceAleatoire
 
 	p.experience += experienceGagnee
-	fmt.Printf("Vous gagnez %d points d'experience.\n", experienceGagnee)
+	afficherTexte50("Vous gagnez %d points d'experience.\n", experienceGagnee)
 
 	nouveauNiveau := p.Niveau()
 	niveauxGagnes := nouveauNiveau - ancienNiveau
 
 	if niveauxGagnes > 0 {
-		fmt.Printf("Vous gagnez %d niveau(x) !\n", niveauxGagnes)
+		afficherTexte50("Vous gagnez %d niveau(x) !\n", niveauxGagnes)
 
 		bonusPV := pvParNiveau * niveauxGagnes
 		bonusDegats := degatsParNiveau * niveauxGagnes
@@ -51,5 +50,5 @@ func (p *Character) GagnerCombat() {
 		p.Manamax += bonusMana
 		p.Mana += bonusMana
 	}
-	fmt.Printf("Vous êtes niveau : %d.\n",p.Niveau())
+	afficherTexte50("Vous êtes niveau : %d.\n",p.Niveau())
 }

@@ -308,12 +308,12 @@ func (p *Character) Attaque(monstre *Monstre) {
 		}
 	case "S", "s":
 		if !Sort {
-			fmt.Println("Vous ne pouvez pas utiliser de sort.")
+			afficherTexte50("Vous ne pouvez pas utiliser de sort.")
 			return
 		}
 
 		if p.Mana < p.Skillmana {
-			fmt.Println("Vous n'avez pas assez de mana.")
+			afficherTexte50("Vous n'avez pas assez de mana.")
 			return
 		}
 
@@ -369,7 +369,7 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
 	default:
-		fmt.Println("Commande invalide.")
+		afficherTexte50("Commande invalide.")
 		skiptuto = true
 	}
 }
