@@ -670,20 +670,20 @@ p.pv = p.pvmax
 	fmt.Printf("\t\t|  [%s] Quitter le jeu                             |\n",ToucheQuitter)
 	fmt.Printf("\t\t|                                                 |\n")
 	fmt.Printf("\t\t+-------------------------------------------------+\n")
-		var choice string
-		fmt.Scanln(&choice)
-		switch choice {
-	case touchePersoInfo : 
+	var choice string
+	fmt.Scanln(&choice)
+	switch choice {
+		case touchePersoInfo : 
 		fmt.Println("=== stats du personnage ===")
-	case toucheInv : 
-			fmt.Println("=== inventaire ===")
-			p.AccessInventory()
-	case touchemap : 
-			p.AfficheMapCo()
+		case toucheInv : 
+		fmt.Println("=== inventaire ===")
+		p.AccessInventory()
+		case touchemap : 
+		p.AfficheMapCo()
 	case ToucheQuitter:
-			fmt.Println("Au revoir !")
-			fin_du_jeu = false	
-	case ToucheOption: 
+		fmt.Println("Au revoir !")
+		fin_du_jeu = false	
+		case ToucheOption: 
 		fmt.Println()
 		fmt.Println("Touches actuelle :")
 		fmt.Printf("Haut   : %s \n",directionMap.Haut)
@@ -695,7 +695,8 @@ p.pv = p.pvmax
 		fmt.Printf("Map        : %s \n",touchemap)
 		fmt.Printf("Options    : %s \n",ToucheOption)
 		fmt.Printf("Quitter    : %s  \n",ToucheQuitter)
-
+		
+	
 		fmt.Println()
 		fmt.Println("Quelle touche voulez vous changer ?")
 		var touche string
@@ -793,4 +794,4 @@ p.pv = p.pvmax
 	}
 	}
 }
-}
+
