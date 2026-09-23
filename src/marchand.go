@@ -180,9 +180,10 @@ func (p *Character) Acheter_Utilitaire() {
 		fmt.Println()
 		fmt.Println("Que voulez vous acheter ? ")
 		fmt.Println("1 : Potion de soin (la première gratuite): 0 écus")
-		fmt.Println("2 : Potion de poison: 150 écus")
-		fmt.Println("3 : Poche supplémentaire (+10 de stockage dans l'inventaire 3 achats max) : 100 écus")
-		fmt.Println("4 : Retour")
+		fmt.Println("2 : Potion de mana: 50")
+		fmt.Println("3 : Potion de poison: 150 écus")
+		fmt.Println("4 : Poche supplémentaire (+10 de stockage dans l'inventaire 3 achats max) : 100 écus")
+		fmt.Println("5 : Retour")
 		fmt.Println()
 
 		var choix_utile int
@@ -204,6 +205,22 @@ func (p *Character) Acheter_Utilitaire() {
 			if p.InventairePlein() {
 				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
 				p.Marchand()
+			} else if p.money >= 50 {
+				fmt.Println("Vous avez acheté une potion de mana pour 50 écus")
+				fmt.Println()
+				p.money -= 50
+				p.inventaire[RessourcePotMana] += 1
+				p.Acheter_Utilitaire()
+			} else {
+				fmt.Println()
+				fmt.Println("Vous n'avez pas l'argent pour m'acheter cela !")
+				fmt.Println()
+				p.Acheter_Utilitaire()
+			}
+		case 3:
+			if p.InventairePlein() {
+				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				p.Marchand()
 			} else if p.money >= 150 {
 				fmt.Println("Vous avez acheté une potion de poison pour 150 écus")
 				fmt.Println()
@@ -216,7 +233,7 @@ func (p *Character) Acheter_Utilitaire() {
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
-		case 3:
+		case 4:
 			 if p.money >= 100  && inventaire_taillemax<40{
 				fmt.Println("Vous avez aggrandi votre inventaire pour 100 écus!")
 				fmt.Println()
@@ -233,8 +250,9 @@ func (p *Character) Acheter_Utilitaire() {
 	} else {
 		fmt.Println("Que voulez vous acheter ? ")
 		fmt.Println("1 : Potion de soin  :  50 écus")
-		fmt.Println("2 : Potion de poison: 150 écus")
-		fmt.Println("3 : Poche supplémentaire (+10 de stockage dans l'inventaire) : 100 écus")
+		fmt.Println("2 : Potion de mana : 50 écus")
+		fmt.Println("3 : Potion de poison: 150 écus")
+		fmt.Println("4 : Poche supplémentaire (+10 de stockage dans l'inventaire) : 100 écus")
 		fmt.Println("R : Retour")
 		fmt.Println()
 
@@ -258,7 +276,23 @@ func (p *Character) Acheter_Utilitaire() {
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
-		case 2:
+			case 2:
+			if p.InventairePlein() {
+				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				p.Marchand()
+			} else if p.money >= 50 {
+				fmt.Println("Vous avez acheté une potion de mana pour 50 écus")
+				fmt.Println()
+				p.inventaire[RessourcePotMana] += 1
+				p.money -= 50
+				p.Acheter_Utilitaire()
+			} else {
+				fmt.Println()
+				fmt.Println("Vous n'avez pas l'argent pour m'acheter cela !")
+				fmt.Println()
+				p.Acheter_Utilitaire()
+			}
+		case 3:
 			if p.InventairePlein() {
 				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
 				p.Marchand()
@@ -274,7 +308,7 @@ func (p *Character) Acheter_Utilitaire() {
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
-		case 3:
+		case 4:
 			if p.money >= 100  && inventaire_taillemax<40{
 				fmt.Println("Vous avez aggrandi votre inventaire pour 100 écus!")
 				fmt.Println()
