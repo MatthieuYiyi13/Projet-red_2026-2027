@@ -204,11 +204,14 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 	fmt.Printf("\t|            Que voulez vous faire ?             |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.inventaire[RessourcePotSoin] >= 1 {
-	fmt.Printf("\t|  [S] Utiliser une potion de soin               |\n")
+		fmt.Printf("\t|  [S] Utiliser une potion de soin               |\n")
+	}
+	if p.inventaire[RessourcePotMana] >= 1 {
+		fmt.Printf("\t|  [M] Utiliser une potion de mana               |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	if p.inventaire[RessourcePotPoison] >= 1 {
-	fmt.Printf("\t|  [P] Utiliser une potion de poison             |\n")
+		fmt.Printf("\t|  [P] Utiliser une potion de poison             |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|  [R] Retour                                    |\n")
@@ -217,14 +220,22 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 	var moove_objet string
 	fmt.Scanln(&moove_objet)
 	switch moove_objet {
-	case "R", "r": 
-			skip = true 
+	case "R", "r":
+		skip = true
 	case "S", "s":
 		if p.inventaire[RessourcePotSoin] >= 1 {
-			p.Takepot()
+			p.takepotS()
 		} else {
 			fmt.Println()
-			fmt.Println("Vous n'avez de potion de soin à utiliser")
+			fmt.Println("Vous n'avez pas de potion de soin à utiliser")
+			fmt.Println()
+		}
+	case "M", "m":
+		if p.inventaire[RessourcePotMana] >= 1 {
+			p.takepotM()
+		} else {
+			fmt.Println()
+			fmt.Println("Vous n'avez pas de potion de mana à utiliser")
 			fmt.Println()
 		}
 	case "P", "p":
@@ -263,24 +274,24 @@ func (p *Character) Attaque(monstre *Monstre) {
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.AttaqueName == "Coup d'épée" {
-	fmt.Printf("\t|     [C] Coup d'épée          [R] Retour        |\n")
+		fmt.Printf("\t|     [C] Coup d'épée          [R] Retour        |\n")
 	}
 	if p.AttaqueName == "Coup de baton" {
-	fmt.Printf("\t|     [C] Coup de baton        [R] Retour        |\n")
+		fmt.Printf("\t|     [C] Coup de baton        [R] Retour        |\n")
 	}
 	if p.AttaqueName == "Coup de dague" {
-	fmt.Printf("\t|     [C] Coup de dague       [R] Retour        |\n")
+		fmt.Printf("\t|     [C] Coup de dague       [R] Retour        |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if (p.SkillName == "Coups vicieux") && (Sort) {
-	fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
+		fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
 	}
 	if (p.SkillName == "Boule de feu") && (Sort) {
-	fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
+		fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
 	}
 	if (p.SkillName == "Coup critique") && (Sort) {
-	fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
+		fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
@@ -289,8 +300,8 @@ func (p *Character) Attaque(monstre *Monstre) {
 	var moove_attack string
 	fmt.Scanln(&moove_attack)
 	switch moove_attack {
-	case "R" , "r":
-		skip = true 
+	case "R", "r":
+		skip = true
 	case "C", "c":
 		{
 			monstre.PV_actuelle -= p.AttaqueDegats
@@ -327,24 +338,24 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.AttaqueName == "Coup d'épée" {
-	fmt.Printf("\t|     [C] Coup d'épée                            |\n")
+		fmt.Printf("\t|     [C] Coup d'épée                            |\n")
 	}
 	if p.AttaqueName == "Coup de baton" {
-	fmt.Printf("\t|     [C] Coup de baton                          |\n")
+		fmt.Printf("\t|     [C] Coup de baton                          |\n")
 	}
 	if p.AttaqueName == "Coup de dague" {
-	fmt.Printf("\t|     [C] Coup de dague                          |\n")
+		fmt.Printf("\t|     [C] Coup de dague                          |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if (p.SkillName == "Coups vicieux") && (Sort) {
-	fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
+		fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
 	}
 	if (p.SkillName == "Boule de feu") && (Sort) {
-	fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
+		fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
 	}
 	if (p.SkillName == "Coup critique") && (Sort) {
-	fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
+		fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
@@ -364,7 +375,7 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 }
 
 func (p *Character) Combat_start_premier() {
-	
+
 	stopSound()
 	PlaySoundAsyncCombat1()
 	fuite = false
@@ -375,7 +386,6 @@ func (p *Character) Combat_start_premier() {
 	fmt.Printf("Vous rencontrez un %s sauvage !", monstre.name)
 	fmt.Println()
 	info_debut_combat = false
-
 
 	for combat_pas_finis {
 		skip = false
@@ -410,7 +420,7 @@ func (p *Character) Combat_start_premier() {
 		case "O", "o":
 			{
 				p.Objet_utilitaire(&monstre)
-				if skip == true{
+				if skip == true {
 					continue
 				}
 			}
@@ -425,14 +435,14 @@ func (p *Character) Combat_start_premier() {
 			{
 				p.Attaque(&monstre)
 				if skip == true {
-				continue
+					continue
 				}
 			}
 		default:
 			if skip {
-			fmt.Println("Retour au menu principal du combat...")
-			continue
-		}
+				fmt.Println("Retour au menu principal du combat...")
+				continue
+			}
 		}
 		if monstre.PV_actuelle <= 0 {
 			combat_pas_finis = false
