@@ -11,6 +11,42 @@ var choix_classe bool = true
 var choix_nom bool = true
 var fin_du_jeu bool = true
 
+type direction struct {
+    Haut   string
+    Bas    string
+    Gauche string
+    Droite string
+}
+
+var directionMap = direction{
+    Haut:   "H",
+    Bas:    "B",
+    Gauche: "G",
+    Droite: "D",
+}
+
+var touchemap string = "Map"
+var toucheInv string = "I"
+var touchePersoInfo string = "P"
+var toucheMarchand string = "M"
+var ToucheForgeron string = "F"
+var ToucheOption string = "O"
+var ToucheQuitter string = "Q"
+
+
+func (p *Character) touchevalide(touche string)bool {
+	if len(touche) != 1 {
+		return false 
+	}
+	if touche == toucheInv || touche == toucheMarchand || touche == touchePersoInfo || touche == touchemap || touche == ToucheForgeron || touche==ToucheQuitter || touche ==ToucheOption || touche == directionMap.Haut || touche == directionMap.Bas || touche == directionMap.Gauche || touche == directionMap.Droite{
+		return false
+	}else {
+	return true 
+	} 
+}
+
+
+
 
 func afficherTexte20(texte string) {
 	for _, caractere := range texte {
@@ -297,30 +333,6 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 }
 p.pv = p.pvmax
 
-
-type direction struct {
-	Haut     string
-	Bas      string
-	Gauche   string
-	Droite   string
-}
-
-directionMap := direction{
-	Haut : "H" ,
-	Bas : "B",
-	Gauche : "G",
-	Droite : "D",
-} 
-
-touchemap := "Map"
-toucheInv := "I"
-touchePersoInfo := "P"
-toucheMarchand := "M"
-ToucheForgeron := "F"
-ToucheOption := "O"
-ToucheQuitter := "Q"
-
-
 	for fin_du_jeu {
  if dans_ville{
 	fmt.Println()
@@ -416,7 +428,10 @@ ToucheQuitter := "Q"
 		fmt.Printf("Droite : %s \n",directionMap.Droite)
 		fmt.Printf("Information du personnage : P \n")
 		fmt.Printf("Inventaire : I \n")
-		fmt.Printf("Map : map \n")
+		fmt.Printf("Map        : map \n")
+		fmt.Printf("Options    : O \n")
+		fmt.Printf("Quitter    : Q  \n")
+
 		fmt.Println()
 		fmt.Println("Quelle touche voulez vous changer ?")
 		var touche string
@@ -426,26 +441,78 @@ ToucheQuitter := "Q"
 		fmt.Println("Par quelle touche voulez vous la remplacer ?")
 		var touche_replace string
 		fmt.Scanln(&touche_replace)
+		if p.touchevalide(touche_replace) {
 		directionMap.Haut = touche_replace
+		} else {
+			fmt.Println("Changement impossible, touche déjà attribué.")
+		}
 		case "Bas" , "bas", "2" :
 		fmt.Println("Par quelle touche voulez vous la remplacer ?")
 		var touche_replace string
 		fmt.Scanln(&touche_replace)
+		if p.touchevalide(touche_replace) {
 		directionMap.Bas = touche_replace
+		} else {
+			fmt.Println("Changement impossible, touche déjà attribué.")
+		}
 		case "Gauche", "gauche","3":
 		fmt.Println("Par quelle touche voulez vous la remplacer ?")
 		var touche_replace string
 		fmt.Scanln(&touche_replace)
+		if p.touchevalide(touche_replace) {
 		directionMap.Gauche = touche_replace
+		} else {
+			fmt.Println("Changement impossible, touche déjà attribué.")
+		}
 		case "Droite", "droite", "4":
 		fmt.Println("Par quelle touche voulez vous la remplacer ?")
 		var touche_replace string
 		fmt.Scanln(&touche_replace)
+		if p.touchevalide(touche_replace) {
 		directionMap.Droite = touche_replace
+		} else {
+			fmt.Println("Changement impossible, touche déjà attribué.")
+		}
 		case "5","Information du personnage","Personnage","information du personnage","perso":
 		var touche_replace string
 		fmt.Scanln(&touche_replace)
+		if p.touchevalide(touche_replace) {
+		touchePersoInfo = touche_replace
+		} else {
+			fmt.Println("Changement impossible, touche déjà attribué.")
+		}
+		case "6", "Inventaire","inv","inventaire":
+			var touche_replace string
+		fmt.Scanln(&touche_replace)
+		if p.touchevalide(touche_replace) {
+		toucheInv = touche_replace
+		} else {
+			fmt.Println("Changement impossible, touche déjà attribué.")
+		}
+		case "7", "map", "Map":
+		var touche_replace string
+		fmt.Scanln(&touche_replace)
+		if p.touchevalide(touche_replace) {
 		touchemap = touche_replace
+		} else {
+			fmt.Println("Changement impossible, touche déjà attribué.")
+		}
+		case "8" , "Options" , "Option", "option","options":
+		var touche_replace string
+		fmt.Scanln(&touche_replace)
+		if p.touchevalide(touche_replace) {
+		ToucheOption = touche_replace
+		} else {
+			fmt.Println("Changement impossible, touche déjà attribué.")
+		}
+		case "9","Quitter","quitter","quit","Quit":
+				var touche_replace string
+		fmt.Scanln(&touche_replace)
+		if p.touchevalide(touche_replace) {
+		ToucheQuitter = touche_replace
+		} else {
+			fmt.Println("Changement impossible, touche déjà attribué.")
+		}
 		}
 
 	case "combat" :
