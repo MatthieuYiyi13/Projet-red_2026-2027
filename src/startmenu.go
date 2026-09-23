@@ -3,6 +3,7 @@ package projet
 import (
 		"fmt"
 		"time"
+		"math/rand/v2"
 )
 var choix_classe bool = true
 var choix_nom bool = true
@@ -12,8 +13,19 @@ var fin_du_jeu bool = true
 func afficherTexte20(texte string) {
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(2 * time.Millisecond)
+		time.Sleep(30 * time.Millisecond)
 	}
+	fmt.Println()
+}
+
+func afficherTexte1(format string, args ...interface{}) {
+	texte := fmt.Sprintf(format, args...)
+
+	for _, caractere := range texte {
+		fmt.Print(string(caractere))
+		time.Sleep(7 * time.Millisecond)
+	}
+
 	fmt.Println()
 }
 
@@ -27,6 +39,20 @@ func afficherTexte50(format string, args ...interface{}) {
 
 	fmt.Println()
 }
+
+func afficherTexte100(format string, args ...interface{}) {
+	texte := fmt.Sprintf(format, args...)
+
+	for _, caractere := range texte {
+		fmt.Print(string(caractere))
+		time.Sleep(500 * time.Millisecond)
+	}
+
+	fmt.Println()
+}
+
+
+
 
 func (p *Character) StartGame() {
 
@@ -154,8 +180,114 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 		choix_nom = false 
 		fmt.Println()
 	}
+		afficherTexte50("Vous vous réveillez dans une forêt à la fois silencieuse et sinistre.")
+		if p.classe == "Guerrier" {
+		afficherTexte50("Vous regardez autour de vous et n'y voyez qu'une épée un peu émoussée et un sac de pièces.")
+		} else if p.classe == "Sorcier" {
+		afficherTexte50("Vous regardez autour de vous et n'y voyez qu'un bâton un peu usé et un sac de pièces.")
+		} else {
+		afficherTexte50("Vous regardez autour de vous et n'y voyez qu'une dague un peu émoussée et un sac de pièces.")
+		}
+		afficherTexte100(". . . . . . . . . . .")
+		afficherTexte1("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM")
+		afficherTexte50("Une araignée vous tombe dessus , elle cherche le combat")
 
-
+	fuite = false
+	victoire = false
+	combat_pas_finis = true
+	monstre := Araignee{
+			name:        "Araignée",
+			attack:      20,
+			PV_max:      60,
+			PV_actuelle: 60,
+			Poison:      false,
+	}
+	fmt.Println()
+	fmt.Printf("Vous rencontrez une %s sauvage !", monstre.name)
+	fmt.Println()
+	monstre.PV_actuelle -= 30
+	for combat_pas_finis {
+		if monstre.Poison {
+			fmt.Println()
+			fmt.Printf("Le monstre ennemi %s perds %d PV", monstre.name, 10)
+			fmt.Println()
+			monstre.PV_actuelle -= 10
+			fmt.Println()
+			if monstre.PV_actuelle <= 0 {
+				combat_pas_finis = false
+				victoire = true
+				continue
+			}
+		}
+		fmt.Println()
+		fmt.Printf("Les pv du monstre %s sont de %d/%d ", monstre.name , monstre.PV_actuelle, monstre.PV_max)
+		fmt.Println()
+		fmt.Println("Que voulez vous faire ?")
+		fmt.Printf("\n")
+		fmt.Printf("\t+------------------------------------------------+\n")
+		fmt.Printf("\t|                                                |\n")
+		fmt.Printf("\t|            Que voulez vous faire ?             |\n")
+		fmt.Printf("\t|                                                |\n")
+		fmt.Printf("\t|                 [A] Attaque                    |\n")
+		fmt.Printf("\t|                                                |\n")
+		fmt.Printf("\t+------------------------------------------------+\n")
+		fmt.Println()
+		var moove string
+		fmt.Scanln(&moove)
+		switch moove { 
+		case "A" , "a" : {
+			p.Attaque((*Monstre)(&monstre))
+		}
+		default: fmt.Println("Commande invalide.") 
+	}
+		if monstre.PV_actuelle <= 0 {
+			combat_pas_finis = false
+			victoire = true
+			continue
+		}
+		fmt.Println()
+		l := rand.IntN(4) 
+		if l == 0 {
+			fmt.Println()
+			afficherTexte20("Le monstre vous attaque mais vous réussissez à l'esquiver !")
+			fmt.Println()
+		} else {
+		afficherTexte20("Le monstre ennemi est enervé , il vous charge")
+		pv_perdu := monstre.attack
+		if count_super_monstre%4 == 0 {
+			pv_perdu = pv_perdu*2
+		}
+		fmt.Printf("Vous perdez %d Pvs\n",pv_perdu)
+		p.pv -= monstre.attack
+		fmt.Printf("Pvs actuelle : %d/%d",p.pv,p.pvmax)
+		fmt.Println()
+		count_super_monstre ++
+	}
+		if p.pv <= 0 {
+			victoire = false 
+			combat_pas_finis = false 
+			continue 
+		}
+	}
+	if victoire && fuite == false {
+	fmt.Println()
+	afficherTexte20("Vous avez gagné votre premier combat")
+	fmt.Println()
+	p.GagnerCombat()
+	victoire = false
+	combat_pas_finis = true
+	} else if victoire && fuite{
+		fmt.Println()
+	fmt.Println()
+	} else {
+	fmt.Println()
+	fmt.Println("Vous avez perdu tout vos pvs , vous êtes mort !")
+	fmt.Println()
+	victoire = false 
+	combat_pas_finis = true
+	p.IsDead()
+}
+p.pv = p.pvmax
 	for fin_du_jeu {
 	fmt.Println()
 	fmt.Printf("\t+------------------------------------------------+\n")
@@ -166,6 +298,7 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 	fmt.Printf("\t|  [M] Marchand                                  |\n")
 	fmt.Printf("\t|  [F] Forgeron                                  |\n")
 	fmt.Printf("\t|  [Map] Afficher la map                         |\n")
+	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|  [O] Options                                   |\n")
 	fmt.Printf("\t|  [Q] Quitter le jeu                            |\n")

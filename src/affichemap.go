@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-var x_position int = -5
-var y_position int = 5
+var x_position int = 6
+var y_position int = 4
 
 func (p *Character)AfficheMap() {
 	fmt.Println()

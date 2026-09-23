@@ -5,6 +5,7 @@ import (
 	"math/rand/v2"
 )
 
+var info_debut_combat bool = true
 var zone_unlock int = 1
 var count_super_monstre int = 1
 var victoire bool = false
@@ -209,6 +210,8 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 	var moove_objet string
 	fmt.Scanln(&moove_objet)
 	switch moove_objet {
+	case "R" , "r" : 
+
 	case "S" , "s"  :
 		if (p.inventaire[RessourcePotSoin] >= 1) {
 		p.Takepot()
@@ -287,15 +290,22 @@ func (p *Character) Attaque(monstre *Monstre) {
 }
 
 func (p *Character) Combat_start_premier() {
+	
+	monstreinit := p.choix_monstre()
+	
+	if info_debut_combat {
+	monstre := monstreinit
 	stopSound()
 	PlaySoundAsyncCombat1()
 	fuite = false
 	victoire = false
 	combat_pas_finis = true
-	monstre := p.choix_monstre()
 	fmt.Println()
 	fmt.Printf("Vous rencontrez un %s sauvage !", monstre.name)
 	fmt.Println()
+	info_debut_combat = false
+	}
+
 	for combat_pas_finis {
 		if monstre.Poison {
 			fmt.Println()
