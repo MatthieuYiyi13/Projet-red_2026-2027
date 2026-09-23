@@ -474,6 +474,7 @@ p.pv = p.pvmax
 			fmt.Println("Changement impossible, touche déjà attribué.")
 		}
 		case "5","Information du personnage","Personnage","information du personnage","perso":
+		fmt.Println("Par quelle touche voulez vous la remplacer ?")
 		var touche_replace string
 		fmt.Scanln(&touche_replace)
 		if p.touchevalide(touche_replace) {
@@ -482,7 +483,8 @@ p.pv = p.pvmax
 			fmt.Println("Changement impossible, touche déjà attribué.")
 		}
 		case "6", "Inventaire","inv","inventaire":
-			var touche_replace string
+		fmt.Println("Par quelle touche voulez vous la remplacer ?")	
+		var touche_replace string
 		fmt.Scanln(&touche_replace)
 		if p.touchevalide(touche_replace) {
 		toucheInv = touche_replace
@@ -490,6 +492,7 @@ p.pv = p.pvmax
 			fmt.Println("Changement impossible, touche déjà attribué.")
 		}
 		case "7", "map", "Map":
+		fmt.Println("Par quelle touche voulez vous la remplacer ?")
 		var touche_replace string
 		fmt.Scanln(&touche_replace)
 		if p.touchevalide(touche_replace) {
@@ -498,6 +501,7 @@ p.pv = p.pvmax
 			fmt.Println("Changement impossible, touche déjà attribué.")
 		}
 		case "8" , "Options" , "Option", "option","options":
+		fmt.Println("Par quelle touche voulez vous la remplacer ?")	
 		var touche_replace string
 		fmt.Scanln(&touche_replace)
 		if p.touchevalide(touche_replace) {
@@ -506,7 +510,8 @@ p.pv = p.pvmax
 			fmt.Println("Changement impossible, touche déjà attribué.")
 		}
 		case "9","Quitter","quitter","quit","Quit":
-				var touche_replace string
+		fmt.Println("Par quelle touche voulez vous la remplacer ?")	
+		var touche_replace string
 		fmt.Scanln(&touche_replace)
 		if p.touchevalide(touche_replace) {
 		ToucheQuitter = touche_replace
