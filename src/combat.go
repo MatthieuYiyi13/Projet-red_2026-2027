@@ -407,6 +407,7 @@ func (p *Character) Combat_start_premier() {
 
 	if p.Initiative < monstre.Initiative {
 		fmt.Println()
+		fmt.Println("Le monstre prends l'initiative !")
 		l := rand.IntN(4)
 		if l == 0 {
 			afficherTexte50("Le monstre vous attaque mais vous réussissez à l'esquiver !")
