@@ -39,7 +39,7 @@ func (p *Character) touchevalide(touche string) bool {
 	if len(touche) != 1 {
 		return false
 	}
-	if touche == toucheInv || touche == toucheMarchand || touche == touchePersoInfo || touche == touchemap || touche == ToucheForgeron || touche == ToucheQuitter || touche == ToucheOption || touche == directionMap.Haut || touche == directionMap.Bas || touche == directionMap.Gauche || touche == directionMap.Droite {
+	if touche == toucheInv || touche == ToucheEntrainement || touche == ToucheGuilde|| touche == toucheMarchand || touche == touchePersoInfo || touche == touchemap || touche == ToucheForgeron || touche == ToucheQuitter || touche == ToucheOption || touche == directionMap.Haut || touche == directionMap.Bas || touche == directionMap.Gauche || touche == directionMap.Droite {
 		return false
 	} else {
 		return true

@@ -9,7 +9,6 @@ var premiere_fois = true
 
 func (p *Character) Guilde() {
 
-	for premiere_fois {
 		afficherTexte20("Bienvenue dans la Guilde des Aventuriers d'Eldoria !")
 		if premiere_fois {
 			afficherTexte20("Ici, vous pouvez vous reposer autant que vous le voulez.")
@@ -39,12 +38,11 @@ func (p *Character) Guilde() {
 		case "D", "d":
 			if len(p.inventaire) == 0 {
 				afficherTexte20("Votre inventaire est vide.")
-				continue
 			}
 			afficherTexte20("Voici les objets présents dans votre inventaire :")
 			fmt.Println()
 			for itemname, itemquantity := range p.inventaire {
-				if itemquantity <= 0 {
+			if itemquantity <= 0 {
 					continue
 				}
 				afficherTexte50(
@@ -97,7 +95,7 @@ func (p *Character) Guilde() {
 		case "R", "r":
 			if len(coffre_guilde) == 0 {
 				afficherTexte20("Votre coffre de guilde est vide.")
-				continue
+				fmt.Println()
 			}
 			afficherTexte20("Voici les objets présents dans votre coffre :")
 			fmt.Println()
@@ -106,9 +104,7 @@ func (p *Character) Guilde() {
 					continue
 				}
 				afficherTexte50(
-					"Voulez-vous prendre %s (%d) ? (Oui/Non)\n",
-					itemname,
-					itemquantity,
+					"Voulez-vous prendre %s ? (Oui/Non)\n",itemname,
 				)
 				var prendre string
 				fmt.Scanln(&prendre)
@@ -122,9 +118,7 @@ func (p *Character) Guilde() {
 					}
 					if coffre_guilde[itemname] <= 0 {
 						afficherTexte50(
-							"Vous n'avez pas de %s dans votre coffre de guilde.\n",
-							itemname,
-						)
+							"Vous n'avez pas de %s dans votre coffre de guilde.\n",itemname,)
 						continue
 					}
 					coffre_guilde[itemname] -= 1
@@ -153,8 +147,8 @@ func (p *Character) Guilde() {
 			afficherTexte20("========== COFFRE DE GUILDE ==========")
 			fmt.Println()
 			if len(coffre_guilde) == 0 {
-
 				afficherTexte20("Votre coffre de guilde est vide.")
+				p.Guilde()
 			} else {
 				for itemname, itemquantity := range coffre_guilde {
 					if itemquantity > 0 {
@@ -168,8 +162,7 @@ func (p *Character) Guilde() {
 			afficherTexte20("Vous quittez la Guilde.")
 			return
 		default:
-			afficherTexte20("Choix invalide.")
+			afficherTexte20("Veuillez entrer une commande valide.")
 		}
 		fmt.Println()
 	}
-}
