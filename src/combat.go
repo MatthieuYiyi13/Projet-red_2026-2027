@@ -5,7 +5,8 @@ import (
 	"math/rand/v2"
 )
 
-var monstre struct{}
+var skiptuto = false
+var skip bool = false
 var monstreinitbool bool = true
 var info_debut_combat bool = true
 var zone_unlock int = 1
@@ -203,11 +204,11 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 	fmt.Printf("\t|            Que voulez vous faire ?             |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.inventaire[RessourcePotSoin] >= 1 {
-		fmt.Printf("\t|  [S] Utiliser une potion de soin               |\n")
+	fmt.Printf("\t|  [S] Utiliser une potion de soin               |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	if p.inventaire[RessourcePotPoison] >= 1 {
-		fmt.Printf("\t|  [P] Utiliser une potion de poison             |\n")
+	fmt.Printf("\t|  [P] Utiliser une potion de poison             |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|  [R] Retour                                    |\n")
@@ -216,7 +217,8 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 	var moove_objet string
 	fmt.Scanln(&moove_objet)
 	switch moove_objet {
-
+	case "R", "r": 
+			skip = true 
 	case "S", "s":
 		if p.inventaire[RessourcePotSoin] >= 1 {
 			p.Takepot()
@@ -261,24 +263,24 @@ func (p *Character) Attaque(monstre *Monstre) {
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.AttaqueName == "Coup d'épée" {
-		fmt.Printf("\t|     [C] Coup d'épée          [R] Retour        |\n")
+	fmt.Printf("\t|     [C] Coup d'épée          [R] Retour        |\n")
 	}
 	if p.AttaqueName == "Coup de baton" {
-		fmt.Printf("\t|     [C] Coup de baton        [R] Retour        |\n")
+	fmt.Printf("\t|     [C] Coup de baton        [R] Retour        |\n")
 	}
 	if p.AttaqueName == "Coup de dague" {
-		fmt.Printf("\t|     [C] Coup de dague       [R] Retour        |\n")
+	fmt.Printf("\t|     [C] Coup de dague       [R] Retour        |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if (p.SkillName == "Coups vicieux") && (Sort) {
-		fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
+	fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
 	}
 	if (p.SkillName == "Boule de feu") && (Sort) {
-		fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
+	fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
 	}
 	if (p.SkillName == "Coup critique") && (Sort) {
-		fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
+	fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
@@ -287,6 +289,8 @@ func (p *Character) Attaque(monstre *Monstre) {
 	var moove_attack string
 	fmt.Scanln(&moove_attack)
 	switch moove_attack {
+	case "R" , "r":
+		skip = true 
 	case "C", "c":
 		{
 			monstre.PV_actuelle -= p.AttaqueDegats
@@ -316,6 +320,49 @@ func (p *Character) Attaque(monstre *Monstre) {
 	}
 }
 
+func (p *Character) AttaqueTuto(monstre *Monstre) {
+	fmt.Printf("\n")
+	fmt.Printf("\t+------------------------------------------------+\n")
+	fmt.Printf("\t|           Quelle attaque utiliser ?            |\n")
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t|                                                |\n")
+	if p.AttaqueName == "Coup d'épée" {
+	fmt.Printf("\t|     [C] Coup d'épée                            |\n")
+	}
+	if p.AttaqueName == "Coup de baton" {
+	fmt.Printf("\t|     [C] Coup de baton                          |\n")
+	}
+	if p.AttaqueName == "Coup de dague" {
+	fmt.Printf("\t|     [C] Coup de dague                          |\n")
+	}
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t|                                                |\n")
+	if (p.SkillName == "Coups vicieux") && (Sort) {
+	fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
+	}
+	if (p.SkillName == "Boule de feu") && (Sort) {
+	fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
+	}
+	if (p.SkillName == "Coup critique") && (Sort) {
+	fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
+	}
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t+------------------------------------------------+\n")
+	fmt.Println()
+	var moove_attack string
+	fmt.Scanln(&moove_attack)
+	switch moove_attack {
+	case "C", "c":
+		{
+			monstre.PV_actuelle -= p.AttaqueDegats
+		}
+	default:
+		fmt.Println("Commande invalide.")
+		skiptuto = true
+	}
+}
+
 func (p *Character) Combat_start_premier() {
 	
 	stopSound()
@@ -331,6 +378,7 @@ func (p *Character) Combat_start_premier() {
 
 
 	for combat_pas_finis {
+		skip = false
 		if monstre.Poison {
 			fmt.Println()
 			fmt.Printf("Le monstre ennemi %s perds %d PV", monstre.name, 10)
@@ -362,6 +410,9 @@ func (p *Character) Combat_start_premier() {
 		case "O", "o":
 			{
 				p.Objet_utilitaire(&monstre)
+				if skip == true{
+					continue
+				}
 			}
 		case "F", "f":
 			{
@@ -373,9 +424,15 @@ func (p *Character) Combat_start_premier() {
 		case "A", "a":
 			{
 				p.Attaque(&monstre)
+				if skip == true {
+				continue
+				}
 			}
 		default:
-			fmt.Println("Commande invalide.")
+			if skip {
+			fmt.Println("Retour au menu principal du combat...")
+			continue
+		}
 		}
 		if monstre.PV_actuelle <= 0 {
 			combat_pas_finis = false

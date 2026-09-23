@@ -13,7 +13,7 @@ var fin_du_jeu bool = true
 func afficherTexte20(texte string) {
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(30 * time.Millisecond)
+		time.Sleep(1 * time.Millisecond)
 	}
 	fmt.Println()
 }
@@ -192,6 +192,7 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 		afficherTexte1("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM")
 		afficherTexte50("Une araignée vous tombe dessus , elle cherche le combat")
 
+	skiptuto = false 
 	fuite = false
 	victoire = false
 	combat_pas_finis = true
@@ -207,6 +208,7 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 	fmt.Println()
 	monstre.PV_actuelle -= 30
 	for combat_pas_finis {
+		skiptuto = false 
 		if monstre.Poison {
 			fmt.Println()
 			fmt.Printf("Le monstre ennemi %s perds %d PV", monstre.name, 10)
@@ -236,9 +238,13 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 		fmt.Scanln(&moove)
 		switch moove { 
 		case "A" , "a" : {
-			p.Attaque((*Monstre)(&monstre))
+			p.AttaqueTuto((*Monstre)(&monstre))
+			if skiptuto {continue
+			}
+		
 		}
 		default: fmt.Println("Commande invalide.") 
+		continue
 	}
 		if monstre.PV_actuelle <= 0 {
 			combat_pas_finis = false
