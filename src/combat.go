@@ -194,7 +194,7 @@ func (p *Character) choix_monstre() Monstre {
 
 func (p *Character) Usepot_poison(monstre *Monstre) {
 	monstre.Poison = true
-	fmt.Printf("%s est empoisonné !\n", monstre.name)
+	afficherTexte50("%s est empoisonné !\n", monstre.name)
 }
 
 func (p *Character) Objet_utilitaire(monstre *Monstre) {
@@ -227,7 +227,7 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 			p.takepotS()
 		} else {
 			fmt.Println()
-			fmt.Println("Vous n'avez pas de potion de soin à utiliser")
+			afficherTexte50("Vous n'avez pas de potion de soin à utiliser")
 			fmt.Println()
 		}
 	case "M", "m":
@@ -235,7 +235,7 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 			p.takepotM()
 		} else {
 			fmt.Println()
-			fmt.Println("Vous n'avez pas de potion de mana à utiliser")
+			afficherTexte50("Vous n'avez pas de potion de mana à utiliser")
 			fmt.Println()
 		}
 	case "P", "p":
@@ -243,11 +243,11 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 			p.Usepot_poison(monstre)
 		} else {
 			fmt.Println()
-			fmt.Println("Vous n'avez de potion de poison à utiliser")
+			afficherTexte50("Vous n'avez de potion de poison à utiliser")
 			fmt.Println()
 		}
 	default:
-		fmt.Println("Commande invalide.")
+		afficherTexte50("Commande invalide.")
 	}
 }
 
@@ -258,11 +258,11 @@ func (p *Character) Fuir() {
 		victoire = true
 		fuite = true
 		fmt.Println()
-		fmt.Printf("Vous avez réussi à fuire le combat !")
+		afficherTexte50("Vous avez réussi à fuire le combat !")
 		fmt.Println()
 	} else {
 		fmt.Println()
-		fmt.Printf("Vous n'avez pas réussi à fuire le combat !")
+		afficherTexte50("Vous n'avez pas réussi à fuire le combat !")
 		fmt.Println()
 		fmt.Println()
 	}
@@ -320,14 +320,14 @@ func (p *Character) Attaque(monstre *Monstre) {
 		monstre.PV_actuelle -= p.SkillDegats
 		p.Mana -= p.Skillmana
 
-		fmt.Printf(
+		afficherTexte50(
 			"Vous utilisez %s et infligez %d dégâts !\n",
 			p.SkillName,
 			p.SkillDegats,
 		)
-		fmt.Printf("Mana actuelle %d\n", p.Mana)
+		afficherTexte50("Mana actuelle %d\n", p.Mana)
 	default:
-		fmt.Println("Commande invalide.")
+		afficherTexte50("Commande invalide.")
 	}
 }
 
@@ -383,7 +383,7 @@ func (p *Character) Combat_start_premier() {
 	combat_pas_finis = true
 	monstre := p.choix_monstre()
 	fmt.Println()
-	fmt.Printf("Vous rencontrez un %s sauvage !", monstre.name)
+	afficherTexte50("Vous rencontrez un %s sauvage !", monstre.name)
 	fmt.Println()
 	info_debut_combat = false
 
@@ -391,7 +391,7 @@ func (p *Character) Combat_start_premier() {
 		skip = false
 		if monstre.Poison {
 			fmt.Println()
-			fmt.Printf("Le monstre ennemi %s perds %d PV", monstre.name, 10)
+			afficherTexte50("Le monstre ennemi %s perds %d PV", monstre.name, 10)
 			fmt.Println()
 			monstre.PV_actuelle -= 10
 			fmt.Println()
@@ -402,9 +402,9 @@ func (p *Character) Combat_start_premier() {
 			}
 		}
 		fmt.Println()
-		fmt.Printf("Les pv du monstre %s sont de %d/%d ", monstre.name, monstre.PV_actuelle, monstre.PV_max)
+		afficherTexte50("Les pv du monstre %s sont de %d/%d ", monstre.name, monstre.PV_actuelle, monstre.PV_max)
 		fmt.Println()
-		fmt.Println("Que voulez vous faire ?")
+		afficherTexte50("Que voulez vous faire ?")
 		fmt.Printf("\n")
 		fmt.Printf("\t+------------------------------------------------+\n")
 		fmt.Printf("\t|                                                |\n")
@@ -440,7 +440,7 @@ func (p *Character) Combat_start_premier() {
 			}
 		default:
 			if skip {
-				fmt.Println("Retour au menu principal du combat...")
+				afficherTexte50("Retour au menu principal du combat...")
 				continue
 			}
 		}
@@ -453,17 +453,17 @@ func (p *Character) Combat_start_premier() {
 		l := rand.IntN(4)
 		if l == 0 {
 			fmt.Println()
-			fmt.Println("Le monstre vous attaque mais vous réussissez à l'esquiver !")
+			afficherTexte50("Le monstre vous attaque mais vous réussissez à l'esquiver !")
 			fmt.Println()
 		} else {
-			fmt.Println("Le monstre ennemi est enervé , il vous charge")
+			afficherTexte50("Le monstre ennemi est enervé , il vous charge")
 			pv_perdu := monstre.attack
 			if count_super_monstre%4 == 0 {
 				pv_perdu = pv_perdu * 2
 			}
-			fmt.Printf("Vous perdez %d Pvs\n", pv_perdu)
+			afficherTexte50("Vous perdez %d Pvs\n", pv_perdu)
 			p.pv -= monstre.attack
-			fmt.Printf("Pvs actuelle : %d/%d", p.pv, p.pvmax)
+			afficherTexte50("Pvs actuelle : %d/%d", p.pv, p.pvmax)
 			fmt.Println()
 			count_super_monstre++
 		}
@@ -475,7 +475,7 @@ func (p *Character) Combat_start_premier() {
 	}
 	if victoire && fuite == false {
 		fmt.Println()
-		fmt.Println("Vous avez gagné le combat")
+		afficherTexte50("Vous avez gagné le combat")
 		fmt.Println()
 		p.GagnerCombat()
 		victoire = false
@@ -485,7 +485,7 @@ func (p *Character) Combat_start_premier() {
 		fmt.Println()
 	} else {
 		fmt.Println()
-		fmt.Println("Vous avez perdu tout vos pvs , vous êtes mort !")
+		afficherTexte50("Vous avez perdu tout vos pvs , vous êtes mort !")
 		fmt.Println()
 		victoire = false
 		combat_pas_finis = true

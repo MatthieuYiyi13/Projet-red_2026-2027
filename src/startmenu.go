@@ -53,7 +53,7 @@ func (p *Character) touchevalide(touche string)bool {
 func afficherTexte20(texte string) {
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(1 * time.Millisecond)
+		time.Sleep(30 * time.Millisecond)
 	}
 	fmt.Println()
 }
@@ -85,7 +85,7 @@ func afficherTexte100(format string, args ...interface{}) {
 
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(150 * time.Millisecond)
 	}
 
 	fmt.Println()
@@ -787,33 +787,36 @@ p.pv = p.pvmax
 			fmt.Println("Changement impossible.")
 		}
 		}
-
-	case "combat" :
-			p.Combat_start_premier()
 	default : 
 	fmt.Println()
 	fmt.Println("Veuillez saisir une touche valide.")
 	fmt.Println()
 	}
 	}
-	if x_position < 15 && y_position > 11 {
+	if x_position < 14 && y_position > 10 && zone_desert == false {
 		zone_desert = true
+		afficherTexte100("Vous entrez dans le Desert des Cendres, la chaleur se fait de plus en plus ressentir.")
 	}
-	if x_position>14 && y_position<12 {
+	if x_position>13 && y_position<11 && zone_desert && zone_glace == false{
 		zone_glace = true
-	}
-	if x_position>14 && y_position>11 {
+		afficherTexte100("Vous entrez dans les Montagnes de Glaces, le froid commence peu à peu à vous impacter.")
+	} 
+	if x_position>13 && y_position>10 && zone_desert && zone_glace && zone_volcan == false{
 		zone_volcan = true 
+		afficherTexte100("Vous entrez dans le Volcan des Brumes , Sans équipements vous risquez d'y laisser votre peau d'ici 10minutes.")
 	}
 	if zone_desert {
 		zone_unlock=2
 	}
-	if zone_glace{
+	if zone_glace && zone_desert {
 		zone_unlock=3
 	}
-	if zone_volcan{
+	if zone_volcan && zone_desert && zone_glace{
 		zone_unlock=4
 	}
+	fmt.Println()
+	fmt.Printf("nb zone : %d",zone_unlock)
+	fmt.Println()
 }
 
 }

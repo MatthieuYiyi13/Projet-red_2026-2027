@@ -248,12 +248,12 @@ func (p *Character) Acheter_Utilitaire() {
 			}
 		}
 	} else {
-		fmt.Println("Que voulez vous acheter ? ")
-		fmt.Println("1 : Potion de soin  :  50 écus")
-		fmt.Println("2 : Potion de mana : 50 écus")
-		fmt.Println("3 : Potion de poison: 150 écus")
-		fmt.Println("4 : Poche supplémentaire (+10 de stockage dans l'inventaire) : 100 écus")
-		fmt.Println("R : Retour")
+		afficherTexte50("Que voulez vous acheter ? ")
+		afficherTexte50("1 : Potion de soin  :  50 écus")
+		afficherTexte50("2 : Potion de mana : 50 écus")
+		afficherTexte50("3 : Potion de poison: 150 écus")
+		afficherTexte50("4 : Poche supplémentaire (+10 de stockage dans l'inventaire) : 100 écus")
+		afficherTexte50("R : Retour")
 		fmt.Println()
 
 		var choix_utile int
@@ -262,62 +262,62 @@ func (p *Character) Acheter_Utilitaire() {
 		switch choix_utile {
 		case 1:
 			if p.InventairePlein() {
-				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				afficherTexte50("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
 				p.Marchand()
 			} else if p.money >= 50 {
-				fmt.Println("Vous avez acheté une potion de soin pour 50 écus")
+				afficherTexte50("Vous avez acheté une potion de soin pour 50 écus")
 				fmt.Println()
 				p.inventaire[RessourcePotSoin] += 1
 				p.money -= 50
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
-				fmt.Println("Vous n'avez pas l'argent pour m'acheter cela !")
+				afficherTexte50("Vous n'avez pas l'argent pour m'acheter cela !")
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
 			case 2:
 			if p.InventairePlein() {
-				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				afficherTexte50("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
 				p.Marchand()
 			} else if p.money >= 50 {
-				fmt.Println("Vous avez acheté une potion de mana pour 50 écus")
+				afficherTexte50("Vous avez acheté une potion de mana pour 50 écus")
 				fmt.Println()
 				p.inventaire[RessourcePotMana] += 1
 				p.money -= 50
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
-				fmt.Println("Vous n'avez pas l'argent pour m'acheter cela !")
+				afficherTexte50("Vous n'avez pas l'argent pour m'acheter cela !")
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
 		case 3:
 			if p.InventairePlein() {
-				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				afficherTexte50("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
 				p.Marchand()
 			} else if p.money >= 150 {
-				fmt.Println("Vous avez acheté une potion de poison pour 150 écus")
+				afficherTexte50("Vous avez acheté une potion de poison pour 150 écus")
 				fmt.Println()
 				p.money -= 150
 				p.inventaire[RessourcePotPoison] += 1
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
-				fmt.Println("Vous n'avez pas l'argent pour m'acheter cela !")
+				afficherTexte50("Vous n'avez pas l'argent pour m'acheter cela !")
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
 		case 4:
 			if p.money >= 100  && inventaire_taillemax<40{
-				fmt.Println("Vous avez aggrandi votre inventaire pour 100 écus!")
+				afficherTexte50("Vous avez aggrandi votre inventaire pour 100 écus!")
 				fmt.Println()
 				p.money -= 100
 				inventaire_taillemax += 10
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
-				fmt.Println("Désolé vous ne pouvez pas acheter ça pour le moment!")
+				afficherTexte50("Désolé vous ne pouvez pas acheter ça pour le moment!")
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
@@ -329,31 +329,31 @@ func (p *Character) Acheter_Sorts() {
 
 	if sort_bdf == false {
 		fmt.Println()
-		fmt.Println("Désolé je n'ai plus rien à vous proposer !")
+		afficherTexte50("Désolé je n'ai plus rien à vous proposer !")
 		fmt.Println()
 		p.Marchand()
 	}
 	if sort_coupv == false  {
 		fmt.Println()
-		fmt.Println("Désolé je n'ai plus rien à vous proposer !")
+		afficherTexte50("Désolé je n'ai plus rien à vous proposer !")
 		fmt.Println()
 		p.Marchand()
 	}
 	if sort_cc == false {
 		fmt.Println()
-		fmt.Println("Désolé je n'ai plus rien à vous proposer !")
+		afficherTexte50("Désolé je n'ai plus rien à vous proposer !")
 		fmt.Println()
 		p.Marchand()
 	}
 
 	if sort_cc && (p.SkillName == "Coup critique") {
-		fmt.Println("C : Coup critique : 300 écus")
+		afficherTexte50("C : Coup critique : 300 écus")
 	}
 	if sort_bdf && (p.SkillName == "Boule de feu") {
-		fmt.Println("B : Boule de feu : 300 écus")
+		afficherTexte50("B : Boule de feu : 300 écus")
 	}
 	if sort_coupv && (p.SkillName == "Coups vicieux"){
-		fmt.Println("V : Coup vicieux : 300 écus")
+		afficherTexte50("V : Coup vicieux : 300 écus")
 	}
 	var choix_sort string
 	fmt.Scanln(&choix_sort)
@@ -362,7 +362,7 @@ func (p *Character) Acheter_Sorts() {
 		if sort_cc == false {
 			p.Marchand()
 		} else {
-		fmt.Println("Vous avez acheté le sort Coup critique pour 300 écus!")
+		afficherTexte50("Vous avez acheté le sort Coup critique pour 300 écus!")
 		Sort = true
 		fmt.Println()
 		sort_cc = false
@@ -373,7 +373,7 @@ func (p *Character) Acheter_Sorts() {
 		if sort_bdf == false {
 			p.Marchand()
 		} else {
-		fmt.Println("Vous avez acheté le sort Boule de feu pour 300 écus !")
+		afficherTexte50("Vous avez acheté le sort Boule de feu pour 300 écus !")
 		sort_bdf = false
 		fmt.Println()
 		Sort = true
@@ -384,7 +384,7 @@ func (p *Character) Acheter_Sorts() {
 			if sort_coupv == false {
 			p.Marchand()
 		} else {
-		fmt.Println("Vous avez acheté le sort Coups vicieux pour 300 écus !")
+		afficherTexte50("Vous avez acheté le sort Coups vicieux pour 300 écus !")
 		sort_coupv = false
 		fmt.Println()
 		Sort = true
