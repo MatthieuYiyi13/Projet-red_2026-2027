@@ -245,7 +245,7 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 		}
 		afficherTexte100(". . . . . . . .")
 		afficherTexte1("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM")
-		afficherTexte50("Une araignée vous tombe dessus , elle cherche le combat")
+		afficherTexte50("Une araignée vous tombe dessus , elle cherche le combat.")
 
 	skiptuto = false 
 	fuite = false
@@ -361,7 +361,12 @@ p.pv = p.pvmax
 	fmt.Printf("\t\t|  [%s] Marchand                                  |\n",toucheMarchand)
 	fmt.Printf("\t\t|  [%s] Forgeron                                  |\n",ToucheForgeron)
 	fmt.Printf("\t\t|  [%s] Afficher la map                           |\n",touchemap)
+	fmt.Printf("\t\t|  [%s] Guilde                                    |\n",ToucheGuilde)
+	fmt.Printf("\t\t|  [%s] Entrainement                              |\n",ToucheEntrainement)
 	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t|                    [%s]↑                         |\n",directionMap.Haut)
+	fmt.Printf("\t\t|         ←[%s]                    [%s]→            |\n",directionMap.Gauche,directionMap.Droite)
+	fmt.Printf("\t\t|                    [%s]↓                         |\n",directionMap.Bas)
 	fmt.Printf("\t\t|                                                 |\n")
 	fmt.Printf("\t\t|  [%s] Options                                   |\n",ToucheOption)
 	fmt.Printf("\t\t|  [%s] Quitter le jeu                            |\n",ToucheQuitter)
@@ -386,13 +391,18 @@ p.pv = p.pvmax
 			p.ForgeronMenu()
 		case touchemap : 
 			p.AfficheMapCo()
-	case ToucheQuitter:
-			fmt.Println("Au revoir !")
-			fin_du_jeu = false
-	case "combat" :
-			p.Combat_start_premier()
-	case "train" : 
+		case ToucheGuilde :
+
+	case ToucheEntrainement : 
 			p.TrainingFight()
+	case directionMap.Haut :
+		y_position ++
+	case directionMap.Bas :
+		y_position--
+	case directionMap.Gauche :
+		x_position--
+	case directionMap.Droite :
+		x_position++
 	case ToucheOption :
 		fmt.Println()
 		fmt.Println("Touches actuelle :")
@@ -499,24 +509,9 @@ p.pv = p.pvmax
 						fmt.Println("Changement impossible, touche déjà attribué.")
 					}
 				}
-			case "F", "f":
-				fmt.Println("Bienvenue dans ma forge")
-				p.ForgeronMenu()
-			case "Map", "map":
-				p.AfficheMapAscii()
-			case "Q", "q":
-				fmt.Println("Au revoir !")
-				fin_du_jeu = false
-			case "pos":
-				fmt.Printf("Vous êtes actuellement en %d, %d\n", x_position, y_position)
-			case "co":
-				p.AfficheMapCo()
-			case "combat":
-				p.Combat_start_premier()
-			case "train":
-				p.TrainingFight()
-			case "O", "o":
-				continue
+			case ToucheQuitter:
+			fmt.Println("Au revoir !")
+			fin_du_jeu = false	
 			default:
 				fmt.Println()
 				fmt.Println("Veuillez saisir une touche valide.")
@@ -650,7 +645,6 @@ p.pv = p.pvmax
 	fmt.Println()
 	continue
 	}
-}
 	} else { 
 		fmt.Println()
 	fmt.Printf("\t\t+-------------------------------------------------+\n")
@@ -680,6 +674,14 @@ p.pv = p.pvmax
 			p.AccessInventory()
 	case touchemap : 
 			p.AfficheMapCo()
+	case directionMap.Haut :
+		y_position ++
+	case directionMap.Bas :
+		y_position--
+	case directionMap.Gauche :
+		x_position--
+	case directionMap.Droite :
+		x_position++
 	case ToucheQuitter:
 			fmt.Println("Au revoir !")
 			fin_du_jeu = false	
