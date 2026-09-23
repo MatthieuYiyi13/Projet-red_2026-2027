@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-var x_position int = 6
-var y_position int = 4
+var x_position int = 0
+var y_position int = 0
 
 func (p *Character)AfficheMap() {
 	fmt.Println()
@@ -57,12 +57,28 @@ const (
 
 func (p *Character) AfficheMapCo() {
 
-	if x_position > 22 || y_position >28 || x_position<0 || y_position<0 {
-		x_position = 0
-		y_position = 0
+	if x_position > 22  {
+		x_position = 22	
 		fmt.Println()
 		fmt.Println("Vous ne pouvez pas sortir de la map !")
-		fmt.Println("Vous êtes renvoyé au point de départ.")
+		fmt.Println()
+	}
+	if x_position < 0 {
+		x_position = 0	
+		fmt.Println()
+		fmt.Println("Vous ne pouvez pas sortir de la map !")
+		fmt.Println()
+	}
+	if y_position >28 || x_position<0 || y_position<0{
+			y_position = 28	
+		fmt.Println()
+		fmt.Println("Vous ne pouvez pas sortir de la map !")
+		fmt.Println()
+	}
+	if y_position <0 {
+			y_position = 0	
+		fmt.Println()
+		fmt.Println("Vous ne pouvez pas sortir de la map !")
 		fmt.Println()
 	}
 
