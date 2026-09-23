@@ -287,9 +287,6 @@ func (p *Character) Fuir() {
 	}
 }
 func (p *Character) Attaque(monstre *Monstre) {
-	if p.Initiative < monstre.Initiative {
-		
-	}
 	fmt.Printf("\n")
 	fmt.Printf("\t+------------------------------------------------+\n")
 	fmt.Printf("\t|           Quelle attaque utiliser ?            |\n")
@@ -397,10 +394,8 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 }
 
 func (p *Character) Combat_start_premier() {
-
 	stopSound()
 	PlaySoundAsyncCombat1()
-
 	fuite = false
 	victoire = false
 	combat_pas_finis = true
@@ -410,6 +405,33 @@ func (p *Character) Combat_start_premier() {
 	fmt.Println()
 	info_debut_combat = false
 
+	if p.Initiative < monstre.Initiative {
+		fmt.Println()
+		fmt.Println("Le monstre prends l'initiative !")
+		l := rand.IntN(4)
+		if l == 0 {
+			afficherTexte50("Le monstre vous attaque mais vous réussissez à l'esquiver !")
+		} else {
+			afficherTexte50("Le monstre ennemi est énervé, il vous charge")
+			pv_perdu := monstre.attack
+			if count_super_monstre%4 == 0 {
+				pv_perdu = pv_perdu * 2
+			}
+			afficherTexte50("Vous perdez %d Pvs\n", pv_perdu)
+			p.pv -= monstre.attack
+			afficherTexte50("Pvs actuelle : %d/%d", p.pv, p.pvmax)
+			fmt.Println()
+			count_super_monstre++
+		}
+		if p.pv <= 0 {
+			victoire = false
+			combat_pas_finis = false
+			afficherTexte50("Vous avez perdu tout vos pvs , vous êtes mort !")
+			fmt.Println()
+			p.IsDead()
+			return
+		}
+	}
 	for combat_pas_finis {
 		skip = false
 		if monstre.Poison {
@@ -430,36 +452,30 @@ func (p *Character) Combat_start_premier() {
 		afficherTexte50("Que voulez vous faire ?")
 		fmt.Printf("\n")
 		fmt.Printf("\t+------------------------------------------------+\n")
-		fmt.Printf("\t|                                                |\n")
-		fmt.Printf("\t|            Que voulez vous faire ?             |\n")
-		fmt.Printf("\t|                                                |\n")
+		fmt.Printf("\t|                                                 |\n")
+		fmt.Printf("\t|           Que voulez vous faire ?             |\n")
+		fmt.Printf("\t|                                                 |\n")
 		fmt.Printf("\t|    [O] Objet       [F] Fuir       [A] Attaque  |\n")
-		fmt.Printf("\t|                                                |\n")
+		fmt.Printf("\t|                                                 |\n")
 		fmt.Printf("\t+------------------------------------------------+\n")
 		fmt.Println()
 		var moove string
 		fmt.Scanln(&moove)
 		switch moove {
 		case "O", "o":
-			{
-				p.Objet_utilitaire(&monstre)
-				if skip == true {
-					continue
-				}
+			p.Objet_utilitaire(&monstre)
+			if skip == true {
+				continue
 			}
 		case "F", "f":
-			{
-				p.Fuir()
-				if combat_pas_finis == false {
-					continue
-				}
+			p.Fuir()
+			if combat_pas_finis == false {
+				continue
 			}
 		case "A", "a":
-			{
-				p.Attaque(&monstre)
-				if skip == true {
-					continue
-				}
+			p.Attaque(&monstre)
+			if skip == true {
+				continue
 			}
 		default:
 			if skip {
