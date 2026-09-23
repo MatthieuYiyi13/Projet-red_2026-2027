@@ -21,7 +21,7 @@ type Spectre struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative 	int
+	Initiative  int
 }
 type Loup struct {
 	name        string
@@ -29,7 +29,7 @@ type Loup struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Géant struct {
 	name        string
@@ -37,7 +37,7 @@ type Géant struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Lynx_fumee struct {
 	name        string
@@ -45,7 +45,7 @@ type Lynx_fumee struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Mammouth struct {
 	name        string
@@ -53,7 +53,7 @@ type Mammouth struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Araignee struct {
 	name        string
@@ -61,7 +61,7 @@ type Araignee struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Roi_De_la_nuit struct {
 	name        string
@@ -69,7 +69,7 @@ type Roi_De_la_nuit struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Licorne struct {
 	name        string
@@ -77,7 +77,7 @@ type Licorne struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type White_walker struct {
 	name        string
@@ -85,7 +85,7 @@ type White_walker struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Monstre struct {
 	name        string
@@ -93,7 +93,7 @@ type Monstre struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 
 func (p *Character) choix_monstre() Monstre {
@@ -120,7 +120,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      75,
 			PV_actuelle: 75,
 			Poison:      false,
-			Initiative: 2,
+			Initiative:  2,
 		}
 	}
 
@@ -131,7 +131,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      150,
 			PV_actuelle: 150,
 			Poison:      false,
-			Initiative: 7,
+			Initiative:  7,
 		}
 	}
 
@@ -142,7 +142,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      60,
 			PV_actuelle: 60,
 			Poison:      false,
-			Initiative: 1,
+			Initiative:  1,
 		}
 	}
 
@@ -153,7 +153,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      200,
 			PV_actuelle: 200,
 			Poison:      false,
-			Initiative: 2,
+			Initiative:  2,
 		}
 	}
 
@@ -164,7 +164,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      125,
 			PV_actuelle: 125,
 			Poison:      false,
-			Initiative: 3,
+			Initiative:  3,
 		}
 	}
 
@@ -175,7 +175,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      350,
 			PV_actuelle: 350,
 			Poison:      false,
-			Initiative: 7,
+			Initiative:  7,
 		}
 	}
 
@@ -186,7 +186,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      375,
 			PV_actuelle: 375,
 			Poison:      false,
-			Initiative: 5,
+			Initiative:  5,
 		}
 	}
 
@@ -197,7 +197,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      500,
 			PV_actuelle: 500,
 			Poison:      false,
-			Initiative: 9,
+			Initiative:  9,
 		}
 	}
 
@@ -207,7 +207,7 @@ func (p *Character) choix_monstre() Monstre {
 		PV_max:      1500,
 		PV_actuelle: 1500,
 		Poison:      false,
-		Initiative: 10,
+		Initiative:  10,
 	}
 }
 
@@ -327,6 +327,7 @@ func (p *Character) Attaque(monstre *Monstre) {
 	case "C", "c":
 		{
 			afficherTexte50("Vous attaquez le monstre il perds %d pvs",p.AttaqueDegats)
+
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
 	case "S", "s":
