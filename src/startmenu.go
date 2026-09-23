@@ -814,8 +814,11 @@ func (p *Character) StartMenu() {
 	if zone_volcan && zone_desert && zone_glace{
 		zone_unlock=4
 	}
-	fmt.Println()
-	fmt.Printf("nb zone : %d",zone_unlock)
-	fmt.Println()
+	if x_position >5 && x_position< 10 && y_position==5 {
+		dans_ville = true 
+	} else {
+		dans_ville = false 
+	}
 }
+
 }
