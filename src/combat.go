@@ -223,14 +223,14 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 	fmt.Printf("\t|            Que voulez vous faire ?             |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.inventaire[RessourcePotSoin] >= 1 {
-		fmt.Printf("\t|  [S] Utiliser une potion de soin               |\n")
+	fmt.Printf("\t|  [S] Utiliser une potion de soin               |\n")
 	}
 	if p.inventaire[RessourcePotMana] >= 1 {
-		fmt.Printf("\t|  [M] Utiliser une potion de mana               |\n")
+	fmt.Printf("\t|  [M] Utiliser une potion de mana               |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	if p.inventaire[RessourcePotPoison] >= 1 {
-		fmt.Printf("\t|  [P] Utiliser une potion de poison             |\n")
+	fmt.Printf("\t|  [P] Utiliser une potion de poison             |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|  [R] Retour                                    |\n")
@@ -248,6 +248,7 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 			fmt.Println()
 			afficherTexte50("Vous n'avez pas de potion de soin à utiliser")
 			fmt.Println()
+			skip = true
 		}
 	case "M", "m":
 		if p.inventaire[RessourcePotMana] >= 1 {
@@ -256,6 +257,7 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 			fmt.Println()
 			afficherTexte50("Vous n'avez pas de potion de mana à utiliser")
 			fmt.Println()
+			skip = true
 		}
 	case "P", "p":
 		if p.inventaire[RessourcePotPoison] >= 1 {
@@ -264,24 +266,25 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 			fmt.Println()
 			afficherTexte50("Vous n'avez de potion de poison à utiliser")
 			fmt.Println()
+			skip = true
 		}
 	default:
-		afficherTexte50("Commande invalide.")
+		afficherTexte1("Commande invalide.")
 	}
 }
 
 func (p *Character) Fuir() {
-	k := rand.IntN(2)
-	if k == 0 {
+	k := rand.IntN(3)
+	if (k == 0)  || (k ==1) {
 		combat_pas_finis = false
 		victoire = true
 		fuite = true
 		fmt.Println()
-		afficherTexte50("Vous avez réussi à fuire le combat !")
+		afficherTexte20("Vous avez réussi à fuire le combat !")
 		fmt.Println()
 	} else {
 		fmt.Println()
-		afficherTexte50("Vous n'avez pas réussi à fuire le combat !")
+		afficherTexte20("Vous n'avez pas réussi à fuire le combat !")
 		fmt.Println()
 		fmt.Println()
 	}
@@ -323,17 +326,17 @@ func (p *Character) Attaque(monstre *Monstre) {
 		skip = true
 	case "C", "c":
 		{
-			afficherTexte50("Vous attaquez le monstre il perds %d",p.AttaqueDegats)
+			afficherTexte50("Vous attaquez le monstre il perds %d pvs",p.AttaqueDegats)
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
 	case "S", "s":
 		if !Sort {
-			afficherTexte50("Vous ne pouvez pas utiliser de sort.")
+			afficherTexte20("Vous ne pouvez pas utiliser de sort.")
 			return
 		}
 
 		if p.Mana < p.Skillmana {
-			afficherTexte50("Vous n'avez pas assez de mana.")
+			afficherTexte20("Vous n'avez pas assez de mana pour utiliser ce sort.")
 			return
 		}
 
@@ -347,7 +350,8 @@ func (p *Character) Attaque(monstre *Monstre) {
 		)
 		afficherTexte50("Mana actuelle %d\n", p.Mana)
 	default:
-		afficherTexte50("Commande invalide.")
+		afficherTexte1("Commande invalide.")
+		skip = true
 	}
 }
 
@@ -411,9 +415,9 @@ func (p *Character) Combat_start_premier() {
 		fmt.Println("Le monstre prends l'initiative !")
 		l := rand.IntN(4)
 		if l == 0 {
-			afficherTexte50("Le monstre vous attaque mais vous réussissez à l'esquiver !")
+			afficherTexte20("Le monstre vous attaque mais vous réussissez à l'esquiver !")
 		} else {
-			afficherTexte50("Le monstre ennemi est énervé, il vous charge")
+			afficherTexte20("Le monstre ennemi est énervé, il vous charge")
 			pv_perdu := monstre.attack
 			if count_super_monstre%4 == 0 {
 				pv_perdu = pv_perdu * 2
@@ -434,8 +438,7 @@ func (p *Character) Combat_start_premier() {
 		}
 	}
 	for combat_pas_finis {
-		skip = false
-		if monstre.Poison {
+		if monstre.Poison && skip == false{
 			fmt.Println()
 			afficherTexte50("Le monstre ennemi %s perds %d PV", monstre.name, 10)
 			fmt.Println()
@@ -447,17 +450,17 @@ func (p *Character) Combat_start_premier() {
 				continue
 			}
 		}
+		skip = false
 		fmt.Println()
 		afficherTexte50("Les pv du monstre %s sont de %d/%d ", monstre.name, monstre.PV_actuelle, monstre.PV_max)
 		fmt.Println()
-		afficherTexte50("Que voulez vous faire ?")
 		fmt.Printf("\n")
 		fmt.Printf("\t+------------------------------------------------+\n")
-		fmt.Printf("\t|                                                 |\n")
-		fmt.Printf("\t|           Que voulez vous faire ?             |\n")
-		fmt.Printf("\t|                                                 |\n")
+		fmt.Printf("\t|                                                |\n")
+		fmt.Printf("\t|           Que voulez vous faire ?              |\n")
+		fmt.Printf("\t|                                                |\n")
 		fmt.Printf("\t|    [O] Objet       [F] Fuir       [A] Attaque  |\n")
-		fmt.Printf("\t|                                                 |\n")
+		fmt.Printf("\t|                                                |\n")
 		fmt.Printf("\t+------------------------------------------------+\n")
 		fmt.Println()
 		var moove string
@@ -479,10 +482,8 @@ func (p *Character) Combat_start_premier() {
 				continue
 			}
 		default:
-			if skip {
-				afficherTexte50("Retour au menu principal du combat...")
-				continue
-			}
+			skip = true
+			continue
 		}
 		if monstre.PV_actuelle <= 0 {
 			combat_pas_finis = false

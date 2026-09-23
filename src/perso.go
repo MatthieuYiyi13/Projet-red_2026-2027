@@ -160,39 +160,3 @@ func (p *Character) AccessInventory() {
 		}
 }
 
-func (p *Character) TakepotS() {
-	potquantity, potcheck := p.inventaire[RessourcePotSoin]
-	if !potcheck {
-		fmt.Println("Vous n'avez pas de potion dans votre inventaire.")
-		return
-	}
-	if potquantity <= 0 {
-		fmt.Println("Vous n'avez plus de potion dans votre inventaire.")
-		return
-	}
-	p.pv += 50
-	if p.pv > p.pvmax {
-		p.pv = p.pvmax
-	}
-	p.inventaire[RessourcePotSoin]--
-
-	fmt.Printf("Vous avez utilisé une potion. Votre vie est maintenant de %d/%d.\n", p.pv, p.pvmax)
-}
-func (p *Character) TakepotM() {
-	potquantity, potcheck := p.inventaire[RessourcePotSoin]
-	if !potcheck {
-		fmt.Println("Vous n'avez pas de potion dans votre inventaire.")
-		return
-	}
-	if potquantity <= 0 {
-		fmt.Println("Vous n'avez plus de potion dans votre inventaire.")
-		return
-	}
-	p.Mana += 50
-	if p.Mana > p.Manamax {
-		p.Mana = p.Manamax
-	}
-	p.inventaire[RessourcePotMana]--
-
-	fmt.Printf("Vous avez utilisé une potion. Votre mana est maintenant de %d/%d.\n", p.Mana, p.Manamax)
-}

@@ -70,7 +70,7 @@ func afficherTexte50(format string, args ...interface{}) {
 
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(50 * time.Millisecond)
+		time.Sleep(40 * time.Millisecond)
 	}
 
 	fmt.Println()
@@ -223,25 +223,25 @@ func (p *Character) StartMenu() {
 			}
 		}
 		if !nomV {
-			afficherTexte50("Nom invalide, veuillez réessayer.")
+			afficherTexte20("Nom invalide, veuillez réessayer.")
 			fmt.Println()
 			continue
 		}
 		p.name = nom
 		fmt.Println()
-		afficherTexte50("Quel nom étrange...")
+		afficherTexte20("Quel nom étrange...")
 		fmt.Println()
 		afficherTexte50("Bref j'espère que tu ne te perdras pas trop lors de ton aventure %s !", p.name)
 		choix_nom = false
 		fmt.Println()
 	}
-	afficherTexte50("Vous vous réveillez dans une forêt à la fois silencieuse et sinistre.")
+	afficherTexte20("Vous vous réveillez dans une forêt à la fois silencieuse et sinistre.")
 	if p.classe == "Guerrier" {
-		afficherTexte50("Vous regardez autour de vous et n'y voyez qu'une épée un peu émoussée et un sac de pièces.")
+		afficherTexte20("Vous regardez autour de vous et n'y voyez qu'une épée un peu émoussée et un sac de pièces.")
 	} else if p.classe == "Sorcier" {
-		afficherTexte50("Vous regardez autour de vous et n'y voyez qu'un bâton un peu usé et un sac de pièces.")
+		afficherTexte20("Vous regardez autour de vous et n'y voyez qu'un bâton un peu usé et un sac de pièces.")
 	} else {
-		afficherTexte50("Vous regardez autour de vous et n'y voyez qu'une dague un peu émoussée et un sac de pièces.")
+		afficherTexte20("Vous regardez autour de vous et n'y voyez qu'une dague un peu émoussée et un sac de pièces.")
 	}
 	afficherTexte100(". . . . . . . .")
 	afficherTexte1("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM")
@@ -279,7 +279,7 @@ func (p *Character) StartMenu() {
 		fmt.Println()
 		afficherTexte50("Les pv du monstre %s sont de %d/%d ", monstre.name, monstre.PV_actuelle, monstre.PV_max)
 		fmt.Println()
-		afficherTexte50("Que voulez vous faire ?")
+		afficherTexte20("Que voulez vous faire ?")
 		fmt.Printf("\n")
 		fmt.Printf("\t\t+------------------------------------------------+\n")
 		fmt.Printf("\t\t|                                                |\n")
@@ -301,7 +301,7 @@ func (p *Character) StartMenu() {
 
 			}
 		default:
-			afficherTexte50("Commande invalide.")
+			afficherTexte20("Commande invalide.")
 			continue
 		}
 		if monstre.PV_actuelle <= 0 {
@@ -718,7 +718,7 @@ func (p *Character) StartMenu() {
 			x_position = 13
 		}
 		if dans_ville == false {
-			j := rand.IntN(4)
+			j := rand.IntN(7)
 			if j == 0 {
 				p.Combat_start_premier()
 			}

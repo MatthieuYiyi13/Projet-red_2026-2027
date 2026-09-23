@@ -174,7 +174,7 @@ func (p *Character) Acheter_Materiaux() {
 		}
 	case 11 :
 		p.Marchand()
-	default : afficherTexte50("Veuillez saisir une touche valide")
+	default : afficherTexte20("Veuillez saisir une touche valide")
 	}
 }
 
@@ -252,15 +252,15 @@ func (p *Character) Acheter_Utilitaire() {
 		case 5 :
 			p.Marchand()
 		default : 
-		afficherTexte50("Veuillez saisir une touche valide")
+		afficherTexte20("Veuillez saisir une touche valide")
 		}
 	} else {
-		afficherTexte50("Que voulez vous acheter ? ")
-		afficherTexte50("1 : Potion de soin  :  50 écus")
-		afficherTexte50("2 : Potion de mana : 50 écus")
-		afficherTexte50("3 : Potion de poison: 150 écus")
-		afficherTexte50("4 : Poche supplémentaire (+10 de stockage dans l'inventaire) : 100 écus")
-		afficherTexte50("5 : Retour")
+		afficherTexte20("Que voulez vous acheter ? ")
+		afficherTexte1("1 : Potion de soin :  50 écus")
+		afficherTexte1("2 : Potion de mana :  50 écus")
+		afficherTexte1("3 : Potion de poison: 150 écus")
+		afficherTexte1("4 : Poche supplémentaire (+10 de stockage dans l'inventaire) : 100 écus")
+		afficherTexte1("5 : Retour")
 		fmt.Println()
 
 		var choix_utile int
@@ -269,69 +269,69 @@ func (p *Character) Acheter_Utilitaire() {
 		switch choix_utile {
 		case 1:
 			if p.InventairePlein() {
-				afficherTexte50("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				afficherTexte1("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
 				p.Marchand()
 			} else if p.money >= 50 {
-				afficherTexte50("Vous avez acheté une potion de soin pour 50 écus")
+				afficherTexte1("Vous avez acheté une potion de soin pour 50 écus")
 				fmt.Println()
 				p.inventaire[RessourcePotSoin] += 1
 				p.money -= 50
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
-				afficherTexte50("Vous n'avez pas l'argent pour m'acheter cela !")
+				afficherTexte1("Vous n'avez pas l'argent pour m'acheter cela !")
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
 			case 2:
 			if p.InventairePlein() {
-				afficherTexte50("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				afficherTexte1("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
 				p.Marchand()
 			} else if p.money >= 50 {
-				afficherTexte50("Vous avez acheté une potion de mana pour 50 écus")
+				afficherTexte1("Vous avez acheté une potion de mana pour 50 écus")
 				fmt.Println()
 				p.inventaire[RessourcePotMana] += 1
 				p.money -= 50
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
-				afficherTexte50("Vous n'avez pas l'argent pour m'acheter cela !")
+				afficherTexte1("Vous n'avez pas l'argent pour m'acheter cela !")
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
 		case 3:
 			if p.InventairePlein() {
-				afficherTexte50("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				afficherTexte1("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
 				p.Marchand()
 			} else if p.money >= 150 {
-				afficherTexte50("Vous avez acheté une potion de poison pour 150 écus")
+				afficherTexte1("Vous avez acheté une potion de poison pour 150 écus")
 				fmt.Println()
 				p.money -= 150
 				p.inventaire[RessourcePotPoison] += 1
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
-				afficherTexte50("Vous n'avez pas l'argent pour m'acheter cela !")
+				afficherTexte1("Vous n'avez pas l'argent pour m'acheter cela !")
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
 		case 4:
 			if p.money >= 100  && inventaire_taillemax<40{
-				afficherTexte50("Vous avez aggrandi votre inventaire pour 100 écus!")
+				afficherTexte1("Vous avez aggrandi votre inventaire pour 100 écus!")
 				fmt.Println()
 				p.money -= 100
 				inventaire_taillemax += 10
 				p.Acheter_Utilitaire()
 			} else {
 				fmt.Println()
-				afficherTexte50("Désolé vous ne pouvez pas acheter ça pour le moment!")
+				afficherTexte1("Désolé vous ne pouvez pas acheter ça pour le moment!")
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
 		case 5 :
 			p.Marchand()
 		default : 
-		afficherTexte50("Veuillez saisir une touche valide")
+		afficherTexte20("Veuillez saisir une touche valide")
 		}
 	}
 }
@@ -552,11 +552,11 @@ func (p *Character) Vendre() {
 
 func (p *Character) Marchand() {
 	fmt.Println()
-	afficherTexte50("Que souhaites-tu faire maintenant ?")
+	afficherTexte20("Que souhaites-tu faire maintenant ?")
 	fmt.Println()
-	afficherTexte50("1. Acheter")
-	afficherTexte50("2. Vendre")
-	afficherTexte50("3. Quitter le menu")
+	afficherTexte20("1. Acheter")
+	afficherTexte20("2. Vendre")
+	afficherTexte20("3. Quitter le menu")
 
 	var choiceM int
 	fmt.Scanln(&choiceM)
@@ -564,11 +564,11 @@ func (p *Character) Marchand() {
 	switch choiceM {
 	case 1:
 		fmt.Println()
-		afficherTexte50("Que souhaites-tu acheter ?")
+		afficherTexte20("Que souhaites-tu acheter ?")
 		fmt.Println()
-		afficherTexte50("1. Matériaux")
-		afficherTexte50("2. Utilitaires")
-		afficherTexte50("3. Sorts")
+		afficherTexte20("1. Matériaux")
+		afficherTexte20("2. Utilitaires")
+		afficherTexte20("3. Sorts")
 		var choix_achat int
 		fmt.Scanln(&choix_achat)
 		switch choix_achat {
@@ -582,7 +582,7 @@ func (p *Character) Marchand() {
 	case 2:
 		p.Vendre()
 	case 3:
-		afficherTexte50("Au revoir !")
+		afficherTexte20("Au revoir !")
 	}
 }
 
