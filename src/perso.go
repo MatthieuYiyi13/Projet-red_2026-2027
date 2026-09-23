@@ -77,17 +77,17 @@ func (p *Character) displayinfo() {
 func (p *Character) AccessInventory() {
 	fmt.Println()
 	for itemname, itemquantity := range p.inventaire {
-		fmt.Printf("%s : %d\n", itemname, itemquantity)
-		fmt.Println()
+		afficherTexte50("%s : %d\n", itemname, itemquantity)
 	}
-	fmt.Printf("écus : %d\n", p.money)
 	fmt.Println()
+	afficherTexte50("écus : %d\n", p.money)
+	fmt.Println("============================ inventaire ============================ ")
 	fmt.Println()
-	fmt.Println("Que voulez vous faire ?")
-	fmt.Println("P : Utiliser une potion de soin")
-	fmt.Println("M : Utiliser une potion de mana")
-	fmt.Println("E : Mettre mon équipement ")
-	fmt.Println("R : Retour")
+	afficherTexte20("Que voulez vous faire ?")
+	afficherTexte20("P : Utiliser une potion de soin")
+	afficherTexte20("M : Utiliser une potion de mana")
+	afficherTexte20("E : Mettre mon équipement ")
+	afficherTexte20("R : Retour")
 	var inv string
 		fmt.Scanln(&inv)
 		if inv == "P" {
