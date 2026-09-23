@@ -85,7 +85,7 @@ func (p *Character) AccessInventory() {
 	}
 	fmt.Println()
 	afficherTexte50("écus : %d\n", p.money)
-	fmt.Println("============================ inventaire ============================ ")
+	fmt.Println("============================inventaire============================")
 	fmt.Println()
 	afficherTexte20("Que voulez vous faire ?")
 	afficherTexte20("P : Utiliser une potion de soin")

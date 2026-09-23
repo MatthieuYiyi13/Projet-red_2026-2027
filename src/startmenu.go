@@ -259,7 +259,7 @@ func (p *Character) StartMenu() {
 		Poison:      false,
 	}
 	fmt.Println()
-	afficherTexte50("Vous rencontrez une %s sauvage !", monstre.name)
+	afficherTexte50("Vous rencontrez une %s sauvage, elle semble blessé !", monstre.name)
 	fmt.Println()
 	monstre.PV_actuelle -= 30
 	for combat_pas_finis {
@@ -539,7 +539,7 @@ func (p *Character) StartMenu() {
 			case touchePersoInfo:
 				fmt.Println("=== stats du personnage ===")
 			case toucheInv:
-				fmt.Println("=== inventaire ===")
+				fmt.Println("============================inventaire============================")
 				p.AccessInventory()
 			case touchemap:
 				p.AfficheMapCo()
@@ -716,6 +716,12 @@ func (p *Character) StartMenu() {
 		}
 		if (y_position > 10) && (x_position > 13) && (zone_volcan == false) {
 			x_position = 13
+		}
+		if dans_ville == false {
+			j := rand.IntN(4)
+			if j == 0 {
+				p.Combat_start_premier()
+			}
 		}
 	}
 
