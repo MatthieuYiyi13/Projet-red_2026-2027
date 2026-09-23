@@ -6,3 +6,4 @@ func main() {
 	var p projet.Character
 	p.StartGame()
 }
+

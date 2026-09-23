@@ -26,6 +26,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 1:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 100 {
 			p.inventaire[RessourceTissuDeSpectre] += 1
 			p.money -= 100
@@ -39,6 +40,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 2:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 150 {
 			p.inventaire[RessourcePeauDeGeant] += 1
 			p.money -= 150
@@ -53,6 +55,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 3:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 150 {
 			p.inventaire[RessourceFilDaraignee] += 1
 			p.money -= 150
@@ -67,6 +70,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 4:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 200 {
 			p.inventaire[RessourceDentdeloup] += 1
 			p.money -= 200
@@ -81,6 +85,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 5:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 250 {
 			p.inventaire[RessourcePoildemammouth] += 1
 			p.money -= 250
@@ -95,6 +100,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 6:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 250 {
 			p.inventaire[RessourceGriffeDelynxfumee] += 1
 			p.money -= 250
@@ -109,6 +115,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 7:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 400 {
 			p.inventaire[RessourceCendreDelynxfumee] += 1
 			p.money -= 400
@@ -123,6 +130,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 8:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 500 {
 			p.inventaire[RessourceFragmentdeglace] += 1
 			p.money -= 500
@@ -137,6 +145,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 9:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 750 {
 			p.inventaire[RessourceFragmentRoiDeLaNuit] += 1
 			p.money -= 750
@@ -151,6 +160,7 @@ func (p *Character) Acheter_Materiaux() {
 	case 10:
 		if p.InventairePlein() {
 			fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+			p.Marchand()
 		} else if p.money >= 999 {
 			p.inventaire[RessourceSabotDeLicorne] += 1
 			p.money -= 999
@@ -182,6 +192,7 @@ func (p *Character) Acheter_Utilitaire() {
 		case 1:
 			if p.InventairePlein() {
 				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				p.Marchand()
 			} else {
 				potion_gratuite = false
 				fmt.Println("Vous avez obtenue la potion de soin gratuite")
@@ -192,6 +203,7 @@ func (p *Character) Acheter_Utilitaire() {
 		case 2:
 			if p.InventairePlein() {
 				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				p.Marchand()
 			} else if p.money >= 150 {
 				fmt.Println("Vous avez acheté une potion de poison pour 150 écus")
 				fmt.Println()
@@ -233,6 +245,7 @@ func (p *Character) Acheter_Utilitaire() {
 		case 1:
 			if p.InventairePlein() {
 				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				p.Marchand()
 			} else if p.money >= 50 {
 				fmt.Println("Vous avez acheté une potion de soin pour 50 écus")
 				fmt.Println()
@@ -248,6 +261,7 @@ func (p *Character) Acheter_Utilitaire() {
 		case 2:
 			if p.InventairePlein() {
 				fmt.Println("Votre inventaire est plein ! Vous ne pouvez pas acheter d'objet.")
+				p.Marchand()
 			} else if p.money >= 150 {
 				fmt.Println("Vous avez acheté une potion de poison pour 150 écus")
 				fmt.Println()

@@ -1,8 +1,32 @@
 package projet
 
-import "fmt"
-
+import (
+		"fmt"
+		"time"
+)
 var choix_classe bool = true
+var choix_nom bool = true
+var fin_du_jeu bool = true
+
+
+func afficherTexte20(texte string) {
+	for _, caractere := range texte {
+		fmt.Print(string(caractere))
+		time.Sleep(2 * time.Millisecond)
+	}
+	fmt.Println()
+}
+
+func afficherTexte50(format string, args ...interface{}) {
+	texte := fmt.Sprintf(format, args...)
+
+	for _, caractere := range texte {
+		fmt.Print(string(caractere))
+		time.Sleep(50 * time.Millisecond)
+	}
+
+	fmt.Println()
+}
 
 func (p *Character) StartGame() {
 
@@ -36,38 +60,62 @@ func (p *Character) StartGame() {
 	default:
 		fmt.Println()
 		fmt.Println("Saisie invalide , veuillez recommencer.")
+		 p.StartGame()
 	}
 
 }
 func (p *Character) StartMenu() {
 
-fmt.Println()
-fmt.Println("Depuis des siècles, le royaume d'Eldoria vivait en paix.")
-fmt.Println("Ses terres étaient divisées en plusieurs biomes, chacun abritant ses propres créatures, ses secrets et ses dangers.")
-fmt.Println("Au Sud-Ouest s'étendait la Forêt d'Émeraude, une immense forêt où les arbres semblaient murmurer aux voyageurs.")
-fmt.Println("Plus loin se trouvait le Désert des Cendres, une mer de sable brûlant où d'anciennes ruines étaient enfouies depuis des milliers d'années.")
-fmt.Println("À l'est, les Montagnes de Glaces formaient une gigantesque frontière naturelle. On racontait que des monstres y dormaient sous la glace.")
-fmt.Println("Au Nord-Est se trouvait le Volcan des Brumes, une région mystérieuse où peu de voyageurs osaient s'aventurer.")
-fmt.Println("Depuis quelques années, des créatures étranges apparaissaient dans les différentes régions. Des villages disparaissaient. Des voyageurs racontaient avoir aperçu une immense ombre dans le ciel.")
-fmt.Println("Puis, une nuit, les étoiles disparurent.")
-fmt.Println("Une voix résonna dans tout le royaume")
-fmt.Println()
-fmt.Println("Le sceau est brisé... Celui qui portera le destin d'Eldoria devra choisir son chemin.")
-fmt.Println("Vous vous réveillez au milieu de la fôret devant les portes de la cité de Qarth.")
-fmt.Println("Devant vous se trouvent trois chemins.")
-fmt.Println()
-fmt.Println("Le Guerrier : ")
-fmt.Println()
-fmt.Println("Maître du combat rapproché, le Guerrier utilise sa force et sa résistance pour affronter ses ennemis directement.")
-fmt.Println()
-fmt.Println("Le Sorcier : ")
-fmt.Println()
-fmt.Println("Maître des arcanes, le Sorcier utilise la magie pour infliger de puissants dégâts et contrôler le champ de bataille.")
-fmt.Println()
-fmt.Println("L'assassin : ")
-fmt.Println()
-fmt.Println("Rapide et discret, l'assassin préfère la ruse, les attaques rapides et les coups dans l'ombre.")
-for choix_classe {
+afficherTexte20("Depuis des siècles, le royaume d'Eldoria vivait en paix.")
+
+afficherTexte20("Ses terres étaient divisées en plusieurs biomes, chacun abritant ses propres créatures, ses secrets et ses dangers.")
+
+afficherTexte20("Au Sud-Ouest s'étendait la Forêt d'Émeraude, une immense forêt où les arbres semblaient murmurer aux voyageurs.")
+
+afficherTexte20("Plus loin se trouvait le Désert des Cendres, une mer de sable brûlant où d'anciennes ruines étaient enfouies depuis des milliers d'années.")
+
+afficherTexte20("À l'est, les Montagnes de Glaces formaient une gigantesque frontière naturelle. On racontait que des monstres y dormaient sous la glace.")
+
+afficherTexte20("Au Nord-Est se trouvait le Volcan des Brumes, une région mystérieuse où peu de voyageurs osaient s'aventurer.")
+
+afficherTexte20("Depuis quelques années, des créatures étranges apparaissaient dans les différentes régions. Des villages disparaissaient. Des voyageurs racontaient avoir aperçu une immense ombre dans le ciel.")
+
+afficherTexte20("Puis, une nuit, les étoiles disparurent.")
+
+afficherTexte20("Une voix résonna dans tout le royaume")
+
+afficherTexte20("")
+
+afficherTexte20("Le sceau est brisé... Celui qui portera le destin d'Eldoria devra choisir son chemin.")
+
+afficherTexte20("Vous vous réveillez au milieu de la forêt devant les portes de la cité de Qarth.")
+
+afficherTexte20("Devant vous se trouvent trois chemins.")
+
+afficherTexte20("")
+
+afficherTexte20("Le Guerrier :")
+
+afficherTexte20("")
+
+afficherTexte20("Maître du combat rapproché, le Guerrier utilise sa force et sa résistance pour affronter ses ennemis directement.")
+
+afficherTexte20("")
+
+afficherTexte20("Le Sorcier :")
+
+afficherTexte20("")
+
+afficherTexte20("Maître des arcanes, le Sorcier utilise la magie pour infliger de puissants dégâts et contrôler le champ de bataille.")
+
+afficherTexte20("")
+
+afficherTexte20("L'Assassin :")
+
+afficherTexte20("")
+
+afficherTexte20("Rapide et discret, l'Assassin préfère la ruse, les attaques rapides et les coups dans l'ombre.")
+	for choix_classe {
 	fmt.Println()
 fmt.Println("Laquelle de ces 3 classes veux tu choisir ? ")
 fmt.Println()
@@ -75,56 +123,89 @@ x  := "Temp"
 var choice_classe string
 fmt.Scanln(&choice_classe)
 switch choice_classe {
-case "Assassin","assassin" : p.initcharacter(x,"Assassin")
+case "3", "Assassin","assassin" : p.initcharacter(x,"Assassin")
 					    choix_classe = false
-case "Guerrier","guerrier": p.initcharacter(x,"Guerrier")
+						stopSound()
+						PlaySoundAsyncDebut()
+case "1" ,"Guerrier","guerrier": p.initcharacter(x,"Guerrier")
 						choix_classe = false
-case "Sorcier","sorcier": p.initcharacter(x,"Sorcier")
+						stopSound()
+						PlaySoundAsyncDebut()
+case "2", "Sorcier","sorcier": p.initcharacter(x,"Sorcier")
 						choix_classe = false
+						stopSound()
+						PlaySoundAsyncDebut()
 default : fmt.Println("Veuillez entrer une classe valide.")
 }
+
 }
-	for true {
-		stopSound()
-		PlaySoundAsyncDebut()
-		fmt.Println("=== Menu principal ===")
-		fmt.Println("[1] Afficher les informations du personnage")
-		fmt.Println("[2] Accéder à l'inventaire")
-		fmt.Println("[3] Marchand")
-		fmt.Println("[4] Forgeron")
-		fmt.Println("[Q] Quitter le jeu")
+	for choix_nom{
+		fmt.Println()
+		afficherTexte50("Très bien jeune %s, comment t'appelles tu ?", p.classe)
+		fmt.Println()
+		fmt.Println()
+		var nom string
+		fmt.Scanln(&nom)
+		p.name = nom
+		fmt.Println()
+		afficherTexte50("Quel nom étrange...")
+		fmt.Println()
+		afficherTexte50("Bref j'espère que tu ne te perdras pas trop lors de ton aventure %s !", p.name)
+		choix_nom = false 
+		fmt.Println()
+	}
+
+
+	for fin_du_jeu {
+	fmt.Println()
+	fmt.Printf("\t+------------------------------------------------+\n")
+	fmt.Printf("\t|               Menu Principal                   |\n")
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t|  [P] Afficher les informations du personnage   |\n")
+	fmt.Printf("\t|  [I] Accéder à l'inventaire                    |\n")
+	fmt.Printf("\t|  [M] Marchand                                  |\n")
+	fmt.Printf("\t|  [F] Forgeron                                  |\n")
+	fmt.Printf("\t|  [Map] Afficher la map                         |\n")
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t|  [O] Options                                   |\n")
+	fmt.Printf("\t|  [Q] Quitter le jeu                            |\n")
+	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t+------------------------------------------------+\n")
 		var choice string
 		fmt.Scanln(&choice)
-		if choice == "1" {
+		switch choice {
+		case "P" , "p" : 
 			fmt.Println("=== stats du personnage ===")
-		}
-		if choice == "2" {
+
+		case "I", "i" : 
 			fmt.Println("=== inventaire ===")
 			p.AccessInventory()
-		}
-		if choice == "3" {
+	
+		case "M","m" :
 			fmt.Println("Bonjour jeune aventurier, je vois que tu as réussi à me trouver dans cette magnifique ville de Qarth !")
 			p.Marchand()
-		}
-		if choice == "4" {
+		
+		case "F","f" :
 			fmt.Println("Bienvenue dans ma forge")
 			p.ForgeronMenu()
-		}
-		if choice == "map" {
-			p.AfficheMap()
-		}
-			if choice == "Q" {
+		case "Map","map" : 
+			p.AfficheMapAscii()
+	case "Q" , "q":
 			fmt.Println("Au revoir !")
-			break
-		}
-		if choice == "pos" {
+			fin_du_jeu = false
+	case "pos" :
 			fmt.Printf("Vous êtes actuellement en %d, %d\n", x_position, y_position)
-		}
-		if choice == "combat" {
+	case "co" : 
+			p.AfficheMapCo()
+	case "combat" :
 			p.Combat_start_premier()
-		}
-		if choice == "train" {
+	case "train" : 
 			p.TrainingFight()
-		}
+	default : 
+	fmt.Println()
+	fmt.Println("Veuillez saisir une touche valide.")
+	fmt.Println()
+	}
+	
 	}
 }

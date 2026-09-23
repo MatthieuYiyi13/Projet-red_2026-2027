@@ -32,7 +32,7 @@ func (p *Character) GagnerCombat() {
 	experienceGagnee := experienceMinVictoire + experienceAleatoire
 
 	p.experience += experienceGagnee
-	fmt.Printf("Vous gagnez %d points d'experience. Total : %d\n", experienceGagnee, p.experience)
+	fmt.Printf("Vous gagnez %d points d'experience.\n", experienceGagnee)
 
 	nouveauNiveau := p.Niveau()
 	niveauxGagnes := nouveauNiveau - ancienNiveau
@@ -47,4 +47,5 @@ func (p *Character) GagnerCombat() {
 		p.pv += bonusPV
 		p.AttaqueDegats += bonusDegats
 	}
+	fmt.Printf("Vous êtes niveau : %d.\n",p.Niveau())
 }
