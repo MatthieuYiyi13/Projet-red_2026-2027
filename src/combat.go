@@ -21,7 +21,7 @@ type Spectre struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative 	int
+	Initiative  int
 }
 type Loup struct {
 	name        string
@@ -29,7 +29,7 @@ type Loup struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Géant struct {
 	name        string
@@ -37,7 +37,7 @@ type Géant struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Lynx_fumee struct {
 	name        string
@@ -45,7 +45,7 @@ type Lynx_fumee struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Mammouth struct {
 	name        string
@@ -53,7 +53,7 @@ type Mammouth struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Araignee struct {
 	name        string
@@ -61,7 +61,7 @@ type Araignee struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Roi_De_la_nuit struct {
 	name        string
@@ -69,7 +69,7 @@ type Roi_De_la_nuit struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Licorne struct {
 	name        string
@@ -77,7 +77,7 @@ type Licorne struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type White_walker struct {
 	name        string
@@ -85,7 +85,7 @@ type White_walker struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 type Monstre struct {
 	name        string
@@ -93,7 +93,7 @@ type Monstre struct {
 	PV_max      int
 	PV_actuelle int
 	Poison      bool
-	Initiative	int
+	Initiative  int
 }
 
 func (p *Character) choix_monstre() Monstre {
@@ -120,7 +120,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      75,
 			PV_actuelle: 75,
 			Poison:      false,
-			Initiative: 2,
+			Initiative:  2,
 		}
 	}
 
@@ -131,7 +131,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      150,
 			PV_actuelle: 150,
 			Poison:      false,
-			Initiative: 7,
+			Initiative:  7,
 		}
 	}
 
@@ -142,7 +142,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      60,
 			PV_actuelle: 60,
 			Poison:      false,
-			Initiative: 1,
+			Initiative:  1,
 		}
 	}
 
@@ -153,7 +153,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      200,
 			PV_actuelle: 200,
 			Poison:      false,
-			Initiative: 2,
+			Initiative:  2,
 		}
 	}
 
@@ -164,7 +164,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      125,
 			PV_actuelle: 125,
 			Poison:      false,
-			Initiative: 3,
+			Initiative:  3,
 		}
 	}
 
@@ -175,7 +175,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      350,
 			PV_actuelle: 350,
 			Poison:      false,
-			Initiative: 7,
+			Initiative:  7,
 		}
 	}
 
@@ -186,7 +186,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      375,
 			PV_actuelle: 375,
 			Poison:      false,
-			Initiative: 5,
+			Initiative:  5,
 		}
 	}
 
@@ -197,7 +197,7 @@ func (p *Character) choix_monstre() Monstre {
 			PV_max:      500,
 			PV_actuelle: 500,
 			Poison:      false,
-			Initiative: 9,
+			Initiative:  9,
 		}
 	}
 
@@ -207,7 +207,7 @@ func (p *Character) choix_monstre() Monstre {
 		PV_max:      1500,
 		PV_actuelle: 1500,
 		Poison:      false,
-		Initiative: 10,
+		Initiative:  10,
 	}
 }
 
@@ -349,50 +349,6 @@ func (p *Character) Attaque(monstre *Monstre) {
 		afficherTexte50("Commande invalide.")
 	}
 }
-
-func (p *Character) AttaqueTuto(monstre *Monstre) {
-	fmt.Printf("\n")
-	fmt.Printf("\t+------------------------------------------------+\n")
-	fmt.Printf("\t|           Quelle attaque utiliser ?            |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
-	if p.AttaqueName == "Coup d'épée" {
-		fmt.Printf("\t|     [C] Coup d'épée                            |\n")
-	}
-	if p.AttaqueName == "Coup de baton" {
-		fmt.Printf("\t|     [C] Coup de baton                          |\n")
-	}
-	if p.AttaqueName == "Coup de dague" {
-		fmt.Printf("\t|     [C] Coup de dague                          |\n")
-	}
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
-	if (p.SkillName == "Coups vicieux") && (Sort) {
-		fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
-	}
-	if (p.SkillName == "Boule de feu") && (Sort) {
-		fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
-	}
-	if (p.SkillName == "Coup critique") && (Sort) {
-		fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
-	}
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t+------------------------------------------------+\n")
-	fmt.Println()
-	var moove_attack string
-	fmt.Scanln(&moove_attack)
-	switch moove_attack {
-	case "C", "c":
-		{
-			monstre.PV_actuelle -= p.AttaqueDegats
-		}
-	default:
-		afficherTexte50("Commande invalide.")
-		skiptuto = true
-	}
-}
-
 func (p *Character) Combat_start_premier() {
 	stopSound()
 	PlaySoundAsyncCombat1()
