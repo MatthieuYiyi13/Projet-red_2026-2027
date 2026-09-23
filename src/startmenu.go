@@ -717,6 +717,12 @@ func (p *Character) StartMenu() {
 		if (y_position > 10) && (x_position > 13) && (zone_volcan == false) {
 			x_position = 13
 		}
+		if dans_ville == false {
+			j := rand.IntN(4)
+			if j == 0 {
+				p.Combat_start_premier()
+			}
+		}
 	}
 
 }

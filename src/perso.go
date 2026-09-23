@@ -22,6 +22,7 @@ type Character struct {
 	SkillDegats   int
 	Skillmana	  int
 	Equipements map[string]string
+	Initiative	int
 }
 
 func (p *Character) InventairePlein() bool {
@@ -52,6 +53,7 @@ func (p *Character) initcharacter(name string, classe string) {
 		p.SkillName = "Coup critique"
 		p.SkillDegats = 35
 		p.Skillmana = 25
+		p.Initiative = 8
 	case "Sorcier" :
 		p.pvmax = 100
 		p.pv = p.pvmax / 2
@@ -60,6 +62,7 @@ func (p *Character) initcharacter(name string, classe string) {
 		p.SkillName = "Boule de feu"
 		p.SkillDegats = 70
 		p.Skillmana = 50
+		p.Initiative = 4
 	case "Assassin" :
 		p.pvmax = 100
 		p.pv = p.pvmax / 2
@@ -68,6 +71,7 @@ func (p *Character) initcharacter(name string, classe string) {
 		p.SkillName = "Coups vicieux"
 		p.SkillDegats = 45
 		p.Skillmana = 35
+		p.Initiative = 9
 	}
 }
 
