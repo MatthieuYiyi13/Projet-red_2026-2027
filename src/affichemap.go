@@ -1,19 +1,18 @@
 package projet
 
-import ( 
+import (
 	"fmt"
 	"os/exec"
 	"strings"
 )
 
-
 var zone_desert bool = false
-var zone_glace bool = false 
-var zone_volcan bool = false 
+var zone_glace bool = false
+var zone_volcan bool = false
 var x_position int = 0
 var y_position int = 0
 
-func (p *Character)AfficheMap() {
+func (p *Character) AfficheMap() {
 	fmt.Println()
 	fmt.Printf("Vous êtes actuellement en %d, %d\n", x_position, y_position)
 	fmt.Println()
@@ -61,36 +60,36 @@ const (
 
 func (p *Character) AfficheMapCo() {
 
-	if x_position > 27  {
-		x_position = 27	
+	if x_position > 27 {
+		x_position = 27
 		fmt.Println()
 		afficherTexte20("Vous ne pouvez pas sortir de la map !")
 		fmt.Println()
 	}
 	if x_position < 0 {
-		x_position = 0	
+		x_position = 0
 		fmt.Println()
 		afficherTexte20("Vous ne pouvez pas sortir de la map !")
 		fmt.Println()
 	}
 	if y_position > 21 {
-			y_position = 21
+		y_position = 21
 		fmt.Println()
 		afficherTexte20("Vous ne pouvez pas sortir de la map !")
 		fmt.Println()
 	}
-	if y_position <0 {
-			y_position = 0	
+	if y_position < 0 {
+		y_position = 0
 		fmt.Println()
 		afficherTexte20("Vous ne pouvez pas sortir de la map !")
 		fmt.Println()
 	}
-	if x_position>13 && y_position < 11 && zone_glace == false {
+	if (x_position > 13) && (y_position < 11) && (zone_glace == false) {
 		x_position = 13
 	}
-	if y_position>10 && x_position >13 && zone_volcan == false {
-		if y_position>10 {
-			y_position=10
+	if (y_position > 10) && (x_position > 13) && (zone_volcan == false) {
+		if y_position > 10 {
+			y_position = 10
 		} else {
 			x_position = 13
 		}
@@ -102,20 +101,20 @@ func (p *Character) AfficheMapCo() {
 		for col := 0; col < mapWidth; col++ {
 			switch {
 			case construire < mapHeight/2 && col < mapWidth/2:
-				grille[construire][col] = "🌵" 
+				grille[construire][col] = "🌵"
 			case construire < mapHeight/2:
-				grille[construire][col] = "🌋" 
+				grille[construire][col] = "🌋"
 			case col < mapWidth/2:
-				grille[construire][col] = "🌲" 
+				grille[construire][col] = "🌲"
 			default:
-				grille[construire][col] = "🧊" 
+				grille[construire][col] = "🧊"
 			}
 		}
 	}
 	type ville struct {
 		row, col int
-		name    string
-		occupe   int 
+		name     string
+		occupe   int
 	}
 	villes := []ville{
 		{row: 1, col: 20, name: "● Astapor ", occupe: 5},
@@ -133,12 +132,12 @@ func (p *Character) AfficheMapCo() {
 	playerCol := x_position
 	if playerRow >= 0 && playerRow < mapHeight && playerCol >= 0 && playerCol < mapWidth {
 		grille[playerRow][playerCol] = "📍"
-	} 
+	}
 
 	fmt.Println("╔══════════════════════════════════════════════════════════╗")
 	fmt.Println("║                          ELDORIA                         ║")
 	fmt.Println("╠══════════════════════════════════════════════════════════╣")
- 
+
 	for row := 0; row < mapHeight; row++ {
 		var sb strings.Builder
 		sb.WriteString("║ ")
@@ -150,13 +149,12 @@ func (p *Character) AfficheMapCo() {
 		}
 		sb.WriteString("║")
 		fmt.Println(sb.String())
- 
+
 		if row == mapHeight/2-1 {
 			fmt.Println("╠─────────────────────────────╬────────────────────────────╣")
 		}
 	}
- 
-	fmt.Println("╚══════════════════════════════════════════════════════════╝")
-	fmt.Printf("\n📍 Position actuelle : %d, %d\n", x_position,y_position)
-}
 
+	fmt.Println("╚══════════════════════════════════════════════════════════╝")
+	fmt.Printf("\n📍 Position actuelle : %d, %d\n", x_position, y_position)
+}

@@ -392,6 +392,7 @@ func (p *Character) StartMenu() {
 			case touchemap:
 				p.AfficheMapCo()
 			case ToucheGuilde:
+				p.Guilde()
 			case ToucheEntrainement:
 				p.TrainingFight()
 			case directionMap.Haut:
@@ -573,7 +574,8 @@ func (p *Character) StartMenu() {
 		fmt.Scanln(&touche)
 		switch touche {
 		case "Haut" , "haut" ,"1":
-		afficherTexte50("Par quelle touche voulez vous la remplacer ?")
+			
+		afficherTexte50("Par quelle touche voulez vous la remplacer ? (Par exemple pour changer la touche Options tapez 'Options'")
 		var touche_replace string
 		fmt.Scanln(&touche_replace)
 		if p.touchevalide(touche_replace) {
