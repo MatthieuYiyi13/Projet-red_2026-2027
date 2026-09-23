@@ -323,6 +323,7 @@ func (p *Character) Attaque(monstre *Monstre) {
 		skip = true
 	case "C", "c":
 		{
+			afficherTexte50("Vous attaquez le monstre il perds %d",p.AttaqueDegats)
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
 	case "S", "s":
