@@ -176,7 +176,7 @@ func (p *Character) StartMenu() {
 	afficherTexte20("Rapide et discret, l'Assassin préfère la ruse, les attaques rapides et les coups dans l'ombre.")
 	for choix_classe {
 		fmt.Println()
-		fmt.Println("Laquelle de ces 3 classes veux tu choisir ? ")
+		fmt.Println("Laquelle de ces 3 classes veux tu choisir (1 , 2 ou 3) ? ")
 		fmt.Println()
 		x := "Temp"
 		var choice_classe string
@@ -356,9 +356,9 @@ func (p *Character) StartMenu() {
 	for fin_du_jeu {
 		if dans_ville {
 			fmt.Println()
-			fmt.Printf("\t\t+-------------------------------------------------+\n")
-			fmt.Printf("\t\t|               Menu Principal                    |\n")
-			fmt.Printf("\t\t|                                                 |\n")
+			fmt.Printf("\t\t+------------------------------------------------+\n")
+			fmt.Printf("\t\t|               Menu Principal                   |\n")
+			fmt.Printf("\t\t|                                                |\n")
 			fmt.Printf("\t\t|  [%s] Afficher les informations du personnage   |\n", touchePersoInfo)
 			fmt.Printf("\t\t|  [%s] Accéder à l'inventaire                    |\n", toucheInv)
 			fmt.Printf("\t\t|  [%s] Marchand                                  |\n", toucheMarchand)
@@ -366,36 +366,32 @@ func (p *Character) StartMenu() {
 			fmt.Printf("\t\t|  [%s] Afficher la map                           |\n", touchemap)
 			fmt.Printf("\t\t|  [%s] Guilde                                    |\n", ToucheGuilde)
 			fmt.Printf("\t\t|  [%s] Entrainement                              |\n", ToucheEntrainement)
-			fmt.Printf("\t\t|                                                 |\n")
-			fmt.Printf("\t\t|                    [%s]↑                         |\n", directionMap.Haut)
-			fmt.Printf("\t\t|         ←[%s]                    [%s]→            |\n", directionMap.Gauche, directionMap.Droite)
-			fmt.Printf("\t\t|                    [%s]↓                         |\n", directionMap.Bas)
-			fmt.Printf("\t\t|                                                 |\n")
+			fmt.Printf("\t\t|                                                |\n")
+			fmt.Printf("\t\t|                    [%s]↑                        |\n", directionMap.Haut)
+			fmt.Printf("\t\t|         ←[%s]                    [%s]→           |\n", directionMap.Gauche, directionMap.Droite)
+			fmt.Printf("\t\t|                    [%s]↓                        |\n", directionMap.Bas)
+			fmt.Printf("\t\t|                                                |\n")
 			fmt.Printf("\t\t|  [%s] Options                                   |\n", ToucheOption)
 			fmt.Printf("\t\t|  [%s] Quitter le jeu                            |\n", ToucheQuitter)
-			fmt.Printf("\t\t|                                                 |\n")
-			fmt.Printf("\t\t+-------------------------------------------------+\n")
+			fmt.Printf("\t\t|                                                |\n")
+			fmt.Printf("\t\t+------------------------------------------------+\n")
 			var choice string
 			fmt.Scanln(&choice)
 			switch choice {
 			case touchePersoInfo:
 				fmt.Println("=== stats du personnage ===")
-
 			case toucheInv:
 				fmt.Println("=== inventaire ===")
 				p.AccessInventory()
-
 			case toucheMarchand:
 				afficherTexte50("Bonjour jeune aventurier, je vois que tu as réussi à me trouver dans cette magnifique ville !")
 				p.Marchand()
-
 			case ToucheForgeron:
 				afficherTexte50("Bienvenue dans ma forge")
 				p.ForgeronMenu()
 			case touchemap:
 				p.AfficheMapCo()
 			case ToucheGuilde:
-
 			case ToucheEntrainement:
 				p.TrainingFight()
 			case directionMap.Haut:
@@ -517,134 +513,6 @@ func (p *Character) StartMenu() {
 				afficherTexte50("Veuillez saisir une touche valide.")
 				fmt.Println()
 			}
-			fmt.Println()
-			afficherTexte50("Quelle touche voulez vous changer ?")
-			var touche string
-			fmt.Scanln(&touche)
-			switch touche {
-			case "Haut", "haut", "1":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					directionMap.Haut = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "Bas", "bas", "2":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					directionMap.Bas = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "Gauche", "gauche", "3":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					directionMap.Gauche = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "Droite", "droite", "4":
-				fmt.Println("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					directionMap.Droite = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "5", "Information du personnage", "Personnage", "information du personnage", "perso":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					touchePersoInfo = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "6", "Inventaire", "inv", "inventaire":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					toucheInv = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "7", "map", "Map":
-				fmt.Println("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					touchemap = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "8", "Options", "Option", "option", "options":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					ToucheOption = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "9", "Quitter", "quitter", "quit", "Quit":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					ToucheQuitter = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "10", "Marchand", "marchand":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					toucheMarchand = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "11", "Forgeron", "forgeron", "forge", "Forge":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					ToucheForgeron = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "12", "Guilde", "guilde", "guild", "Guild":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					ToucheGuilde = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			case "13", "Entrainement", "entrainement", "train", "Train":
-				afficherTexte50("Par quelle touche voulez vous la remplacer ?")
-				var touche_replace string
-				fmt.Scanln(&touche_replace)
-				if p.touchevalide(touche_replace) {
-					ToucheEntrainement = touche_replace
-				} else {
-					afficherTexte50("Changement impossible.")
-				}
-			default:
-				fmt.Println()
-				afficherTexte50("Veuillez saisir une touche valide.")
-				fmt.Println()
-				continue
-			}
 		} else {
 			fmt.Println()
 			fmt.Printf("\t\t+-------------------------------------------------+\n")
@@ -669,7 +537,6 @@ func (p *Character) StartMenu() {
 			switch choice {
 			case touchePersoInfo:
 				fmt.Println("=== stats du personnage ===")
-
 	case toucheInv : 
 			fmt.Println("=== inventaire ===")
 			p.AccessInventory()

@@ -17,7 +17,7 @@ func (p *Character) Acheter_Materiaux() {
 	fmt.Println("8 :  Fragment de glace: 500 écus")
 	fmt.Println("9 :  Fragment du Roi de la Nuit: 750 écus")
 	fmt.Println("10 : Sabot de licorne: 999 écus")
-	fmt.Println("R : Retour au menu ")
+	fmt.Println("11 : Retour au menu ")
 
 	var choix_objet int
 	fmt.Scanln(&choix_objet)
@@ -172,6 +172,9 @@ func (p *Character) Acheter_Materiaux() {
 			fmt.Println()
 			p.Acheter_Materiaux()
 		}
+	case 11 :
+		p.Marchand()
+	default : afficherTexte50("Veuillez saisir une touche valide")
 	}
 }
 
@@ -246,6 +249,10 @@ func (p *Character) Acheter_Utilitaire() {
 				fmt.Println()
 				p.Acheter_Utilitaire()
 			}
+		case 5 :
+			p.Marchand()
+		default : 
+		afficherTexte50("Veuillez saisir une touche valide")
 		}
 	} else {
 		afficherTexte50("Que voulez vous acheter ? ")
