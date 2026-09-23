@@ -417,7 +417,7 @@ func (p *Character) Vendre() {
 	fmt.Println("8 :  Fragment de glace: 50 écus")
 	fmt.Println("9 :  Fragment du Roi de la Nuit: 75 écus")
 	fmt.Println("10 : Sabot de licorne: 0 écus")
-	fmt.Println("R : Retour au menu ")
+	fmt.Println("11 : Retour au menu ")
 
 	var choix_vente int
 	fmt.Scanln(&choix_vente)
@@ -543,16 +543,20 @@ func (p *Character) Vendre() {
 			fmt.Println()
 			p.Vendre()
 		}
+	case 11 :
+		p.Marchand()
+	default : 
+	afficherTexte50("Veuillez saisir une touche valide")
 	}
 }
 
 func (p *Character) Marchand() {
 	fmt.Println()
-	fmt.Println("Que souhaites-tu faire maintenant ?")
+	afficherTexte50("Que souhaites-tu faire maintenant ?")
 	fmt.Println()
-	fmt.Println("1. Acheter")
-	fmt.Println("2. Vendre")
-	fmt.Println("3. Quitter le menu")
+	afficherTexte50("1. Acheter")
+	afficherTexte50("2. Vendre")
+	afficherTexte50("3. Quitter le menu")
 
 	var choiceM int
 	fmt.Scanln(&choiceM)
@@ -560,11 +564,11 @@ func (p *Character) Marchand() {
 	switch choiceM {
 	case 1:
 		fmt.Println()
-		fmt.Println("Que souhaites-tu acheter ?")
+		afficherTexte50("Que souhaites-tu acheter ?")
 		fmt.Println()
-		fmt.Println("1. Matériaux")
-		fmt.Println("2. Utilitaires")
-		fmt.Println("3. Sorts")
+		afficherTexte50("1. Matériaux")
+		afficherTexte50("2. Utilitaires")
+		afficherTexte50("3. Sorts")
 		var choix_achat int
 		fmt.Scanln(&choix_achat)
 		switch choix_achat {
@@ -578,7 +582,7 @@ func (p *Character) Marchand() {
 	case 2:
 		p.Vendre()
 	case 3:
-		fmt.Println("Au revoir !")
+		afficherTexte50("Au revoir !")
 	}
 }
 
