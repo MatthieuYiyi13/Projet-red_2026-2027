@@ -60,41 +60,6 @@ const (
 
 func (p *Character) AfficheMapCo() {
 
-	if x_position > 27 {
-		x_position = 27
-		fmt.Println()
-		afficherTexte20("Vous ne pouvez pas sortir de la map !")
-		fmt.Println()
-	}
-	if x_position < 0 {
-		x_position = 0
-		fmt.Println()
-		afficherTexte20("Vous ne pouvez pas sortir de la map !")
-		fmt.Println()
-	}
-	if y_position > 21 {
-		y_position = 21
-		fmt.Println()
-		afficherTexte20("Vous ne pouvez pas sortir de la map !")
-		fmt.Println()
-	}
-	if y_position < 0 {
-		y_position = 0
-		fmt.Println()
-		afficherTexte20("Vous ne pouvez pas sortir de la map !")
-		fmt.Println()
-	}
-	if (x_position > 13) && (y_position < 11) && (zone_glace == false) {
-		x_position = 13
-	}
-	if (y_position > 10) && (x_position > 13) && (zone_volcan == false) {
-		if y_position > 10 {
-			y_position = 10
-		} else {
-			x_position = 13
-		}
-	}
-
 	grille := make([][]string, mapHeight)
 	for construire := 0; construire < mapHeight; construire++ {
 		grille[construire] = make([]string, mapWidth)
