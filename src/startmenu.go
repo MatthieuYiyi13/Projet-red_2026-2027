@@ -5,6 +5,8 @@ import (
 		"time"
 		"math/rand/v2"
 )
+
+var dans_ville bool = false 
 var choix_classe bool = true
 var choix_nom bool = true
 var fin_du_jeu bool = true
@@ -188,7 +190,7 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 		} else {
 		afficherTexte50("Vous regardez autour de vous et n'y voyez qu'une dague un peu émoussée et un sac de pièces.")
 		}
-		afficherTexte100(". . . . . . . . . . .")
+		afficherTexte100(". . . . . . . .")
 		afficherTexte1("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM")
 		afficherTexte50("Une araignée vous tombe dessus , elle cherche le combat")
 
@@ -226,13 +228,13 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 		fmt.Println()
 		fmt.Println("Que voulez vous faire ?")
 		fmt.Printf("\n")
-		fmt.Printf("\t+------------------------------------------------+\n")
-		fmt.Printf("\t|                                                |\n")
-		fmt.Printf("\t|            Que voulez vous faire ?             |\n")
-		fmt.Printf("\t|                                                |\n")
-		fmt.Printf("\t|                 [A] Attaque                    |\n")
-		fmt.Printf("\t|                                                |\n")
-		fmt.Printf("\t+------------------------------------------------+\n")
+		fmt.Printf("\t\t+------------------------------------------------+\n")
+		fmt.Printf("\t\t|                                                |\n")
+		fmt.Printf("\t\t|            Que voulez vous faire ?             |\n")
+		fmt.Printf("\t\t|                                                |\n")
+		fmt.Printf("\t\t|                 [A] Attaque                    |\n")
+		fmt.Printf("\t\t|                                                |\n")
+		fmt.Printf("\t\t+------------------------------------------------+\n")
 		fmt.Println()
 		var moove string
 		fmt.Scanln(&moove)
@@ -294,22 +296,48 @@ default : fmt.Println("Veuillez entrer une classe valide.")
 	p.IsDead()
 }
 p.pv = p.pvmax
+
+
+type direction struct {
+	Haut     string
+	Bas      string
+	Gauche   string
+	Droite   string
+}
+
+directionMap := direction{
+	Haut : "H" ,
+	Bas : "B",
+	Gauche : "G",
+	Droite : "D",
+} 
+
+touchemap := "Map"
+toucheInv := "I"
+touchePersoInfo := "P"
+toucheMarchand := "M"
+ToucheForgeron := "F"
+ToucheOption := "O"
+ToucheQuitter := "Q"
+
+
 	for fin_du_jeu {
+ if dans_ville{
 	fmt.Println()
-	fmt.Printf("\t+------------------------------------------------+\n")
-	fmt.Printf("\t|               Menu Principal                   |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|  [P] Afficher les informations du personnage   |\n")
-	fmt.Printf("\t|  [I] Accéder à l'inventaire                    |\n")
-	fmt.Printf("\t|  [M] Marchand                                  |\n")
-	fmt.Printf("\t|  [F] Forgeron                                  |\n")
-	fmt.Printf("\t|  [Map] Afficher la map                         |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|  [O] Options                                   |\n")
-	fmt.Printf("\t|  [Q] Quitter le jeu                            |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t+------------------------------------------------+\n")
+	fmt.Printf("\t\t+-------------------------------------------------+\n")
+	fmt.Printf("\t\t|               Menu Principal                    |\n")
+	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t|  [%s] Afficher les informations du personnage   |\n",touchePersoInfo)
+	fmt.Printf("\t\t|  [%s] Accéder à l'inventaire                    |\n",toucheInv)
+	fmt.Printf("\t\t|  [%s] Marchand                                  |\n",toucheMarchand)
+	fmt.Printf("\t\t|  [%s] Forgeron                                  |\n",ToucheForgeron)
+	fmt.Printf("\t\t|  [%s] Afficher la map                           |\n",touchemap)
+	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t|  [%s] Options                                   |\n",ToucheOption)
+	fmt.Printf("\t\t|  [%s] Quitter le jeu                            |\n",ToucheQuitter)
+	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t+-------------------------------------------------+\n")
 		var choice string
 		fmt.Scanln(&choice)
 		switch choice {
@@ -340,11 +368,93 @@ p.pv = p.pvmax
 			p.Combat_start_premier()
 	case "train" : 
 			p.TrainingFight()
+	case "O" , "o" :
+		continue
 	default : 
 	fmt.Println()
 	fmt.Println("Veuillez saisir une touche valide.")
 	fmt.Println()
 	}
-	
+	} else { 
+		fmt.Println()
+	fmt.Printf("\t\t+-------------------------------------------------+\n")
+	fmt.Printf("\t\t|               Menu Principal                    |\n")
+	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t|  [%s] Afficher les informations du personnage   |\n",touchePersoInfo)
+	fmt.Printf("\t\t|  [%s] Accéder à l'inventaire                    |\n",toucheInv)
+	fmt.Printf("\t\t|  [%s] Afficher la map                           |\n",touchemap)
+	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t|                    [%s]↑                         |\n",directionMap.Haut)
+	fmt.Printf("\t\t|         ←[%s]                    [%s]→            |\n",directionMap.Gauche,directionMap.Droite)
+	fmt.Printf("\t\t|                    [%s]↓                         |\n",directionMap.Bas)	
+    fmt.Printf("\t\t|                                                 |\n")		
+	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t|  [%s] Options                                   |\n",ToucheOption)
+	fmt.Printf("\t\t|  [%s] Quitter le jeu                            |\n",ToucheQuitter)
+	fmt.Printf("\t\t|                                                 |\n")
+	fmt.Printf("\t\t+-------------------------------------------------+\n")
+		var choice string
+		fmt.Scanln(&choice)
+		switch choice {
+	case "P" , "p" : 
+		fmt.Println("=== stats du personnage ===")
+	case "I", "i" : 
+			fmt.Println("=== inventaire ===")
+			p.AccessInventory()
+	case "Map","map" : 
+			p.AfficheMapCo()
+	case "Q" , "q":
+			fmt.Println("Au revoir !")
+			fin_du_jeu = false	
+	case "o","O": 
+		fmt.Println()
+		fmt.Println("Touches actuelle :")
+		fmt.Printf("Haut   : %s \n",directionMap.Haut)
+		fmt.Printf("Bas    : %s \n",directionMap.Bas)
+		fmt.Printf("Gauche : %s \n",directionMap.Gauche)
+		fmt.Printf("Droite : %s \n",directionMap.Droite)
+		fmt.Printf("Information du personnage : P \n")
+		fmt.Printf("Inventaire : I \n")
+		fmt.Printf("Map : map \n")
+		fmt.Println()
+		fmt.Println("Quelle touche voulez vous changer ?")
+		var touche string
+		fmt.Scanln(&touche)
+		switch touche {
+		case "Haut" , "haut" ,"1":
+		fmt.Println("Par quelle touche voulez vous la remplacer ?")
+		var touche_replace string
+		fmt.Scanln(&touche_replace)
+		directionMap.Haut = touche_replace
+		case "Bas" , "bas", "2" :
+		fmt.Println("Par quelle touche voulez vous la remplacer ?")
+		var touche_replace string
+		fmt.Scanln(&touche_replace)
+		directionMap.Bas = touche_replace
+		case "Gauche", "gauche","3":
+		fmt.Println("Par quelle touche voulez vous la remplacer ?")
+		var touche_replace string
+		fmt.Scanln(&touche_replace)
+		directionMap.Gauche = touche_replace
+		case "Droite", "droite", "4":
+		fmt.Println("Par quelle touche voulez vous la remplacer ?")
+		var touche_replace string
+		fmt.Scanln(&touche_replace)
+		directionMap.Droite = touche_replace
+		case "5","Information du personnage","Personnage","information du personnage","perso":
+		var touche_replace string
+		fmt.Scanln(&touche_replace)
+		touchemap = touche_replace
+		}
+
+	case "combat" :
+			p.Combat_start_premier()
+	default : 
+	fmt.Println()
+	fmt.Println("Veuillez saisir une touche valide.")
+	fmt.Println()
 	}
+	}
+}
 }
