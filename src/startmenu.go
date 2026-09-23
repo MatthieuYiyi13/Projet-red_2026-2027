@@ -796,5 +796,23 @@ p.pv = p.pvmax
 	fmt.Println()
 	}
 	}
+	if x_position < 15 && y_position > 11 {
+		zone_desert = true
+	}
+	if x_position>14 && y_position<12 {
+		zone_glace = true
+	}
+	if x_position>14 && y_position>11 {
+		zone_volcan = true 
+	}
+	if zone_desert {
+		zone_unlock=2
+	}
+	if zone_glace{
+		zone_unlock=3
+	}
+	if zone_volcan{
+		zone_unlock=4
+	}
 }
 }

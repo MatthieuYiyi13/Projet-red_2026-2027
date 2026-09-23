@@ -6,6 +6,10 @@ import (
 	"strings"
 )
 
+
+var zone_desert bool = false
+var zone_glace bool = false 
+var zone_volcan bool = false 
 var x_position int = 0
 var y_position int = 0
 
