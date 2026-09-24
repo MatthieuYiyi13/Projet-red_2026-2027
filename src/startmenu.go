@@ -10,6 +10,7 @@ var dans_ville bool = false
 var choix_classe bool = true
 var choix_nom bool = true
 var fin_du_jeu bool = true
+var combat_possible bool = true 
 
 type direction struct {
 	Haut   string
@@ -515,6 +516,7 @@ func (p *Character) StartMenu() {
 				fmt.Println()
 			}
 		} else {
+			combat_possible = true 
 			fmt.Println()
 			fmt.Printf("\t\t+-------------------------------------------------+\n")
 			fmt.Printf("\t\t|               Menu Principal                    |\n")
@@ -537,24 +539,32 @@ func (p *Character) StartMenu() {
 			fmt.Scanln(&choice)
 			switch choice {
 			case touchePersoInfo:
+				combat_possible = false 
 				p.Displayinfo()
 			case toucheInv:
+				combat_possible = false 
 				fmt.Println("============================inventaire============================")
 				p.AccessInventory()
 			case touchemap:
+				combat_possible = false 
 				p.AfficheMapCo()
 			case directionMap.Haut:
+				combat_possible = true
 				y_position++
 			case directionMap.Bas:
+				combat_possible = true
 				y_position--
 			case directionMap.Gauche:
+				combat_possible = true
 				x_position--
 			case directionMap.Droite:
+				combat_possible = true
 				x_position++
 			case ToucheQuitter:
 				fmt.Println("Au revoir !")
 				fin_du_jeu = false
 			case ToucheOption:
+				combat_possible = false
 				fmt.Println()
 				fmt.Println("Touches actuelle :")
 				fmt.Printf("Haut   : %s \n", directionMap.Haut)
@@ -717,7 +727,7 @@ func (p *Character) StartMenu() {
 		if (y_position > 10) && (x_position > 13) && (zone_volcan == false) {
 			x_position = 13
 		}
-		if dans_ville == false {
+		if dans_ville == false && combat_possible {
 			j := rand.IntN(7)
 			if j == 0 {
 				p.Combat_start_premier()
