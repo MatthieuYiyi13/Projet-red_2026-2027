@@ -76,7 +76,8 @@ func (p *Character) initcharacter(name string, classe string) {
 }
 
 func (p *Character) Displayinfo() {
-fmt.Println("============================%s============================",p.name)
+fmt.Println("========================================================")
+	afficherTexte50("Nom : %s",p.name)
 	afficherTexte50("Classe : %s", p.classe)
 	afficherTexte50("Pvs actuelle : %d / %d", p.pv,p.pvmax)
 	afficherTexte50("Mana actuelle : %d/%d", p.Mana,p.Manamax)
@@ -91,8 +92,7 @@ fmt.Println("============================%s============================",p.name)
 	} else {
 	afficherTexte50("Aucune Resurrection restante ")
 	}
-fmt.Println()
-fmt.Println("============================%s============================",p.name)
+fmt.Println("========================================================")
 }
 func (p *Character) AccessInventory() {
 	fmt.Println()
