@@ -7,7 +7,8 @@ func (p *Character) IsDead() {
 		if !p.Resurrection {
 			p.pv = p.pvmax / 2
 			p.Resurrection = true
-			fmt.Println("Angéline vous a ressucitée.")
+			fmt.Println("Ange et Line vous ont ressucitée.")
+
 		} else {
 			gameOver()
 		}
