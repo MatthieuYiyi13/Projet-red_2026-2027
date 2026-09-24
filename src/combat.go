@@ -602,6 +602,7 @@ func (p *Character) Combat_start_premier() {
 		fmt.Println()
 		p.GagnerCombat()
 		victoire = false
+		stopSound()
 		combat_pas_finis = true
 	} else if victoire && fuite {
 		fmt.Println()

@@ -91,6 +91,7 @@ func afficherTexte100(format string, args ...interface{}) {
 }
 
 func (p *Character) StartGame() {
+	p.AccessInventory()
 
 	vert := "\033[32m"
 	reset := "\033[0m"
@@ -389,7 +390,7 @@ func (p *Character) StartMenu() {
 			case touchePersoInfo:
 				p.Displayinfo()
 			case toucheInv:
-				fmt.Println("============================Inventaire============================ ")
+				fmt.Println()
 				p.AccessInventory()
 			case toucheMarchand:
 				afficherTexte50("Bonjour jeune aventurier, je vois que tu as réussi à me trouver dans cette magnifique ville !")
@@ -429,7 +430,7 @@ func (p *Character) StartMenu() {
 				fmt.Printf("Forgeron    : %s \n", ToucheForgeron)
 				fmt.Printf("Entrainement: %s \n", ToucheEntrainement)
 				fmt.Printf("Guilde      : %s \n", ToucheGuilde)
-				fmt.Println("Crédit		: %s \n", ToucheCredit)
+				fmt.Printf("Crédit		: %s \n", ToucheCredit)
 				fmt.Println()
 				fmt.Println("Quelle touche voulez vous changer ? (Par exemple pour changer la touche Options taper 'Options' )")
 				var touche string
@@ -553,7 +554,7 @@ func (p *Character) StartMenu() {
 				p.Displayinfo()
 			case toucheInv:
 				combat_possible = false
-				fmt.Println("============================inventaire============================")
+				fmt.Println()
 				p.AccessInventory()
 			case touchemap:
 				combat_possible = false

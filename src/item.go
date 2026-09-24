@@ -10,10 +10,6 @@ var casque_equipe bool = true
 var botte_equipe bool = true
 var armureivoire_equipe bool = true
 var armurecuir_equipe bool = true
-var affiche_casque bool = false
-var affiche_armurecuir bool = false
-var affiche_armureivoire bool = false
-var affiche_botte bool = false
 
 const (
 	RessourceTissuDeSpectre      = "Tissu de spectre"
