@@ -52,7 +52,7 @@ func (p *Character) touchevalide(touche string) bool {
 func afficherTexte20(texte string) {
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(30 * time.Millisecond)
+		time.Sleep(20 * time.Millisecond)
 	}
 	fmt.Println()
 }
