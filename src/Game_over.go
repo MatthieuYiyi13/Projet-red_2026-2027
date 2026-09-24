@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+var defaite bool = false 
+
 func gameOver() {
 	fmt.Println(`
    ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ 
@@ -14,5 +16,6 @@ func gameOver() {
    ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝
     `)
 	fmt.Println("GAME OVER, Merci d'avoir joué !")
+    defaite = true 
 }
 

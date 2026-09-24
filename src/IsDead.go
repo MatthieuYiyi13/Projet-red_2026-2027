@@ -5,7 +5,7 @@ func (p *Character) IsDead() {
 		if !p.Resurrection {
 			p.pv = p.pvmax / 2
 			p.Resurrection = true
-			afficherTexte50("Ange et Line vous ont ressucitée.")
+			afficherTexte50("Ange et Line vous ressucite.")
 			p.Affiche_ange()
 			afficherTexte50("Vous avez ressucitée , vous n'avez plus le droit à l'erreur")
 		} else {

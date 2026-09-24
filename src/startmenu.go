@@ -355,6 +355,9 @@ func (p *Character) StartMenu() {
 	p.pv = p.pvmax
 
 	for fin_du_jeu {
+		if defaite == true {
+			break
+		}
 		if dans_ville {
 			fmt.Println()
 			fmt.Printf("\t\t+------------------------------------------------+\n")
@@ -424,7 +427,7 @@ func (p *Character) StartMenu() {
 				fmt.Printf("Guilde      : %s \n", ToucheGuilde)
 				fmt.Println("Crédit		: %s \n", ToucheCredit)
 				fmt.Println()
-				fmt.Println("Quelle touche voulez vous changer ? (Par exemple pour changer la touche Options tapez 'Options' )")
+				fmt.Println("Quelle touche voulez vous changer ? (Par exemple pour changer la touche Options taper 'Options' )")
 				var touche string
 				fmt.Scanln(&touche)
 				switch touche {
@@ -581,15 +584,15 @@ func (p *Character) StartMenu() {
 				fmt.Printf("Quitter    : %s  \n", ToucheQuitter)
 
 				fmt.Println()
-				afficherTexte50("Quelle touche voulez vous changer ?")
+				afficherTexte50("Quelle touche voulez vous changer ? (exemple taper Haut)")
 				var touche string
 				fmt.Scanln(&touche)
 				switch touche {
 				case "Haut", "haut", "1":
 
-					afficherTexte50("Par quelle touche voulez vous la remplacer ? (Par exemple pour changer la touche Options tapez 'Options'")
+					afficherTexte50("Par quelle touche voulez vous la remplacer ? (Un seul caractère unique)")
 					var touche_replace string
-					fmt.Scanln(&touche_replace)
+					fmt.Scanln(&touche_replace)		
 					if p.touchevalide(touche_replace) {
 						directionMap.Haut = touche_replace
 					} else {

@@ -46,7 +46,7 @@ func (p *Character) initcharacter(name string, classe string) {
 	p.Mana = 50
 	switch classe {
 	case "Guerrier" :
-		p.pvmax = 200
+		p.pvmax = 2
 		p.pv = p.pvmax / 2
 		p.AttaqueName = "Coup d'épée"
 		p.AttaqueDegats = 20
