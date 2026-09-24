@@ -82,13 +82,13 @@ fmt.Println("========================================================")
 	afficherTexte50("Pvs actuelle : %d / %d", p.pv,p.pvmax)
 	afficherTexte50("Mana actuelle : %d/%d", p.Mana,p.Manamax)
 	afficherTexte50("Niveau : %d", p.Niveau())
-	afficherTexte50("Experience gagné: %d/", p.experience)
+	afficherTexte50("Experience gagné: %d", p.experience)
 	afficherTexte50("Degats de %s : %d", p.AttaqueName, p.AttaqueDegats)
 	if Sort {
 	afficherTexte50("Degats de %s : %d", p.SkillName,p.SkillDegats)
 	}
-	if p.Resurrection {
-	afficherTexte50(" 1 Resurrection restante ")
+	if p.Resurrection == false {
+	afficherTexte50("1 Resurrection restante ")
 	} else {
 	afficherTexte50("Aucune Resurrection restante ")
 	}
