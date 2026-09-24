@@ -3,6 +3,7 @@ package projet
 import (
 	"fmt"
 	"math/rand/v2"
+	"strings"
 	"time"
 )
 
@@ -10,7 +11,7 @@ var dans_ville bool = false
 var choix_classe bool = true
 var choix_nom bool = true
 var fin_du_jeu bool = true
-var combat_possible bool = true 
+var combat_possible bool = true
 
 type direction struct {
 	Haut   string
@@ -41,7 +42,7 @@ func (p *Character) touchevalide(touche string) bool {
 	if len(touche) != 1 {
 		return false
 	}
-	if touche == toucheInv || touche == ToucheEntrainement || touche == ToucheGuilde|| touche == toucheMarchand || touche == touchePersoInfo || touche == touchemap || touche == ToucheForgeron || touche == ToucheQuitter || touche == ToucheOption || touche == directionMap.Haut || touche == directionMap.Bas || touche == directionMap.Gauche || touche == directionMap.Droite {
+	if touche == toucheInv || touche == ToucheEntrainement || touche == ToucheGuilde || touche == toucheMarchand || touche == touchePersoInfo || touche == touchemap || touche == ToucheForgeron || touche == ToucheQuitter || touche == ToucheOption || touche == directionMap.Haut || touche == directionMap.Bas || touche == directionMap.Gauche || touche == directionMap.Droite {
 		return false
 	} else {
 		return true
@@ -220,8 +221,11 @@ func (p *Character) StartMenu() {
 				nomV = false
 				break
 			}
-			if len(nom) > 0 && nom[0] >= 'a' && nom[0] <= 'z' {
-				nom = string(nom[0]-'a'+'A') + nom[1:]
+			if len(nom) > 0 {
+				nom = nom[:0] + strings.ToUpper(nom[0:])
+			}
+			if len(nom) > 1 {
+				nom = nom[:1] + strings.ToLower(nom[1:])
 			}
 		}
 		if !nomV {
@@ -519,7 +523,7 @@ func (p *Character) StartMenu() {
 				fmt.Println()
 			}
 		} else {
-			combat_possible = true 
+			combat_possible = true
 			fmt.Println()
 			fmt.Printf("\t\t+-------------------------------------------------+\n")
 			fmt.Printf("\t\t|               Menu Principal                    |\n")
@@ -542,14 +546,14 @@ func (p *Character) StartMenu() {
 			fmt.Scanln(&choice)
 			switch choice {
 			case touchePersoInfo:
-				combat_possible = false 
+				combat_possible = false
 				p.Displayinfo()
 			case toucheInv:
-				combat_possible = false 
+				combat_possible = false
 				fmt.Println("============================inventaire============================")
 				p.AccessInventory()
 			case touchemap:
-				combat_possible = false 
+				combat_possible = false
 				p.AfficheMapCo()
 			case directionMap.Haut:
 				combat_possible = true
