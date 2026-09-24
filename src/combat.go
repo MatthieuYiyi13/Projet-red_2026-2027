@@ -96,6 +96,7 @@ type Monstre struct {
 	Initiative  int
 }
 
+
 func (p *Character) choix_monstre() Monstre {
 
 	n := 0
@@ -210,6 +211,84 @@ func (p *Character) choix_monstre() Monstre {
 		Initiative:  10,
 	}
 }
+
+func (p *Character) Loot(Monstre){
+	if p.InventairePlein() {
+		afficherTexte1("Votre inventaire est plein ! Vous ne pouvez pas récuperer d'objets.")
+		return
+	}	
+	monstre := Monstre{}
+	if monstre.name == "Spectre" {
+		n := rand.IntN(2)	
+		if n == 1 {
+		p.inventaire[RessourceTissuDeSpectre] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceTissuDeSpectre)
+	}
+}
+	if monstre.name == "Géant" {
+		n := rand.IntN(2)
+		if n == 1 {
+		p.inventaire[RessourcePeauDeGeant] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourcePeauDeGeant)
+		}
+	}
+	if monstre.name == "Araignée" {
+	n := rand.IntN(2)
+		if n == 1 {
+		p.inventaire[RessourceFilDaraignee] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceFilDaraignee)
+		}
+	}
+	if monstre.name == "Lynx fumée" {
+	n := rand.IntN(2)
+		if n == 1 {
+		p.inventaire[RessourceGriffeDelynxfumee] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceGriffeDelynxfumee)
+	} else {
+		p.inventaire[RessourceCendreDelynxfumee] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceCendreDelynxfumee)
+	}
+}
+	if monstre.name == "Loup" {
+	n := rand.IntN(2)
+		if n == 1 {
+		p.inventaire[RessourceDentdeloup] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceDentdeloup)
+		}
+	}
+	if monstre.name == "Mammouth" {
+	n := rand.IntN(2)
+		if n == 1 {
+		p.inventaire[RessourcePoildemammouth] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourcePoildemammouth)
+		}
+	}
+	if monstre.name == "White walker" {
+			n := rand.IntN(2)
+		if n == 1 {
+		p.inventaire[RessourceFragmentdeglace] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceFragmentdeglace)
+		}
+	}
+	if monstre.name == "Roi de la nuit" {
+	n := rand.IntN(2)
+		if n == 1 {
+		p.inventaire[RessourceFragmentRoiDeLaNuit] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceFragmentRoiDeLaNuit)
+		}
+	}
+	if monstre.name == "Licorne" {
+	n := rand.IntN(2)
+		if n == 1 {
+		p.inventaire[RessourceSabotDeLicorne] += 1
+		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceSabotDeLicorne)
+		}
+	}
+	g := rand.IntN(150)
+	p.money += g
+	afficherTexte50("Vous gagnez %d écus",g)
+}
+	
 
 func (p *Character) Usepot_poison(monstre *Monstre) {
 	monstre.Poison = true
@@ -400,6 +479,7 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 	}
 }
 
+
 func (p *Character) Combat_start_premier() {
 	stopSound()
 	PlaySoundAsyncCombat1()
@@ -519,6 +599,7 @@ func (p *Character) Combat_start_premier() {
 	if victoire && fuite == false {
 		fmt.Println()
 		afficherTexte50("Vous avez gagné le combat")
+		p.Loot(monstre)
 		fmt.Println()
 		p.GagnerCombat()
 		victoire = false
@@ -535,4 +616,4 @@ func (p *Character) Combat_start_premier() {
 		p.IsDead()
 	}
 }
-func (p *Character) Combat_start_second() {}
+
