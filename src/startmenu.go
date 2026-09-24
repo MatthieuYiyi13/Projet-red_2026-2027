@@ -34,6 +34,7 @@ var ToucheOption string = "O"
 var ToucheQuitter string = "Q"
 var ToucheGuilde string = "C"
 var ToucheEntrainement string = "E"
+var ToucheCredit string = "C"
 
 func (p *Character) touchevalide(touche string) bool {
 	if len(touche) != 1 {
@@ -298,7 +299,6 @@ func (p *Character) StartMenu() {
 				if skiptuto {
 					continue
 				}
-
 			}
 		default:
 			afficherTexte20("Commande invalide.")
@@ -395,6 +395,8 @@ func (p *Character) StartMenu() {
 				p.Guilde()
 			case ToucheEntrainement:
 				p.TrainingFight()
+			case ToucheCredit:
+				p.AfficheCredit()
 			case directionMap.Haut:
 				y_position++
 			case directionMap.Bas:
@@ -419,6 +421,7 @@ func (p *Character) StartMenu() {
 				fmt.Printf("Forgeron    : %s \n", ToucheForgeron)
 				fmt.Printf("Entrainement: %s \n", ToucheEntrainement)
 				fmt.Printf("Guilde      : %s \n", ToucheGuilde)
+				fmt.Println("Crédit		: %s \n", ToucheCredit)
 				fmt.Println()
 				fmt.Println("Quelle touche voulez vous changer ? (Par exemple pour changer la touche Options tapez 'Options' )")
 				var touche string

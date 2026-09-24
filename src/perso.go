@@ -94,8 +94,6 @@ fmt.Println("============================%s============================",p.name)
 fmt.Println()
 fmt.Println("============================%s============================",p.name)
 }
-
-
 func (p *Character) AccessInventory() {
 	fmt.Println()
 	for itemname, itemquantity := range p.inventaire {
