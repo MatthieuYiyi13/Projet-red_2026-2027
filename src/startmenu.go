@@ -356,7 +356,10 @@ func (p *Character) StartMenu() {
 		p.IsDead()
 	}
 	p.pv = p.pvmax
-
+	afficherTexte50("C'est maintenant que votre aventure commence !")
+	afficherTexte50("Nous vous conseillons de souvent regarder votre map et de prioriser les villes !")
+	afficherTexte50("Vous pouvez vous déplacer avec les touches %s , %s , %s , %s",directionMap.Haut,directionMap.Bas,directionMap.Gauche,directionMap.Droite)
+	afficherTexte50("Amusez vous bien lors de votre périple")
 	for fin_du_jeu {
 		if defaite == true {
 			break
