@@ -519,7 +519,7 @@ func (p *Character) StartMenu() {
 				fmt.Println()
 			}
 		} else {
-			combat_possible = true 
+			combat_possible = true
 			fmt.Println()
 			fmt.Printf("\t\t+-------------------------------------------------+\n")
 			fmt.Printf("\t\t|               Menu Principal                    |\n")
@@ -669,6 +669,7 @@ func (p *Character) StartMenu() {
 					}
 				}
 			default:
+				combat_possible = false 
 				fmt.Println()
 				afficherTexte50("Veuillez saisir une touche valide.")
 				fmt.Println()

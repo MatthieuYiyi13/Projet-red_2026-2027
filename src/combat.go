@@ -212,12 +212,11 @@ func (p *Character) choix_monstre() Monstre {
 	}
 }
 
-func (p *Character) Loot(Monstre){
+func (p *Character) Loot(monstre Monstre){
 	if p.InventairePlein() {
 		afficherTexte1("Votre inventaire est plein ! Vous ne pouvez pas récuperer d'objets.")
 		return
 	}	
-	monstre := Monstre{}
 	if monstre.name == "Spectre" {
 		n := rand.IntN(2)	
 		if n == 1 {
@@ -375,24 +374,24 @@ func (p *Character) Attaque(monstre *Monstre) {
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.AttaqueName == "Coup d'épée" {
-		fmt.Printf("\t|     [C] Coup d'épée          [R] Retour        |\n")
+	fmt.Printf("\t|     [C] Coup d'épée          [R] Retour        |\n")
 	}
 	if p.AttaqueName == "Coup de baton" {
-		fmt.Printf("\t|     [C] Coup de baton        [R] Retour        |\n")
+	fmt.Printf("\t|     [C] Coup de baton        [R] Retour        |\n")
 	}
 	if p.AttaqueName == "Coup de dague" {
-		fmt.Printf("\t|     [C] Coup de dague       [R] Retour        |\n")
+	fmt.Printf("\t|     [C] Coup de dague       [R] Retour         |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if (p.SkillName == "Coups vicieux") && (Sort) {
-		fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
+	fmt.Printf("\t|          [S] Coups vicieux  (35 Mana)          |\n")
 	}
 	if (p.SkillName == "Boule de feu") && (Sort) {
-		fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
+	fmt.Printf("\t|          [S] Boule de feu   (50 Mana)          |\n")
 	}
 	if (p.SkillName == "Coup critique") && (Sort) {
-		fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
+	fmt.Printf("\t|          [S] Coup critique  (25 Mana)          |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
@@ -442,13 +441,13 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.AttaqueName == "Coup d'épée" {
-		fmt.Printf("\t|     [C] Coup d'épée                            |\n")
+	fmt.Printf("\t|     [C] Coup d'épée                            |\n")
 	}
 	if p.AttaqueName == "Coup de baton" {
-		fmt.Printf("\t|     [C] Coup de baton                          |\n")
+	fmt.Printf("\t|     [C] Coup de baton                          |\n")
 	}
 	if p.AttaqueName == "Coup de dague" {
-		fmt.Printf("\t|     [C] Coup de dague                          |\n")
+	fmt.Printf("\t|     [C] Coup de dague                          |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
