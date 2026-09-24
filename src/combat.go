@@ -391,6 +391,7 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 	switch moove_attack {
 	case "C", "c":
 		{
+			afficherTexte50("Vous attaquez le monstre il perds %d pvs",p.AttaqueDegats)
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
 	default:
@@ -407,7 +408,7 @@ func (p *Character) Combat_start_premier() {
 	combat_pas_finis = true
 	monstre := p.choix_monstre()
 	fmt.Println()
-	afficherTexte50("Vous rencontrez un %s sauvage !", monstre.name)
+	afficherTexte50("Le monstre sauvage %s vous attaque !", monstre.name)
 	fmt.Println()
 	info_debut_combat = false
 
