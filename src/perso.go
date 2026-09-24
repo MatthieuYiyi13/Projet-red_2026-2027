@@ -82,9 +82,9 @@ fmt.Println("============================%s============================",p.name)
 	afficherTexte50("Mana actuelle : %d/%d", p.Mana,p.Manamax)
 	afficherTexte50("Niveau : %s", p.Niveau())
 	afficherTexte50("Experience : %d/%d", p.experience,p.experience*6)
-	afficherTexte50("Degats de %s : %d", p.AttaqueName,p.Attack)
+	afficherTexte50("Degats de %s : %d", p.AttaqueName, p.AttackDegats)
 	if Sort {
-	afficherTexte50("Degats de %s : %d", p.SkillName,p.Skill)
+	afficherTexte50("Degats de %s : %d" p.SkillName,p.SkillDegats)
 	}
 	if p.Resurrection {
 		afficherTexte50(" 1 Resurrection restante ")
