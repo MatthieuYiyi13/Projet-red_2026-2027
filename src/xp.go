@@ -12,6 +12,7 @@ const (
 	pvParNiveau           = 10
 	degatsParNiveau       = 2
 	manaParNiveau 		  = 5
+	niveau = niveauInitial
 )
 
 func (p *Character) Niveau() int {

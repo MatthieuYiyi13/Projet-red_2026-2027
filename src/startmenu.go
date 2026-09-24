@@ -381,7 +381,7 @@ func (p *Character) StartMenu() {
 			case touchePersoInfo:
 				fmt.Println("=== stats du personnage ===")
 			case toucheInv:
-				fmt.Println("============================ inventaire ============================ ")
+				fmt.Println("============================Inventaire============================ ")
 				p.AccessInventory()
 			case toucheMarchand:
 				afficherTexte50("Bonjour jeune aventurier, je vois que tu as réussi à me trouver dans cette magnifique ville !")

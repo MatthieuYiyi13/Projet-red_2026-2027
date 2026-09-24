@@ -76,7 +76,25 @@ func (p *Character) initcharacter(name string, classe string) {
 }
 
 func (p *Character) displayinfo() {
+fmt.Println("============================%s============================",p.name)
+	afficherTexte50("Classe : %s", p.classe)
+	afficherTexte50("Pvs actuelle : %d / %d", p.pv,p.pvmax)
+	afficherTexte50("Mana actuelle : %d/%d", p.mana,p.Manamax)
+	afficherTexte50("Niveau : %s", p.Niveau())
+	afficherTexte50("Experience : %d/%d", p.experience,p.experience*6)
+	afficherTexte50("Degats de %s : %d", p.AttaqueName,p.attack)
+	if Sort {
+	afficherTexte50("Degats de %s : %d", p.SkillName,p.Skill)
+	}
+	if p.Resurrection {
+		afficherTexte50(" 1 Resurrection restante ")
+	} else {
+		afficherTexte50(" aucune Resurrection restante ")
+	}
+fmt.Println()
+fmt.Println("============================%s============================",p.name)
 }
+
 
 func (p *Character) AccessInventory() {
 	fmt.Println()
@@ -85,7 +103,7 @@ func (p *Character) AccessInventory() {
 	}
 	fmt.Println()
 	afficherTexte50("écus : %d\n", p.money)
-	fmt.Println("============================inventaire============================")
+	fmt.Println("============================Inventaire============================")
 	fmt.Println()
 	afficherTexte20("Que voulez vous faire ?")
 	afficherTexte20("P : Utiliser une potion de soin")
