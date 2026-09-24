@@ -404,7 +404,7 @@ func (p *Character) Attaque(monstre *Monstre) {
 		skip = true
 	case "C", "c":
 		{
-			afficherTexte50("Vous attaquez le monstre il perds %d pvs",p.AttaqueDegats)
+			afficherTexte50("Vous attaquez le monstre il perd %d pvs",p.AttaqueDegats)
 
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
@@ -469,7 +469,7 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 	switch moove_attack {
 	case "C", "c":
 		{
-			afficherTexte50("Vous attaquez le monstre il perds %d pvs",p.AttaqueDegats)
+			afficherTexte50("Vous attaquez le monstre il perd %d pvs",p.AttaqueDegats)
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
 	default:
@@ -521,7 +521,7 @@ func (p *Character) Combat_start_premier() {
 	for combat_pas_finis {
 		if monstre.Poison && skip == false{
 			fmt.Println()
-			afficherTexte50("Le monstre ennemi %s perds %d PV", monstre.name, 10)
+			afficherTexte50("Le monstre ennemi %s perd %d PV", monstre.name, 10)
 			fmt.Println()
 			monstre.PV_actuelle -= 10
 			fmt.Println()
@@ -607,12 +607,14 @@ func (p *Character) Combat_start_premier() {
 	} else if victoire && fuite {
 		fmt.Println()
 		fmt.Println()
+		stopSound()
 	} else {
 		fmt.Println()
 		afficherTexte50("Vous avez perdu tout vos pvs , vous êtes mort !")
 		fmt.Println()
 		victoire = false
 		combat_pas_finis = true
+		stopSound()
 		p.IsDead()
 	}
 }

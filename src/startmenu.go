@@ -27,6 +27,8 @@ var directionMap = direction{
 	Droite: "D",
 }
 
+var blockville bool = false
+var premiere_ville bool = false
 var touchemap string = "L"
 var toucheInv string = "I"
 var touchePersoInfo string = "P"
@@ -707,6 +709,7 @@ func (p *Character) StartMenu() {
 		}
 		if x_position > 5 && x_position < 10 && y_position == 5 {
 			dans_ville = true
+			premiere_ville = true
 		} else {
 			dans_ville = false
 		}
@@ -745,6 +748,13 @@ func (p *Character) StartMenu() {
 			if j == 0 {
 				p.Combat_start_premier()
 			}
+		}
+		if blockville {
+			premiere_ville = false
+		}
+		if premiere_ville {
+			afficherTexte100("Bienvenue dans la ville de Qarth, vous trouverez tout ce ")
+			blockville = true
 		}
 	}
 

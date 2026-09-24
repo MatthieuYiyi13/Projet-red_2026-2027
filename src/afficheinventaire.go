@@ -172,7 +172,6 @@ fmt.Println()
 			affiche_casque = true 
 			fmt.Println()
 			fmt.Println()
-			p.AccessInventory()
 			}
 			if botte_equipe && p.inventaire[RessourceBotteArcenciel] == 1 {
 				p.inventaire[RessourceBotteArcenciel] -= 1
@@ -214,4 +213,7 @@ fmt.Println()
 			p.AccessInventory()
 			}
 		}
+		if inv == "R" {
+    	return
+}
 }
