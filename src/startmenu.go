@@ -91,6 +91,7 @@ func afficherTexte100(format string, args ...interface{}) {
 }
 
 func (p *Character) StartGame() {
+	p.AccessInventory()
 
 	vert := "\033[32m"
 	reset := "\033[0m"
