@@ -75,7 +75,7 @@ func (p *Character) initcharacter(name string, classe string) {
 	}
 }
 
-func (p *Character) displayinfo() {
+func (p *Character) Displayinfo() {
 fmt.Println("============================%s============================",p.name)
 	afficherTexte50("Classe : %s", p.classe)
 	afficherTexte50("Pvs actuelle : %d / %d", p.pv,p.pvmax)

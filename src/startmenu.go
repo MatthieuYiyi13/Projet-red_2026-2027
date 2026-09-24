@@ -379,7 +379,7 @@ func (p *Character) StartMenu() {
 			fmt.Scanln(&choice)
 			switch choice {
 			case touchePersoInfo:
-				fmt.Println("=== stats du personnage ===")
+				p.Displayinfo()
 			case toucheInv:
 				fmt.Println("============================Inventaire============================ ")
 				p.AccessInventory()
@@ -537,7 +537,7 @@ func (p *Character) StartMenu() {
 			fmt.Scanln(&choice)
 			switch choice {
 			case touchePersoInfo:
-				fmt.Println("=== stats du personnage ===")
+				p.Displayinfo()
 			case toucheInv:
 				fmt.Println("============================inventaire============================")
 				p.AccessInventory()
