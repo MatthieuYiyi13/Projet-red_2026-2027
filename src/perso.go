@@ -84,7 +84,7 @@ fmt.Println("============================%s============================",p.name)
 	afficherTexte50("Experience : %d/%d", p.experience,p.experience*6)
 	afficherTexte50("Degats de %s : %d", p.AttaqueName, p.AttackDegats)
 	if Sort {
-	afficherTexte50("Degats de %s : %d" p.SkillName,p.SkillDegats)
+	afficherTexte50("Degats de %s : %d", p.SkillName,p.SkillDegats)
 	}
 	if p.Resurrection {
 		afficherTexte50(" 1 Resurrection restante ")
