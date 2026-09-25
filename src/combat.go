@@ -96,7 +96,6 @@ type Monstre struct {
 	Initiative  int
 }
 
-
 func (p *Character) choix_monstre() Monstre {
 
 	n := 0
@@ -212,82 +211,81 @@ func (p *Character) choix_monstre() Monstre {
 	}
 }
 
-func (p *Character) Loot(monstre Monstre){
+func (p *Character) Loot(monstre Monstre) {
 	if p.InventairePlein() {
 		afficherTexte1("Votre inventaire est plein ! Vous ne pouvez pas récuperer d'objets.")
 		return
-	}	
-	if monstre.name == "Spectre" {
-		n := rand.IntN(2)	
-		if n == 1 {
-		p.inventaire[RessourceTissuDeSpectre] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceTissuDeSpectre)
 	}
-}
+	if monstre.name == "Spectre" {
+		n := rand.IntN(2)
+		if n == 1 {
+			p.inventaire[RessourceTissuDeSpectre] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourceTissuDeSpectre)
+		}
+	}
 	if monstre.name == "Géant" {
 		n := rand.IntN(2)
 		if n == 1 {
-		p.inventaire[RessourcePeauDeGeant] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourcePeauDeGeant)
+			p.inventaire[RessourcePeauDeGeant] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourcePeauDeGeant)
 		}
 	}
 	if monstre.name == "Araignée" {
-	n := rand.IntN(2)
+		n := rand.IntN(2)
 		if n == 1 {
-		p.inventaire[RessourceFilDaraignee] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceFilDaraignee)
+			p.inventaire[RessourceFilDaraignee] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourceFilDaraignee)
 		}
 	}
 	if monstre.name == "Lynx fumée" {
-	n := rand.IntN(2)
+		n := rand.IntN(2)
 		if n == 1 {
-		p.inventaire[RessourceGriffeDelynxfumee] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceGriffeDelynxfumee)
-	} else {
-		p.inventaire[RessourceCendreDelynxfumee] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceCendreDelynxfumee)
+			p.inventaire[RessourceGriffeDelynxfumee] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourceGriffeDelynxfumee)
+		} else {
+			p.inventaire[RessourceCendreDelynxfumee] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourceCendreDelynxfumee)
+		}
 	}
-}
 	if monstre.name == "Loup" {
-	n := rand.IntN(2)
+		n := rand.IntN(2)
 		if n == 1 {
-		p.inventaire[RessourceDentdeloup] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceDentdeloup)
+			p.inventaire[RessourceDentdeloup] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourceDentdeloup)
 		}
 	}
 	if monstre.name == "Mammouth" {
-	n := rand.IntN(2)
+		n := rand.IntN(2)
 		if n == 1 {
-		p.inventaire[RessourcePoildemammouth] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourcePoildemammouth)
+			p.inventaire[RessourcePoildemammouth] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourcePoildemammouth)
 		}
 	}
 	if monstre.name == "White walker" {
-			n := rand.IntN(2)
+		n := rand.IntN(2)
 		if n == 1 {
-		p.inventaire[RessourceFragmentdeglace] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceFragmentdeglace)
+			p.inventaire[RessourceFragmentdeglace] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourceFragmentdeglace)
 		}
 	}
 	if monstre.name == "Roi de la nuit" {
-	n := rand.IntN(2)
+		n := rand.IntN(2)
 		if n == 1 {
-		p.inventaire[RessourceFragmentRoiDeLaNuit] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceFragmentRoiDeLaNuit)
+			p.inventaire[RessourceFragmentRoiDeLaNuit] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourceFragmentRoiDeLaNuit)
 		}
 	}
 	if monstre.name == "Licorne" {
-	n := rand.IntN(2)
+		n := rand.IntN(2)
 		if n == 1 {
-		p.inventaire[RessourceSabotDeLicorne] += 1
-		afficherTexte50("Vous récuperez 1 %s sur le corps du monstre",RessourceSabotDeLicorne)
+			p.inventaire[RessourceSabotDeLicorne] += 1
+			afficherTexte50("Vous récuperez 1 %s sur le corps du monstre", RessourceSabotDeLicorne)
 		}
 	}
 	g := rand.IntN(150)
 	p.money += g
-	afficherTexte50("Vous gagnez %d écus",g)
+	afficherTexte50("Vous gagnez %d écus", g)
 }
-	
 
 func (p *Character) Usepot_poison(monstre *Monstre) {
 	monstre.Poison = true
@@ -301,14 +299,14 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 	fmt.Printf("\t|            Que voulez vous faire ?             |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.inventaire[RessourcePotSoin] >= 1 {
-	fmt.Printf("\t|  [S] Utiliser une potion de soin               |\n")
+		fmt.Printf("\t|  [S] Utiliser une potion de soin               |\n")
 	}
 	if p.inventaire[RessourcePotMana] >= 1 {
-	fmt.Printf("\t|  [M] Utiliser une potion de mana               |\n")
+		fmt.Printf("\t|  [M] Utiliser une potion de mana               |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	if p.inventaire[RessourcePotPoison] >= 1 {
-	fmt.Printf("\t|  [P] Utiliser une potion de poison             |\n")
+		fmt.Printf("\t|  [P] Utiliser une potion de poison             |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|  [R] Retour                                    |\n")
@@ -353,7 +351,7 @@ func (p *Character) Objet_utilitaire(monstre *Monstre) {
 
 func (p *Character) Fuir() {
 	k := rand.IntN(3)
-	if (k == 0)  || (k ==1) {
+	if (k == 0) || (k == 1) {
 		combat_pas_finis = false
 		victoire = true
 		fuite = true
@@ -374,24 +372,24 @@ func (p *Character) Attaque(monstre *Monstre) {
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if p.AttaqueName == "Coup d'épée" {
-	fmt.Printf("\t|     [C] Coup d'épée          [R] Retour        |\n")
+		fmt.Printf("\t|     [C] Coup d'épée          [R] Retour        |\n")
 	}
 	if p.AttaqueName == "Coup de baton" {
-	fmt.Printf("\t|     [C] Coup de baton        [R] Retour        |\n")
+		fmt.Printf("\t|     [C] Coup de baton        [R] Retour        |\n")
 	}
 	if p.AttaqueName == "Coup de dague" {
-	fmt.Printf("\t|     [C] Coup de dague       [R] Retour         |\n")
+		fmt.Printf("\t|     [C] Coup de dague       [R] Retour         |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
 	if (p.SkillName == "Coups vicieux") && (Sort) {
-	fmt.Printf("\t|          [S] Coups vicieux  (35 Mana)          |\n")
+		fmt.Printf("\t|          [S] Coups vicieux  (35 Mana)          |\n")
 	}
 	if (p.SkillName == "Boule de feu") && (Sort) {
-	fmt.Printf("\t|          [S] Boule de feu   (50 Mana)          |\n")
+		fmt.Printf("\t|          [S] Boule de feu   (50 Mana)          |\n")
 	}
 	if (p.SkillName == "Coup critique") && (Sort) {
-	fmt.Printf("\t|          [S] Coup critique  (25 Mana)          |\n")
+		fmt.Printf("\t|          [S] Coup critique  (25 Mana)          |\n")
 	}
 	fmt.Printf("\t|                                                |\n")
 	fmt.Printf("\t|                                                |\n")
@@ -404,7 +402,7 @@ func (p *Character) Attaque(monstre *Monstre) {
 		skip = true
 	case "C", "c":
 		{
-			afficherTexte50("Vous attaquez le monstre il perd %d pvs",p.AttaqueDegats)
+			afficherTexte50("Vous attaquez le monstre il perd %d pvs", p.AttaqueDegats)
 
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
@@ -441,13 +439,13 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 	fmt.Printf("\t\t|                                                |\n")
 	fmt.Printf("\t\t|                                                |\n")
 	if p.AttaqueName == "Coup d'épée" {
-	fmt.Printf("\t\t|     [C] Coup d'épée                            |\n")
+		fmt.Printf("\t\t|     [C] Coup d'épée                            |\n")
 	}
 	if p.AttaqueName == "Coup de baton" {
-	fmt.Printf("\t\t|     [C] Coup de baton                          |\n")
+		fmt.Printf("\t\t|     [C] Coup de baton                          |\n")
 	}
 	if p.AttaqueName == "Coup de dague" {
-	fmt.Printf("\t\t|     [C] Coup de dague                          |\n")
+		fmt.Printf("\t\t|     [C] Coup de dague                          |\n")
 	}
 	fmt.Printf("\t\t|                                                |\n")
 	fmt.Printf("\t\t|                                                |\n")
@@ -469,7 +467,7 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 	switch moove_attack {
 	case "C", "c":
 		{
-			afficherTexte50("Vous attaquez le monstre il perd %d pvs",p.AttaqueDegats)
+			afficherTexte50("Vous attaquez le monstre il perd %d pvs", p.AttaqueDegats)
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
 	default:
@@ -477,7 +475,6 @@ func (p *Character) AttaqueTuto(monstre *Monstre) {
 		skiptuto = true
 	}
 }
-
 
 func (p *Character) Combat_start_premier() {
 	stopSound()
@@ -519,7 +516,7 @@ func (p *Character) Combat_start_premier() {
 		}
 	}
 	for combat_pas_finis {
-		if monstre.Poison && skip == false{
+		if monstre.Poison && skip == false {
 			fmt.Println()
 			afficherTexte50("Le monstre ennemi %s perd %d PV", monstre.name, 10)
 			fmt.Println()
@@ -618,4 +615,3 @@ func (p *Character) Combat_start_premier() {
 		p.IsDead()
 	}
 }
-
