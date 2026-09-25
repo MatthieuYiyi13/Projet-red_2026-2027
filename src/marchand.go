@@ -6,7 +6,8 @@ var potion_gratuite bool = true
 var Sort bool = false
 
 func (p *Character) Acheter_Materiaux() {
-	fmt.Println("Que voulez vous acheter ?")
+	afficherTexte20("Que voulez vous acheter ?")
+	fmt.Println()
 	fmt.Println("1 :  Tissu de spectre: 100 écus")
 	fmt.Println("2 :  Peau de géant: 150 écus")
 	fmt.Println("3 :  Fil d'araignée: 150 écus")
@@ -17,7 +18,7 @@ func (p *Character) Acheter_Materiaux() {
 	fmt.Println("8 :  Fragment de glace: 500 écus")
 	fmt.Println("9 :  Fragment du Roi de la Nuit: 750 écus")
 	fmt.Println("10 : Sabot de licorne: 999 écus")
-	fmt.Println("11 : Retour au menu ")
+	fmt.Println("11 : Retour au menu du marchand ")
 
 	var choix_objet int
 	fmt.Scanln(&choix_objet)

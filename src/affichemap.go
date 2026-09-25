@@ -77,7 +77,8 @@ func (p *Character) AfficheMapCo() {
 		}
 	}
 	type ville struct {
-		row, col int
+		row int
+		col int
 		name     string
 		occupe   int
 	}

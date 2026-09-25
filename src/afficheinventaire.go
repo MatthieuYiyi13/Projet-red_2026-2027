@@ -72,7 +72,7 @@ personnage_chapeau := `                	    	   ⣠⣴⣾⣿⣶⣤⡀⠀⠀⠀�
 ⠀⠀⠀⠀⠈⠙⠻⣶⣠⣀⠀⠀⠀⣠⣤⣶⠞⠯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠁⠈⢳⡀⠀⠚⠉⠀⠀⠀⢀⣽⣿⣯⡝⠟⠋⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠾⢿⢿⣿⡟⢀⠄⡤⢊⣴⠶⠿⠶⢾⣤⡁⠀⢻⠆⠀⠀⣠⣤⡤⠶⠛⠋⠉⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙ ⠠⣴⡟⠅⠀⠀⠀ ⠀⠙⣿⡄⠤⠶⠶⠒⠒⠚⠋⠉⠁⠀⠀⠀
-					 ⢰⣿⠀⠀⠀⠀⠀⠀⠀  ⢸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+		 ⢰⣿⠀⠀⠀⠀⠀⠀⠀  ⢸⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⠀⠌⣿⡏⠁⠀⠀⠀⠀⠀⠀⠈⣿⠆⠀⢈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠄⠠⠘⣷⡁⠀⠀⠀⠀⠀⢀⣼⠏⠀⢀⠂⠀⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⠀⠠⢹⣧⠂⠀⠀⠀⠐⣞⡏⠀⠀⠆⡀⠈⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -125,7 +125,7 @@ for _, char := range personnage_chapeau {
 	}	
 fmt.Println()
 } else {
-	for _, char := range personnage {
+	for _, char := range personnage{
 		fmt.Print(string(char))
 		
 		time.Sleep(1 * time.Millisecond)
@@ -172,7 +172,6 @@ fmt.Println()
 			affiche_casque = true 
 			fmt.Println()
 			fmt.Println()
-			p.AccessInventory()
 			}
 			if botte_equipe && p.inventaire[RessourceBotteArcenciel] == 1 {
 				p.inventaire[RessourceBotteArcenciel] -= 1
@@ -214,4 +213,7 @@ fmt.Println()
 			p.AccessInventory()
 			}
 		}
+		if inv == "R" {
+    	return
+}
 }

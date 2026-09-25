@@ -404,7 +404,7 @@ func (p *Character) Attaque(monstre *Monstre) {
 		skip = true
 	case "C", "c":
 		{
-			afficherTexte50("Vous attaquez le monstre il perds %d pvs",p.AttaqueDegats)
+			afficherTexte50("Vous attaquez le monstre il perd %d pvs",p.AttaqueDegats)
 
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
@@ -436,40 +436,40 @@ func (p *Character) Attaque(monstre *Monstre) {
 
 func (p *Character) AttaqueTuto(monstre *Monstre) {
 	fmt.Printf("\n")
-	fmt.Printf("\t+------------------------------------------------+\n")
-	fmt.Printf("\t|           Quelle attaque utiliser ?            |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t\t+------------------------------------------------+\n")
+	fmt.Printf("\t\t|           Quelle attaque utiliser ?            |\n")
+	fmt.Printf("\t\t|                                                |\n")
+	fmt.Printf("\t\t|                                                |\n")
 	if p.AttaqueName == "Coup d'épée" {
-	fmt.Printf("\t|     [C] Coup d'épée                            |\n")
+	fmt.Printf("\t\t|     [C] Coup d'épée                            |\n")
 	}
 	if p.AttaqueName == "Coup de baton" {
-	fmt.Printf("\t|     [C] Coup de baton                          |\n")
+	fmt.Printf("\t\t|     [C] Coup de baton                          |\n")
 	}
 	if p.AttaqueName == "Coup de dague" {
-	fmt.Printf("\t|     [C] Coup de dague                          |\n")
+	fmt.Printf("\t\t|     [C] Coup de dague                          |\n")
 	}
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t\t|                                                |\n")
+	fmt.Printf("\t\t|                                                |\n")
 	if (p.SkillName == "Coups vicieux") && (Sort) {
-		fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
+		fmt.Printf("\t\t|               [S] Coups vicieux  (25 Mana) |\n")
 	}
 	if (p.SkillName == "Boule de feu") && (Sort) {
-		fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
+		fmt.Printf("\t\t|               [S] Boule de feu   (50 Mana) |\n")
 	}
 	if (p.SkillName == "Coup critique") && (Sort) {
-		fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
+		fmt.Printf("\t\t|               [S] Coup critique  (35 Mana) |\n")
 	}
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t+------------------------------------------------+\n")
+	fmt.Printf("\t\t|                                                |\n")
+	fmt.Printf("\t\t|                                                |\n")
+	fmt.Printf("\t\t+------------------------------------------------+\n")
 	fmt.Println()
 	var moove_attack string
 	fmt.Scanln(&moove_attack)
 	switch moove_attack {
 	case "C", "c":
 		{
-			afficherTexte50("Vous attaquez le monstre il perds %d pvs",p.AttaqueDegats)
+			afficherTexte50("Vous attaquez le monstre il perd %d pvs",p.AttaqueDegats)
 			monstre.PV_actuelle -= p.AttaqueDegats
 		}
 	default:
@@ -521,7 +521,7 @@ func (p *Character) Combat_start_premier() {
 	for combat_pas_finis {
 		if monstre.Poison && skip == false{
 			fmt.Println()
-			afficherTexte50("Le monstre ennemi %s perds %d PV", monstre.name, 10)
+			afficherTexte50("Le monstre ennemi %s perd %d PV", monstre.name, 10)
 			fmt.Println()
 			monstre.PV_actuelle -= 10
 			fmt.Println()
@@ -607,12 +607,14 @@ func (p *Character) Combat_start_premier() {
 	} else if victoire && fuite {
 		fmt.Println()
 		fmt.Println()
+		stopSound()
 	} else {
 		fmt.Println()
 		afficherTexte50("Vous avez perdu tout vos pvs , vous êtes mort !")
 		fmt.Println()
 		victoire = false
 		combat_pas_finis = true
+		stopSound()
 		p.IsDead()
 	}
 }

@@ -27,6 +27,8 @@ var directionMap = direction{
 	Droite: "D",
 }
 
+var blockville bool = false
+var premiere_ville bool = false
 var touchemap string = "L"
 var toucheInv string = "I"
 var touchePersoInfo string = "P"
@@ -43,6 +45,7 @@ func (p *Character) touchevalide(touche string) bool {
 		return false
 	}
 	if touche == toucheInv || touche == ToucheEntrainement || touche == ToucheGuilde || touche == toucheMarchand || touche == touchePersoInfo || touche == touchemap || touche == ToucheForgeron || touche == ToucheQuitter || touche == ToucheOption || touche == directionMap.Haut || touche == directionMap.Bas || touche == directionMap.Gauche || touche == directionMap.Droite {
+		afficherTexte50("Chagement impossible")
 		return false
 	} else {
 		return true
@@ -52,7 +55,7 @@ func (p *Character) touchevalide(touche string) bool {
 func afficherTexte20(texte string) {
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(30 * time.Millisecond)
+		time.Sleep(20 * time.Millisecond)
 	}
 	fmt.Println()
 }
@@ -91,7 +94,6 @@ func afficherTexte100(format string, args ...interface{}) {
 }
 
 func (p *Character) StartGame() {
-
 	vert := "\033[32m"
 	reset := "\033[0m"
 
@@ -357,7 +359,10 @@ func (p *Character) StartMenu() {
 		p.IsDead()
 	}
 	p.pv = p.pvmax
-
+	afficherTexte50("C'est maintenant que votre aventure commence !")
+	afficherTexte50("Nous vous conseillons de souvent regarder votre map et de prioriser les villes !")
+	afficherTexte50("Vous pouvez vous déplacer avec les touches %s , %s , %s , %s",directionMap.Haut,directionMap.Bas,directionMap.Gauche,directionMap.Droite)
+	afficherTexte50("Amusez vous bien lors de votre périple")
 	for fin_du_jeu {
 		if defaite == true {
 			break
@@ -705,6 +710,7 @@ func (p *Character) StartMenu() {
 		}
 		if x_position > 5 && x_position < 10 && y_position == 5 {
 			dans_ville = true
+			premiere_ville = true
 		} else {
 			dans_ville = false
 		}
@@ -743,6 +749,13 @@ func (p *Character) StartMenu() {
 			if j == 0 {
 				p.Combat_start_premier()
 			}
+		}
+		if blockville {
+			premiere_ville = false
+		}
+		if premiere_ville {
+			afficherTexte100("Bienvenue dans la ville de Qarth, vous trouverez tout ce dont vous avez besoin	")
+			blockville = true
 		}
 	}
 
