@@ -79,5 +79,5 @@ func (p *Character) takepotM() {
 	}
 	p.inventaire[RessourcePotMana]--
 
-	afficherTexte50("Vous avez utilisé une potion de mana. Votre mana est maintenant de %s/%d.\n", p.Mana, p.Manamax)
+	afficherTexte50("Vous avez utilisé une potion de mana. Votre mana est maintenant de %d/%d.\n", p.Mana, p.Manamax)
 }

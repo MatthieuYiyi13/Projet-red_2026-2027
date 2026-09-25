@@ -45,6 +45,7 @@ func (p *Character) touchevalide(touche string) bool {
 		return false
 	}
 	if touche == toucheInv || touche == ToucheEntrainement || touche == ToucheGuilde || touche == toucheMarchand || touche == touchePersoInfo || touche == touchemap || touche == ToucheForgeron || touche == ToucheQuitter || touche == ToucheOption || touche == directionMap.Haut || touche == directionMap.Bas || touche == directionMap.Gauche || touche == directionMap.Droite {
+		afficherTexte50("Chagement impossible")
 		return false
 	} else {
 		return true
@@ -753,7 +754,7 @@ func (p *Character) StartMenu() {
 			premiere_ville = false
 		}
 		if premiere_ville {
-			afficherTexte100("Bienvenue dans la ville de Qarth, vous trouverez tout ce ")
+			afficherTexte100("Bienvenue dans la ville de Qarth, vous trouverez tout ce dont vous avez besoin	")
 			blockville = true
 		}
 	}

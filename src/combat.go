@@ -436,33 +436,33 @@ func (p *Character) Attaque(monstre *Monstre) {
 
 func (p *Character) AttaqueTuto(monstre *Monstre) {
 	fmt.Printf("\n")
-	fmt.Printf("\t+------------------------------------------------+\n")
-	fmt.Printf("\t|           Quelle attaque utiliser ?            |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t\t+------------------------------------------------+\n")
+	fmt.Printf("\t\t|           Quelle attaque utiliser ?            |\n")
+	fmt.Printf("\t\t|                                                |\n")
+	fmt.Printf("\t\t|                                                |\n")
 	if p.AttaqueName == "Coup d'épée" {
-	fmt.Printf("\t|     [C] Coup d'épée                            |\n")
+	fmt.Printf("\t\t|     [C] Coup d'épée                            |\n")
 	}
 	if p.AttaqueName == "Coup de baton" {
-	fmt.Printf("\t|     [C] Coup de baton                          |\n")
+	fmt.Printf("\t\t|     [C] Coup de baton                          |\n")
 	}
 	if p.AttaqueName == "Coup de dague" {
-	fmt.Printf("\t|     [C] Coup de dague                          |\n")
+	fmt.Printf("\t\t|     [C] Coup de dague                          |\n")
 	}
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
+	fmt.Printf("\t\t|                                                |\n")
+	fmt.Printf("\t\t|                                                |\n")
 	if (p.SkillName == "Coups vicieux") && (Sort) {
-		fmt.Printf("\t|               [S] Coups vicieux  (25 Mana) |\n")
+		fmt.Printf("\t\t|               [S] Coups vicieux  (25 Mana) |\n")
 	}
 	if (p.SkillName == "Boule de feu") && (Sort) {
-		fmt.Printf("\t|               [S] Boule de feu   (50 Mana) |\n")
+		fmt.Printf("\t\t|               [S] Boule de feu   (50 Mana) |\n")
 	}
 	if (p.SkillName == "Coup critique") && (Sort) {
-		fmt.Printf("\t|               [S] Coup critique  (35 Mana) |\n")
+		fmt.Printf("\t\t|               [S] Coup critique  (35 Mana) |\n")
 	}
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t|                                                |\n")
-	fmt.Printf("\t+------------------------------------------------+\n")
+	fmt.Printf("\t\t|                                                |\n")
+	fmt.Printf("\t\t|                                                |\n")
+	fmt.Printf("\t\t+------------------------------------------------+\n")
 	fmt.Println()
 	var moove_attack string
 	fmt.Scanln(&moove_attack)
