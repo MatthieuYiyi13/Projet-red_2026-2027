@@ -254,7 +254,7 @@ func (p *Character) StartMenu() {
 	afficherTexte100(". . . . . . . .")
 	afficherTexte1("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM")
 	afficherTexte50("Une araignée vous tombe dessus , elle cherche le combat.")
-
+	
 	skiptuto = false
 	fuite = false
 	victoire = false
