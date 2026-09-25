@@ -117,7 +117,7 @@ func (p *Character) choix_monstre() Monstre {
 	if n == 0 {
 		return Monstre{
 			name:        "Spectre",
-			attack:      10,
+			attack:      20,
 			PV_max:      75,
 			PV_actuelle: 75,
 			Poison:      false,
@@ -128,7 +128,7 @@ func (p *Character) choix_monstre() Monstre {
 	if n == 1 {
 		return Monstre{
 			name:        "Géant",
-			attack:      8,
+			attack:      18,
 			PV_max:      150,
 			PV_actuelle: 150,
 			Poison:      false,
@@ -603,6 +603,7 @@ func (p *Character) Combat_start_premier() {
 		p.GagnerCombat()
 		victoire = false
 		stopSound()
+		PlaySoundAsyncDebut()
 		combat_pas_finis = true
 	} else if victoire && fuite {
 		fmt.Println()

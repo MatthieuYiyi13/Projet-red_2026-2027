@@ -92,3 +92,10 @@ func PlaySoundAsyncCombat1() {
 func PlaySoundAsyncCombatE() {
 	playMusic("./docs/Pkmmusique2.mp3", false)
 }
+
+func PlaySoundAsyncMort() {
+	playMusic("./docs/Mort.mp3", false)
+}
+func PlaySoundAsyncAnge() {
+	playMusic("./docs/SonAnge.mp3", false)
+}

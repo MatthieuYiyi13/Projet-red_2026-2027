@@ -1,6 +1,8 @@
 package projet
 
 func (p *Character) IsDead() {
+	PlaySoundAsyncMort()
+	afficherTexte10000("  ")
 	if p.pv <= 0 {
 		if !p.Resurrection {
 			p.pv = p.pvmax / 2

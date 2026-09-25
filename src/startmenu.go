@@ -55,7 +55,7 @@ func (p *Character) touchevalide(touche string) bool {
 func afficherTexte20(texte string) {
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(20 * time.Millisecond)
+		time.Sleep(10 * time.Millisecond)
 	}
 	fmt.Println()
 }
@@ -65,7 +65,7 @@ func afficherTexte1(format string, args ...interface{}) {
 
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(3 * time.Millisecond)
+		time.Sleep(2 * time.Millisecond)
 	}
 
 	fmt.Println()
@@ -88,6 +88,17 @@ func afficherTexte100(format string, args ...interface{}) {
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
 		time.Sleep(150 * time.Millisecond)
+	}
+
+	fmt.Println()
+}
+
+func afficherTexte10000(format string, args ...interface{}) {
+	texte := fmt.Sprintf(format, args...)
+
+	for _, caractere := range texte {
+		fmt.Print(string(caractere))
+		time.Sleep(2000 * time.Millisecond)
 	}
 
 	fmt.Println()
