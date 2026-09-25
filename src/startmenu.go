@@ -38,7 +38,7 @@ var ToucheOption string = "O"
 var ToucheQuitter string = "Q"
 var ToucheGuilde string = "C"
 var ToucheEntrainement string = "E"
-var ToucheCredit string = "C"
+var ToucheCredit string = "c"
 
 func (p *Character) touchevalide(touche string) bool {
 	if len(touche) != 1 {
@@ -65,7 +65,7 @@ func afficherTexte1(format string, args ...interface{}) {
 
 	for _, caractere := range texte {
 		fmt.Print(string(caractere))
-		time.Sleep(7 * time.Millisecond)
+		time.Sleep(3 * time.Millisecond)
 	}
 
 	fmt.Println()
@@ -743,6 +743,12 @@ func (p *Character) StartMenu() {
 		}
 		if (y_position > 10) && (x_position > 13) && (zone_volcan == false) {
 			x_position = 13
+		}
+		if x_position == 6 && y_position == 0 {
+			afficherTexte50("Vous trouvez une fontaine de fée, votre corps se renforce énormément")
+			for i := 0 ; i < 50 ; i++{
+				p.GagnerCombat_Fee()
+			}
 		}
 		if dans_ville == false && combat_possible {
 			j := rand.IntN(7)

@@ -53,3 +53,32 @@ func (p *Character) GagnerCombat() {
 	}
 	afficherTexte50("Vous êtes niveau : %d.\n",p.Niveau())
 }
+
+func (p *Character) GagnerCombat_Fee() {
+	ancienNiveau := p.Niveau()
+
+	nombreValeursPossibles := experienceMaxVictoire - experienceMinVictoire + 1
+	experienceAleatoire := rand.Intn(nombreValeursPossibles)
+	experienceGagnee := experienceMinVictoire + experienceAleatoire
+
+	p.experience += experienceGagnee
+	afficherTexte1("Vous gagnez %d points d'experience.\n", experienceGagnee)
+
+	nouveauNiveau := p.Niveau()
+	niveauxGagnes := nouveauNiveau - ancienNiveau
+
+	if niveauxGagnes > 0 {
+		afficherTexte1("Vous gagnez %d niveau(x) !\n", niveauxGagnes)
+
+		bonusPV := pvParNiveau * niveauxGagnes
+		bonusDegats := degatsParNiveau * niveauxGagnes
+		bonusMana := manaParNiveau * niveauxGagnes
+
+		p.pvmax += bonusPV
+		p.pv += bonusPV
+		p.AttaqueDegats += bonusDegats
+		p.Manamax += bonusMana
+		p.Mana += bonusMana
+	}
+	afficherTexte1("Vous êtes niveau : %d.\n",p.Niveau())
+}
