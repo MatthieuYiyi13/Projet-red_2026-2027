@@ -127,8 +127,8 @@ func (p *Character) choix_monstre() Monstre {
 	if n == 1 {
 		return Monstre{
 			name:        "Géant",
-			attack:      18,
-			PV_max:      150,
+			attack:      20,
+			PV_max:      120,
 			PV_actuelle: 150,
 			Poison:      false,
 			Initiative:  7,
@@ -289,6 +289,7 @@ func (p *Character) Loot(monstre Monstre) {
 
 func (p *Character) Usepot_poison(monstre *Monstre) {
 	monstre.Poison = true
+	p.inventaire[RessourcePotPoison] -= 1
 	afficherTexte50("%s est empoisonné !\n", monstre.name)
 }
 
@@ -495,12 +496,13 @@ func (p *Character) Combat_start_premier() {
 		if l == 0 {
 			afficherTexte20("Le monstre vous attaque mais vous réussissez à l'esquiver !")
 		} else {
+
 			afficherTexte20("Le monstre ennemi est énervé, il vous charge")
 			pv_perdu := monstre.attack
 			if count_super_monstre%4 == 0 {
 				pv_perdu = pv_perdu * 2
 			}
-			afficherTexte50("Vous perdez %d Pvs\n", pv_perdu)
+			afficherTexte50("Vous perdez %d Pvs\n", monstre.attack)
 			p.pv -= monstre.attack
 			afficherTexte50("Pvs actuelle : %d/%d", p.pv, p.pvmax)
 			fmt.Println()
@@ -569,7 +571,7 @@ func (p *Character) Combat_start_premier() {
 			continue
 		}
 		fmt.Println()
-		l := rand.IntN(4)
+		l := rand.IntN(6)
 		if l == 0 {
 			fmt.Println()
 			afficherTexte50("Le monstre vous attaque mais vous réussissez à l'esquiver !")

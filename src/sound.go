@@ -99,3 +99,6 @@ func PlaySoundAsyncMort() {
 func PlaySoundAsyncAnge() {
 	playMusic("./docs/SonAnge.mp3", false)
 }
+func PlaySoundAsynccredit() {
+	playMusic("./docs/musiquecredit.mp3", false)
+}
