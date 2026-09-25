@@ -1,13 +1,14 @@
-package projet 
+package projet
 
-import ("fmt"
-	"time")
+import (
+	"fmt"
+	"time"
+)
 
 var affiche_casque bool = false
 var affiche_armurecuir bool = false
 var affiche_armureivoire bool = false
 var affiche_botte bool = false
-
 
 func (p *Character) AccessInventory() {
 	personnage := `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -52,8 +53,7 @@ func (p *Character) AccessInventory() {
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠐⠠⢀⠀⠀⢀⠠⠌⠁⠠⠀⠈⠠⢀⠀⠐⠀⡀⠔⠁⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠈⠈⠀⠀⠀⠀⠀⠀⠁⠀⠀⠈⠀⠁⠀⠄⠂⠀⠀⠀    `
 
-
-personnage_chapeau := `                	    	   ⣠⣴⣾⣿⣶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+	personnage_chapeau := `                	    	   ⣠⣴⣾⣿⣶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠙⠛⣠⣍⡻⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣃⣒⣾⣿⣿⣿⣶⡿⠿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⡿⠿⠿⢿⣿⣯⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -111,29 +111,23 @@ personnage_chapeau := `                	    	   ⣠⣴⣾⣿⣶⣤⡀⠀⠀⠀�
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠐⠠⢀⠀⠀⢀⠠⠌⠁⠠⠀⠈⠠⢀⠀⠐⠀⡀⠔⠁⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠈⠈⠀⠀⠀⠀⠀⠀⠁⠀⠀⠈⠀⠁⠀⠄⠂⠀⠀⠀    `
 
+	fmt.Println("============================Inventaire============================")
 
+	if affiche_casque {
+		for _, char := range personnage_chapeau {
+			fmt.Print(string(char))
 
+			time.Sleep(1 * time.Millisecond)
+		}
+		fmt.Println()
+	} else {
+		for _, char := range personnage {
+			fmt.Print(string(char))
 
-
-fmt.Println("============================Inventaire============================")
-
-if affiche_casque {
-for _, char := range personnage_chapeau {
-		fmt.Print(string(char))
-		
-		time.Sleep(1 * time.Millisecond)
-	}	
-fmt.Println()
-} else {
-	for _, char := range personnage{
-		fmt.Print(string(char))
-		
-		time.Sleep(1 * time.Millisecond)
-	}	
-fmt.Println()
-}
-
-
+			time.Sleep(1 * time.Millisecond)
+		}
+		fmt.Println()
+	}
 
 	fmt.Println()
 	for itemname, itemquantity := range p.inventaire {
@@ -149,71 +143,71 @@ fmt.Println()
 	afficherTexte20("E : Mettre mon équipement ")
 	afficherTexte20("R : Retour")
 	var inv string
-		fmt.Scanln(&inv)
-		if inv == "P" {
-			p.takepotS()
+	fmt.Scanln(&inv)
+	if inv == "P" {
+		p.takepotS()
+		fmt.Println()
+		fmt.Println()
+		p.AccessInventory()
+	}
+	if inv == "M" {
+		p.takepotM()
+		fmt.Println()
+		fmt.Println()
+		p.AccessInventory()
+	}
+	if inv == "E" {
+		if casque_equipe && p.inventaire[RessourceChapeaudegeant] == 1 {
+			casque_equipe = false
+			p.inventaire[RessourceChapeaudegeant] -= 1
+			fmt.Println()
+			fmt.Println("Vous équipez votre chapeau du géant ! (+140PV)")
+			p.pvmax += 140
+			affiche_casque = true
+			fmt.Println()
+			fmt.Println()
+		}
+		if botte_equipe && p.inventaire[RessourceBotteArcenciel] == 1 {
+			p.inventaire[RessourceBotteArcenciel] -= 1
+			botte_equipe = false
+			fmt.Println("Vous équipez vos bottes Arc-En-Ciel ! (+4617PV / +400Mana)")
+			p.pvmax += 4617
+			p.Manamax += 400
+			affiche_botte = true
 			fmt.Println()
 			fmt.Println()
 			p.AccessInventory()
 		}
-		if inv == "M" {
-			p.takepotM()
+		if armurecuir_equipe && p.inventaire[RessourceArmurecuir] == 1 {
+			p.inventaire[RessourceArmurecuir] -= 1
+			armurecuir_equipe = false
+			fmt.Println("Vous équipez votre Armure en cuir ! (+80PV)")
+			p.pvmax += 80
+			affiche_armurecuir = true
 			fmt.Println()
 			fmt.Println()
 			p.AccessInventory()
 		}
-		if inv == "E" {
-			if casque_equipe && p.inventaire[RessourceChapeaudegeant] == 1{
-				casque_equipe = false
-				p.inventaire[RessourceChapeaudegeant] -=1
-			fmt.Println()
-			fmt.Println("Vous équipez votre chapeau du géant ! (+30PV)")
-			p.pvmax += 30
-			affiche_casque = true 
-			fmt.Println()
-			fmt.Println()
-			}
-			if botte_equipe && p.inventaire[RessourceBotteArcenciel] == 1 {
-				p.inventaire[RessourceBotteArcenciel] -= 1
-				botte_equipe = false 
-				fmt.Println("Vous équipez vos bottes Arc-En-Ciel ! (+5PV / +20Mana)")
-				p.pvmax += 5
-				p.Manamax += 20
-				affiche_botte = true 
-				fmt.Println()
-				fmt.Println()
-				p.AccessInventory()
-			}
-			if armurecuir_equipe && p.inventaire[RessourceArmurecuir] == 1 {
-				p.inventaire[RessourceArmurecuir] -= 1
-				armurecuir_equipe = false
-				fmt.Println("Vous équipez votre Armure en cuir ! (+15PV)")
-				p.pvmax += 15
-			affiche_armurecuir = true 
+		if armureivoire_equipe && p.inventaire[RessourceArmureIvoire] == 1 {
+			p.inventaire[RessourceArmureIvoire] -= 1
+			armureivoire_equipe = false
+			fmt.Println("Vous équipez votre Armure en  ivoire ! (+550PV / + 140Mana)")
+			p.pvmax += 550
+			p.Manamax += 140
+			affiche_armureivoire = true
 			fmt.Println()
 			fmt.Println()
 			p.AccessInventory()
-			}
-			if armureivoire_equipe && p.inventaire[RessourceArmureIvoire] == 1 {
-				p.inventaire[RessourceArmureIvoire] -= 1
-				armureivoire_equipe = false
-				fmt.Println("Vous équipez votre Armure en  ivoire ! (+30PV / + 30Mana)")
-				p.pvmax += 30
-				p.Manamax += 30
-			affiche_armureivoire = true 
-			fmt.Println()
-			fmt.Println()
-			p.AccessInventory()
-			}  
-			if p.inventaire[RessourceArmureIvoire] == 0 && p.inventaire[RessourceArmurecuir] == 0 && p.inventaire[RessourceChapeaudegeant]==0 && p.inventaire[RessourceBotteArcenciel] == 0 {
-				fmt.Println()
-				fmt.Println("Vous n'avez rien d'autres à équiper !")
-			fmt.Println()
-			fmt.Println()
-			p.AccessInventory()
-			}
 		}
-		if inv == "R" {
-    	return
-}
+		if p.inventaire[RessourceArmureIvoire] == 0 && p.inventaire[RessourceArmurecuir] == 0 && p.inventaire[RessourceChapeaudegeant] == 0 && p.inventaire[RessourceBotteArcenciel] == 0 {
+			fmt.Println()
+			fmt.Println("Vous n'avez rien d'autres à équiper !")
+			fmt.Println()
+			fmt.Println()
+			p.AccessInventory()
+		}
+	}
+	if inv == "R" {
+		return
+	}
 }
