@@ -51,7 +51,7 @@ func (p *Character) initcharacter(name string, classe string) {
 		p.AttaqueName = "Coup d'épée"
 		p.AttaqueDegats = 20
 		p.SkillName = "Coup critique"
-		p.SkillDegats = 80
+		p.SkillDegats = 120
 		p.Skillmana = 25
 		p.Initiative = 8
 	case "Sorcier" :
@@ -60,7 +60,7 @@ func (p *Character) initcharacter(name string, classe string) {
 		p.AttaqueName = "Coup de baton"
 		p.AttaqueDegats = 10
 		p.SkillName = "Boule de feu"
-		p.SkillDegats = 120
+		p.SkillDegats = 220
 		p.Skillmana = 50
 		p.Initiative = 4
 	case "Assassin" :
@@ -69,7 +69,7 @@ func (p *Character) initcharacter(name string, classe string) {
 		p.AttaqueName = "Coup de dague"
 		p.AttaqueDegats = 15
 		p.SkillName = "Coups vicieux"
-		p.SkillDegats = 100
+		p.SkillDegats = 180
 		p.Skillmana = 35
 		p.Initiative = 9
 	}
